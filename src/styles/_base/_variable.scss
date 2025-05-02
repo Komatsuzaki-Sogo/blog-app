@@ -1,0 +1,46 @@
+@use '@/styles/_common/mixin/' as mixin;
+
+:root {
+  // MARGIN
+  --margin-section: 64px;
+
+  // FONT
+  --font-noto-sans-jp: 'Noto Sans JP', sans-serif;
+
+  // FONT-WEIGHT
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  // box-shadow
+  --box-shadow: 5px 5px 6px #7d7d7d33;
+
+  // PRIMARY
+  --color-primary: #3dd68c;
+
+  // FOREGROUND
+  --color-foreground-light: #fff;
+  --color-foreground-dark: #333;
+
+  // BACKGROUND
+  --color-background-light: #fff;
+  --color-background-dark: #333;
+
+  // ROLE DANGER
+  --color-role-danger-dark: #c00;
+
+  // TRANSITION
+  --transition: .4s cubic-bezier(.25,.8,.25,1);
+
+  // BORDER
+  --color-outline-dark: #333;
+
+  // HEADER HEIGHT
+  --header-height: 60px;
+}
+
+@include mixin.media(pc) {
+  :root {
+    // HEADER HEIGHT
+    --header-height: 86px;
+  }
+}

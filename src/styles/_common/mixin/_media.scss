@@ -1,0 +1,29 @@
+@use 'sass:meta';
+@use 'sass:map';
+@use '@/styles/_base/argument' as *;
+
+// メディアクエリを設定
+// @param {'pc' | 'sp' | 'hover'} $type       - メディアクエリのサポート範囲
+// @param {Number}                $breakpoint - ブレークポイント（単位つき）
+// =============================================================================
+@mixin media($type: '', $breakpoint: $major-breakpoint) {
+  $type-map: (
+    sp: (max-width: $breakpoint - .02px),
+    pc: (min-width: $breakpoint),
+    hover: (any-hover: hover)
+  );
+
+  @if map.has-key($type-map, $type) {
+    @if $type == 'pc' {
+      @media #{meta.inspect(map.get($type-map, $type))} {
+        @content;
+      }
+    } @else {
+      @media #{meta.inspect(map.get($type-map, $type))} {
+        @content;
+      }
+    }
+  } @else {
+    @error '引数$typeは必須です。';
+  }
+}

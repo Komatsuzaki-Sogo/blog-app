@@ -1,0 +1,9 @@
+{
+  "stylelint.validate": ["css", "scss", "vue"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "always"
+  },
+  "cSpell.words": [
+    "stylelintcache"
+  ]
+}

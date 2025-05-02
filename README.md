@@ -1,10 +1,7 @@
-# Nuxt Minimal Starter
-
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# ローカル環境構築手順
 
 ## Setup
 
-Make sure to install dependencies:
 
 ```bash
 # npm

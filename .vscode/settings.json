@@ -4,6 +4,7 @@
     "source.fixAll.stylelint": "always"
   },
   "cSpell.words": [
+    "Nuxt",
     "stylelintcache"
   ]
 }

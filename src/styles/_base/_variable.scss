@@ -31,14 +31,21 @@
   // ROLE DANGER
   --color-role-danger-dark: #c00;
 
+  // GRADIENT
+  --color-gradient: linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));
+  --color-gradient-reverse: linear-gradient(to bottom right, var(--color-secondary), var(--color-primary));;
+
   // TRANSITION
   --transition: .4s cubic-bezier(.25,.8,.25,1);
 
   // BORDER
   --color-outline-dark: #333;
 
+  // BORDER RADIUS
+  --border-radius-circle: 1000px;
+
   // HEADER HEIGHT
-  --header-height: 60px;
+  --header-height: 62px;
 }
 
 @include mixin.media(pc) {

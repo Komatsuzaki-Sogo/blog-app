@@ -29,6 +29,26 @@ const pathEntries = Object.entries(PATHS)
 
 <style scoped lang="scss">
 .c-navigation {
+  @include mixin.media(sp, $minor-breakpoint) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    visibility: hidden;
+    width: min(100%, 400px);
+    height: 100vh;
+    padding: var(--header-height) 16px 32px;
+    background-color: var(--color-background-gray);
+
+    // transform: translateX(calc(100% + 16px));
+    // transition: transform var(--transition);
+
+    // &.is-active {
+    //   visibility: visible;
+    //   transform: translateX(0);
+    // }
+  }
+
   @include mixin.media(pc, $minor-breakpoint) {
     display: flex;
     gap: 24px;
@@ -45,28 +65,74 @@ const pathEntries = Object.entries(PATHS)
 
   &__list {
     display: flex;
-    gap: 24px;
     list-style: none;
+
+    @include mixin.media(sp, $minor-breakpoint) {
+      flex-direction: column;
+      border-top: 1px solid var(--color-outline-gray);
+    }
+
+    @include mixin.media(pc, $minor-breakpoint) {
+      gap: 24px;
+    }
+  }
+
+  &__item {
+    @include mixin.media(sp, $minor-breakpoint) {
+      border-bottom: 1px solid var(--color-outline-gray);
+    }
   }
 
   &__link {
+    --local-padding-y: 16px;
+
     position: relative;
     font-weight: var(--font-weight-bold);
     transition: var(--transition);
 
+    @include mixin.media(sp, $minor-breakpoint) {
+      padding: var(--local-padding-y) 0 var(--local-padding-y) 20px;
+    }
+
     &[aria-current="page"] {
+      pointer-events: none;
+
       &::before {
-        @include mixin.media(pc, $minor-breakpoint) {
-          position: absolute;
-        bottom: -7px;
-        left: 50%;
+        position: absolute;
+        left: 0;
         display: block;
-        width: 7px;
-        height: 7px;
+        width: 6px;
+        height: calc(100% - (var(--local-padding-y) * 2));
         content: "";
         background: var(--color-gradient);
-        border-radius: var(--border-radius-circle);
-        transform: translateX(-50%);
+        border-radius: 2px;
+
+        @include mixin.media(pc, $minor-breakpoint) {
+          bottom: -7px;
+          left: 50%;
+          width: 7px;
+          height: 7px;
+          border-radius: var(--border-radius-circle);
+          transform: translateX(-50%);
+        }
+      }
+    }
+
+    &:not([aria-current="page"]) {
+      @include mixin.media(sp, $minor-breakpoint) {
+        position: relative;
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          display: block;
+          width: 8px;
+          height: 8px;
+          content: "";
+          border-top: 2px solid var(--color-secondary);
+          border-right: 2px solid var(--color-secondary);
+          transform: translateY(-50%) rotate(45deg);
         }
       }
     }
@@ -79,6 +145,10 @@ const pathEntries = Object.entries(PATHS)
   }
 
   &__contact {
+    @include mixin.media(sp, $minor-breakpoint) {
+      margin-top: 32px;
+    }
+
     &Item {
       position: relative;
       padding: 12px 36px;
@@ -110,6 +180,8 @@ const pathEntries = Object.entries(PATHS)
 
     &Text {
       position: relative;
+      display: block;
+      text-align: center;
     }
   }
 }

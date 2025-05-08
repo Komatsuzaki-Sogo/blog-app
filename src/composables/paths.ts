@@ -1,5 +1,5 @@
 export const PATHS = {
-  HOME: { name: 'HOME', path: '/home' },
+  HOME: { name: 'HOME', path: '/' },
   ABOUT: { name: 'ABOUT', path: '/about' },
   NEWS: { name: 'NEWS', path: '/news' },
   BLOG: { name: 'BLOG', path: '/blog' },

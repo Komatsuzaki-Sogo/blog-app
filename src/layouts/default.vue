@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import SiteHeader from '~/components/organisms/SiteHeader.vue';
+
+const isMenuOpen = computed(() => {
+  return easyStore.menuActive
+})
 </script>
 
 <template>
   <div class="container">
     <SiteHeader />
-    <slot />
-    <footer>footer</footer>
+    <div :inert="isMenuOpen ? true : undefined">
+      <slot />
+    </div>
+    <footer :inert="isMenuOpen ? true : undefined">footer</footer>
   </div>
 </template>
 

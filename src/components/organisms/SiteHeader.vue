@@ -47,6 +47,34 @@
       document.body.classList.remove(activeBodyClassName)
     }
   })
+
+  const beforeEnter = (el: Element) => {
+    const element = el as HTMLElement
+    element.style.height = '0'
+    element.style.display = 'block'
+  }
+
+  const enter = (el: Element) => {
+    const element = el as HTMLElement
+    element.style.height = `${element.scrollHeight}px`
+  }
+
+  const afterEnter = (el: Element) => {
+    const element = el as HTMLElement
+    element.style.height = 'auto'
+    element.style.display = 'block'
+    element.style.overflowY = 'auto'
+  }
+
+  const beforeLeave = (el: Element) => {
+    const element = el as HTMLElement
+    element.style.height = `${element.scrollHeight}px`
+  }
+
+  const leave = (el: Element) => {
+    const element = el as HTMLElement
+    element.style.height = '0'
+  }
 </script>
 
 <template>
@@ -55,7 +83,21 @@
       <div class="c-header__inner">
         <BaseLogo />
         <BaseHamburgerMenu :class="{ 'is-active': isMenuOpen }" @click="toggleMenu" />
-        <HeaderNavigation :class="{ 'is-active': isMenuOpen }" />
+        <HeaderNavigation class="c-header__navigationPC" :class="{ 'is-active': isMenuOpen }" />
+        <Transition
+          name="slide"
+          @before-enter="beforeEnter"
+          @enter="enter"
+          @after-enter="afterEnter"
+          @before-leave="beforeLeave"
+          @leave="leave"
+        >
+          <HeaderNavigation
+            v-show="isMenuOpen"
+            class="c-header__navigationSP"
+            :class="{ 'is-active': isMenuOpen }"
+          />
+        </Transition>
         <BaseOverlay :class="{ 'is-active': isMenuOpen }" @click="closeMenu" />
       </div>
     </BaseContent>
@@ -82,5 +124,28 @@
         padding: 16px 0;
       }
     }
+
+    &__navigationSP {
+      @include mixin.media(pc, $minor-breakpoint) {
+        display: none;
+      }
+    }
+
+    &__navigationPC {
+      @include mixin.media(sp, $minor-breakpoint) {
+        display: none;
+      }
+    }
+  }
+
+  .slide-enter-active,
+  .slide-leave-active {
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+  }
+
+  .slide-enter,
+  .slide-leave-to {
+    height: 0;
   }
 </style>

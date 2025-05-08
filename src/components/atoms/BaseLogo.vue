@@ -13,6 +13,9 @@
 
 <style scoped lang="scss">
   .c-logo {
+    position: relative;
+    z-index: 20;
+
     &__text {
       font-size: 3rem;
       font-weight: var(--font-weight-bold);

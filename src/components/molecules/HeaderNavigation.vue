@@ -45,18 +45,15 @@
       right: 0;
       z-index: 5;
       visibility: hidden;
-      width: min(100%, 400px);
+      width: 100%;
       height: 100vh;
       padding: var(--header-height) 16px 32px;
+      overflow: hidden !important;
       background-color: var(--color-background-gray);
 
-      // transform: translateX(calc(100% + 16px));
-      // transition: transform var(--transition);
-
-      // &.is-active {
-      //   visibility: visible;
-      //   transform: translateX(0);
-      // }
+      &.is-active {
+        visibility: visible;
+      }
     }
 
     @include mixin.media(pc, $minor-breakpoint) {

@@ -4,4 +4,4 @@ export const PATHS = {
   NEWS: { name: 'NEWS', path: '/news' },
   BLOG: { name: 'BLOG', path: '/blog' },
   CONTACT: { name: 'CONTACT', path: '/contact' },
-} as const;
+} as const

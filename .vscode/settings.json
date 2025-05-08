@@ -1,10 +1,15 @@
 {
   "stylelint.validate": ["css", "scss", "vue"],
+  "cSpell.words": ["Nuxt", "stylelintcache"],
+  // 保存時に Prettier などでコードフォーマット
+  "editor.formatOnSave": true,
+  // ESLint による自動修正
   "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always",
     "source.fixAll.stylelint": "always"
   },
-  "cSpell.words": [
-    "Nuxt",
-    "stylelintcache"
-  ]
+  // Prettier をフォーマッターとして使用
+  "prettier.enable": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

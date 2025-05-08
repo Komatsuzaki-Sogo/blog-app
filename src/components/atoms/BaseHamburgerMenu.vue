@@ -1,70 +1,70 @@
 <template>
   <button type="button" class="c-hamburgerMenu">
     <span class="c-hamburgerMenu__text">メニュー</span>
-  </button><!-- /.c-hamburgerMenu -->
+  </button>
 </template>
 
 <style scoped lang="scss">
-.c-hamburgerMenu {
-  $this: &;
+  .c-hamburgerMenu {
+    $this: &;
 
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 10;
-  display: block;
-  width: 62px;
-  height: 62px;
-
-  @include mixin.media(pc, $minor-breakpoint) {
-    display: none;
-  }
-
-  &__text {
-    position: relative;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
     display: block;
-    width: 30px;
-    height: 2px;
-    margin: auto;
-    font-size: 0;
-    background: var(--color-gradient-reverse);
-    transition: background var(--transition);
+    width: 62px;
+    height: 62px;
 
-    &::before,
-    &::after {
-      position: absolute;
+    @include mixin.media(pc, $minor-breakpoint) {
+      display: none;
+    }
+
+    &__text {
+      position: relative;
       display: block;
       width: 30px;
       height: 2px;
+      margin: auto;
       font-size: 0;
-      content: '';
-      background: var(--color-gradient);
-      transition: all var(--transition);
-    }
+      background: var(--color-gradient-reverse);
+      transition: background var(--transition);
 
-    &::before {
-      top: -10px;
-    }
-
-    &::after {
-      bottom: -10px;
-    }
-  }
-
-  &.is-active {
-    #{$this}__text {
-      background: transparent;
+      &::before,
+      &::after {
+        position: absolute;
+        display: block;
+        width: 30px;
+        height: 2px;
+        font-size: 0;
+        content: '';
+        background: var(--color-gradient);
+        transition: all var(--transition);
+      }
 
       &::before {
-        top: 0;
-        transform: rotate(-45deg);
+        top: -10px;
       }
 
       &::after {
-        bottom: 0;
-        transform: rotate(45deg);
+        bottom: -10px;
+      }
+    }
+
+    &.is-active {
+      #{$this}__text {
+        background: transparent;
+
+        &::before {
+          top: 0;
+          transform: rotate(-45deg);
+        }
+
+        &::after {
+          bottom: 0;
+          transform: rotate(45deg);
+        }
       }
     }
   }
-}
 </style>

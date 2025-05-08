@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import SiteHeader from '~/components/organisms/SiteHeader.vue';
+  import SiteHeader from '~/components/organisms/SiteHeader.vue'
 
-const isMenuOpen = computed(() => {
-  return easyStore.menuActive
-})
+  const isMenuOpen = computed(() => {
+    return easyStore.menuActive
+  })
 </script>
 
 <template>
@@ -17,9 +17,9 @@ const isMenuOpen = computed(() => {
 </template>
 
 <style lang="scss">
-.container {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 40px;
-}
+  .container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 40px;
+  }
 </style>

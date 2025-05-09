@@ -8,7 +8,6 @@
       <span class="c-logo__text">LOGO</span>
     </NuxtLink>
   </div>
-  <!-- /.c-content -->
 </template>
 
 <style scoped lang="scss">

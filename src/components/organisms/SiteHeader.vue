@@ -123,7 +123,6 @@
       </div>
     </BaseContent>
   </header>
-  <!-- /.c-content -->
 </template>
 
 <style scoped lang="scss">

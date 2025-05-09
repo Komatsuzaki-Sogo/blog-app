@@ -1,6 +1,5 @@
 <template>
   <div class="c-overlay" />
-  <!-- /.c-overlay -->
 </template>
 
 <style scoped lang="scss">

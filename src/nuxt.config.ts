@@ -25,4 +25,9 @@ export default defineNuxtConfig({
       'Noto+Sans+JP': [400, 500, 700],
     },
   },
+  runtimeConfig: {
+    public: {
+      NUXT_APP_BASE_HOST: process.env.NUXT_PUBLIC_APP_BASE_HOST,
+    },
+  },
 })

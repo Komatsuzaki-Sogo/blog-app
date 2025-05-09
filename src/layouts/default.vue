@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import SiteBreadcrumbs from '~/components/organisms/SiteBreadcrumbs.vue'
   import SiteHeader from '~/components/organisms/SiteHeader.vue'
 
   const isMenuOpen = computed(() => {
@@ -12,6 +13,7 @@
     <div :inert="isMenuOpen ? true : undefined">
       <slot />
     </div>
+    <SiteBreadcrumbs />
     <footer :inert="isMenuOpen ? true : undefined">footer</footer>
   </div>
 </template>

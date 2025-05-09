@@ -21,7 +21,6 @@
       <slot />
     </div>
   </div>
-  <!-- /.c-content -->
 </template>
 
 <style scoped lang="scss">

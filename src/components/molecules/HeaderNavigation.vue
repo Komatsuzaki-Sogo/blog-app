@@ -36,7 +36,6 @@
       </div>
     </div>
   </div>
-  <!-- /.c-navigation -->
 </template>
 
 <style scoped lang="scss">

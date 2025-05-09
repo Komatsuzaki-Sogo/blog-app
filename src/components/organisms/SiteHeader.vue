@@ -128,12 +128,15 @@
 
 <style scoped lang="scss">
   .c-header {
-    position: inherit;
+    position: sticky;
+    top: 0;
     z-index: 100;
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: var(--header-height);
+    background-color: rgb(246 246 246 / 60%);
+    backdrop-filter: blur(15px);
 
     &__inner {
       display: flex;
@@ -161,7 +164,7 @@
 
   .slide-enter-active,
   .slide-leave-active {
-    overflow: hidden;
+    overflow: hidden !important;
     transition: height var(--transition);
   }
 

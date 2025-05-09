@@ -20,7 +20,7 @@ body {
   font-weight: var(--font-weight-normal);
   line-height: 1.4;
   color: var(--color-foreground-dark);
-  background: var(--color-background-light);
+  background-color: var(--color-background-gray);
 
   &.is-fixed {
     overflow-y: hidden;

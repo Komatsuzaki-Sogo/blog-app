@@ -41,15 +41,32 @@
 
 <style scoped lang="scss">
   .c-navigation {
+    $this: &;
+
     @include mixin.media(sp, $minor-breakpoint) {
       position: fixed;
       top: 0;
       right: 0;
       z-index: 5;
       width: 100%;
-      height: 100vh;
-      overflow: hidden !important;
+      max-height: 100vh;
       background-color: var(--color-background-gray);
+
+      &::after {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        content: '';
+        background-color: var(--color-background-gray);
+      }
+
+      &.is-active {
+        #{$this}__inner {
+          overflow: auto;
+        }
+      }
     }
 
     &__inner {
@@ -59,16 +76,8 @@
 
       @include mixin.media(pc, $minor-breakpoint) {
         display: flex;
-        gap: 24px;
+        gap: 48px;
         align-items: center;
-      }
-    }
-
-    &__nav {
-      @include mixin.media(pc, $minor-breakpoint) {
-        padding: 12px 36px;
-        border-radius: var(--border-radius-circle);
-        box-shadow: 1px 1px 10px rgb(0 0 0 / 40%);
       }
     }
 
@@ -82,7 +91,7 @@
       }
 
       @include mixin.media(pc, $minor-breakpoint) {
-        gap: 24px;
+        gap: 48px;
       }
     }
 
@@ -117,10 +126,10 @@
           border-radius: 2px;
 
           @include mixin.media(pc, $minor-breakpoint) {
-            bottom: -7px;
+            bottom: -10px;
             left: 50%;
-            width: 7px;
-            height: 7px;
+            width: 24px;
+            height: 4px;
             border-radius: var(--border-radius-circle);
             transform: translateX(-50%);
           }

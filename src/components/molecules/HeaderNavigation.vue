@@ -70,7 +70,7 @@
 
     &__inner {
       @include mixin.media(sp, $minor-breakpoint) {
-        padding: var(--header-height) 16px 32px;
+        padding: var(--header-height) clamp(1.6rem, -2.667rem + 5.556vw, 4rem) 32px;
       }
 
       @include mixin.media(pc, $minor-breakpoint) {
@@ -147,8 +147,8 @@
             width: 8px;
             height: 8px;
             content: '';
-            border-top: 2px solid var(--color-secondary);
-            border-right: 2px solid var(--color-secondary);
+            border-top: 2px solid var(--color-primary);
+            border-right: 2px solid var(--color-primary);
             transform: translateY(-50%) rotate(45deg);
           }
         }
@@ -156,7 +156,7 @@
 
       @include mixin.media(hover) {
         &:hover {
-          color: var(--color-secondary);
+          color: var(--color-primary);
         }
       }
     }

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-  const pageLists = [{ name: 'ホーム', path: '/' }]
+  import BaseContent from '~/components/atoms/BaseContent.vue'
+
+  const pageLists = [{ name: 'HOME', path: '/' }]
 
   definePageMeta({
     breadcrumb: pageLists,
@@ -18,10 +20,45 @@
 </script>
 
 <template>
-  <div>
+  <BaseContent>
     <h1>heading-level1</h1>
     <p>text</p>
-  </div>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+  </BaseContent>
 </template>
 
 <style scoped lang="scss">

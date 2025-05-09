@@ -1,9 +1,5 @@
 import { useRoute } from '#imports'
-
-export interface BreadcrumbItem {
-  name: string
-  path: string
-}
+import type { BreadcrumbItem } from '~/types/breadcrumb'
 
 export const useBreadcrumb = () => {
   const route = useRoute()

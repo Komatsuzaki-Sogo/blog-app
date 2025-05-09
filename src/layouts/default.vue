@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import SiteBreadcrumbs from '~/components/organisms/SiteBreadcrumbs.vue'
+  import SiteFooter from '~/components/organisms/SiteFooter.vue'
   import SiteHeader from '~/components/organisms/SiteHeader.vue'
 
   const isMenuOpen = computed(() => {
@@ -8,20 +9,24 @@
 </script>
 
 <template>
-  <div class="container">
+  <div class="l-container">
     <SiteHeader />
-    <div :inert="isMenuOpen ? true : undefined">
+    <div class="l-content" :inert="isMenuOpen ? true : undefined">
       <slot />
     </div>
     <SiteBreadcrumbs />
-    <footer :inert="isMenuOpen ? true : undefined">footer</footer>
+    <SiteFooter :inert="isMenuOpen ? true : undefined" />
   </div>
 </template>
 
 <style lang="scss">
-  .container {
+  .l-container {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    gap: 40px;
+    min-height: 100vh;
+  }
+
+  .l-content {
+    min-height: 100%;
   }
 </style>

@@ -1,4 +1,4 @@
-import type { BreadcrumbItem } from '~/composables/useBreadcrumb'
+import type { BreadcrumbItem } from '~/types/breadcrumb'
 import { useRuntimeConfig } from '#imports'
 
 export const useBreadcrumbJsonLd = (pageLists: BreadcrumbItem[]) => {

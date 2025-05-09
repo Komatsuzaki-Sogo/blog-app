@@ -142,10 +142,6 @@
       gap: 40px;
       align-items: center;
       justify-content: space-between;
-
-      @include mixin.media(pc, $minor-breakpoint) {
-        padding: 16px 0;
-      }
     }
 
     &__navigationSP {

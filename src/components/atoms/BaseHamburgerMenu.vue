@@ -9,12 +9,12 @@
     $this: &;
 
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 15px;
+    right: clamp(1.6rem, -2.667rem + 5.556vw, 4rem);
     z-index: 10;
     display: block;
-    width: 62px;
-    height: 62px;
+    width: 30px;
+    height: 30px;
 
     @include mixin.media(pc, $minor-breakpoint) {
       display: none;
@@ -23,7 +23,7 @@
     &__text {
       position: relative;
       display: block;
-      width: 30px;
+      width: 100%;
       height: 2px;
       margin: auto;
       font-size: 0;
@@ -34,7 +34,7 @@
       &::after {
         position: absolute;
         display: block;
-        width: 30px;
+        width: 100%;
         height: 2px;
         font-size: 0;
         content: '';

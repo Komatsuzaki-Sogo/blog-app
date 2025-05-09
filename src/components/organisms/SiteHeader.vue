@@ -5,14 +5,15 @@
   import BaseHamburgerMenu from '~/components/atoms/BaseHamburgerMenu.vue'
   import HeaderNavigation from '~/components/molecules/HeaderNavigation.vue'
 
+  const activeBodyClassName = 'is-fixed'
+  const menuId = 'MenuControl-1'
+
   /**
    * メニュの開閉状態
    */
   const isMenuOpen = computed(() => {
     return easyStore.menuActive
   })
-
-  const activeBodyClassName = 'is-fixed'
 
   /**
    * メニュの開閉toggle
@@ -39,7 +40,9 @@
     })
   })
 
-  // body に is-fixed を付与・削除
+  /**
+   * body に is-fixed を付与・削除
+   */
   watch(isMenuOpen, (newVal) => {
     if (newVal) {
       document.body.classList.add(activeBodyClassName)
@@ -82,7 +85,12 @@
     <BaseContent padding-y="none">
       <div class="c-header__inner">
         <BaseLogo />
-        <BaseHamburgerMenu :class="{ 'is-active': isMenuOpen }" @click="toggleMenu" />
+        <BaseHamburgerMenu
+          :aria-controls="menuId"
+          :aria-expanded="isMenuOpen"
+          :class="{ 'is-active': isMenuOpen }"
+          @click="toggleMenu"
+        />
         <HeaderNavigation class="c-header__navigationPC" :class="{ 'is-active': isMenuOpen }" />
         <Transition
           name="slide"
@@ -94,6 +102,7 @@
         >
           <HeaderNavigation
             v-show="isMenuOpen"
+            :id="menuId"
             class="c-header__navigationSP"
             :class="{ 'is-active': isMenuOpen }"
           />
@@ -141,7 +150,7 @@
   .slide-enter-active,
   .slide-leave-active {
     overflow: hidden;
-    transition: height 0.3s ease-in-out;
+    transition: height var(--transition);
   }
 
   .slide-enter,

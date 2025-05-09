@@ -11,27 +11,29 @@
 
 <template>
   <div class="c-navigation">
-    <nav class="c-navigation__nav">
-      <ul class="c-navigation__list">
-        <li
-          v-for="item in pathEntries"
-          :key="item.name"
-          :aria-current="route.path === item.path ? 'page' : undefined"
-          class="c-navigation__item"
-        >
-          <NuxtLink :to="item.path" class="c-navigation__link">{{ item.name }}</NuxtLink>
-        </li>
-      </ul>
-    </nav>
+    <div class="c-navigation__inner">
+      <nav class="c-navigation__nav">
+        <ul class="c-navigation__list">
+          <li
+            v-for="item in pathEntries"
+            :key="item.name"
+            :aria-current="route.path === item.path ? 'page' : undefined"
+            class="c-navigation__item"
+          >
+            <NuxtLink :to="item.path" class="c-navigation__link">{{ item.name }}</NuxtLink>
+          </li>
+        </ul>
+      </nav>
 
-    <div class="c-navigation__contact">
-      <NuxtLink
-        :to="PATHS.CONTACT.path"
-        :aria-current="route.path === PATHS.CONTACT.path ? 'page' : undefined"
-        class="c-navigation__contactItem"
-      >
-        <span class="c-navigation__contactText">{{ PATHS.CONTACT.name }}</span>
-      </NuxtLink>
+      <div class="c-navigation__contact">
+        <NuxtLink
+          :to="PATHS.CONTACT.path"
+          :aria-current="route.path === PATHS.CONTACT.path ? 'page' : undefined"
+          class="c-navigation__contactItem"
+        >
+          <span class="c-navigation__contactText">{{ PATHS.CONTACT.name }}</span>
+        </NuxtLink>
+      </div>
     </div>
   </div>
   <!-- /.c-navigation -->
@@ -44,22 +46,22 @@
       top: 0;
       right: 0;
       z-index: 5;
-      visibility: hidden;
       width: 100%;
       height: 100vh;
-      padding: var(--header-height) 16px 32px;
       overflow: hidden !important;
       background-color: var(--color-background-gray);
-
-      &.is-active {
-        visibility: visible;
-      }
     }
 
-    @include mixin.media(pc, $minor-breakpoint) {
-      display: flex;
-      gap: 24px;
-      align-items: center;
+    &__inner {
+      @include mixin.media(sp, $minor-breakpoint) {
+        padding: var(--header-height) 16px 32px;
+      }
+
+      @include mixin.media(pc, $minor-breakpoint) {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
     }
 
     &__nav {

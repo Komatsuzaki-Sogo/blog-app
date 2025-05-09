@@ -4,6 +4,7 @@
   import BaseOverlay from '~/components/atoms/BaseOverlay.vue'
   import BaseHamburgerMenu from '~/components/atoms/BaseHamburgerMenu.vue'
   import HeaderNavigation from '~/components/molecules/HeaderNavigation.vue'
+  import { minorBreakPoint, getMediaQueryList } from '@/composables/useMediaQuery'
 
   const activeBodyClassName = 'is-fixed'
   const menuId = 'MenuControl-1'
@@ -30,13 +31,21 @@
   }
 
   /**
-   * ページ遷移時にメニューを閉じる・クラスが残らないようクリーンアップ
+   * ページ遷移時にメニューを閉じる
+   * クラスが残らないようクリーンアップ
+   *
    */
-  const router = useRouter()
-  watchEffect(() => {
-    router.afterEach(() => {
+  onMounted(() => {
+    const handleResize = () => {
       easyStore.menuActive = false
-      document.body.classList.remove(activeBodyClassName)
+    }
+
+    // 初回 & イベントリスナー登録
+    handleResize()
+    getMediaQueryList(minorBreakPoint).addEventListener('change', handleResize)
+
+    onUnmounted(() => {
+      getMediaQueryList(minorBreakPoint).removeEventListener('change', handleResize)
     })
   })
 
@@ -91,22 +100,25 @@
           :class="{ 'is-active': isMenuOpen }"
           @click="toggleMenu"
         />
-        <HeaderNavigation class="c-header__navigationPC" :class="{ 'is-active': isMenuOpen }" />
-        <Transition
-          name="slide"
-          @before-enter="beforeEnter"
-          @enter="enter"
-          @after-enter="afterEnter"
-          @before-leave="beforeLeave"
-          @leave="leave"
-        >
-          <HeaderNavigation
-            v-show="isMenuOpen"
-            :id="menuId"
-            class="c-header__navigationSP"
-            :class="{ 'is-active': isMenuOpen }"
-          />
-        </Transition>
+        <div class="c-header__navigationPC">
+          <HeaderNavigation :class="{ 'is-active': isMenuOpen }" />
+        </div>
+        <div class="c-header__navigationSP">
+          <Transition
+            name="slide"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter"
+            @before-leave="beforeLeave"
+            @leave="leave"
+          >
+            <HeaderNavigation
+              v-show="isMenuOpen"
+              :id="menuId"
+              :class="{ 'is-active': isMenuOpen }"
+            />
+          </Transition>
+        </div>
         <BaseOverlay :class="{ 'is-active': isMenuOpen }" @click="closeMenu" />
       </div>
     </BaseContent>

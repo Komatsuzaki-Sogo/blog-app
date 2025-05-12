@@ -33,7 +33,7 @@
           class="c-navigation__contactItem"
         >
           <span class="c-navigation__contactText">{{ PATHS.CONTACT.name }}</span>
-          <Icon name="bytesize:mail" />
+          <Icon name="bytesize:mail" mode="svg" class="c-navigation__contactIcon" />
         </NuxtLink>
       </div>
     </div>
@@ -165,11 +165,17 @@
 
     &__contact {
       @include mixin.media(sp) {
-        margin-top: 32px;
+        max-width: 400px;
+        margin: 32px auto 0;
       }
 
       &Item {
         position: relative;
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
         padding: 12px 36px;
         font-weight: var(--font-weight-bold);
         color: var(--color-foreground-light);
@@ -200,6 +206,14 @@
       &Text {
         position: relative;
         display: block;
+        text-align: center;
+      }
+
+      &Icon {
+        position: relative;
+        display: block;
+        width: 24px;
+        height: 24px;
         text-align: center;
       }
     }

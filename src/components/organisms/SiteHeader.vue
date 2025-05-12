@@ -9,6 +9,8 @@
   const activeBodyClassName = 'is-fixed'
   const menuId = 'MenuControl-1'
 
+  const router = useRouter()
+
   /**
    * メニュの開閉状態
    */
@@ -31,22 +33,23 @@
   }
 
   /**
-   * ページ遷移時にメニューを閉じる
-   * クラスが残らないようクリーンアップ
-   *
+   * BPが切り替わったときにメニューを閉じる
+   * ページ遷移時にもメニューを閉じる
    */
   onMounted(() => {
-    const handleResize = () => {
+    closeMenu()
+    getMediaQueryList().addEventListener('change', closeMenu)
+
+    router.afterEach(() => {
       easyStore.menuActive = false
-    }
-
-    // 初回 & イベントリスナー登録
-    handleResize()
-    getMediaQueryList().addEventListener('change', handleResize)
-
-    onUnmounted(() => {
-      getMediaQueryList().removeEventListener('change', handleResize)
     })
+  })
+
+  /**
+   * コンポーネントのアンマウント時にイベントリスナーを解除
+   */
+  onUnmounted(() => {
+    getMediaQueryList().removeEventListener('change', closeMenu)
   })
 
   /**

@@ -1,22 +1,27 @@
 <script setup lang="ts">
-const title: string = "Hello World";
+  import BaseContent from '~/components/atoms/BaseContent.vue'
+
+  const pageLists = [{ name: 'HOME', path: '/' }]
+
+  definePageMeta({
+    breadcrumb: pageLists,
+  })
+
+  const breadcrumbJsonLd = useBreadcrumbJsonLd(pageLists)
+
+  useHead({
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: breadcrumbJsonLd.value,
+      },
+    ],
+  })
 </script>
 
 <template>
-  <div>
-    <h1>{{title}}</h1>
+  <BaseContent>
+    <h1>heading-level1</h1>
     <p>text</p>
-  </div>
+  </BaseContent>
 </template>
-
-<style scoped lang="scss">
-h1 {
-  @include mixin.media(pc) {
-    background-color: red;
-  }
-}
-
-p {
-  color: red;
-}
-</style>

@@ -21,5 +21,6 @@ module.exports = {
       },
     ],
     'scss/at-extend-no-missing-placeholder': null,
+    'declaration-block-no-redundant-longhand-properties': null,
   },
 }

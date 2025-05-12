@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  css: ["@/styles/main.scss"],
+  css: ['@/styles/main.scss'],
   vite: {
     css: {
       preprocessorOptions: {
@@ -23,6 +23,11 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       'Noto+Sans+JP': [400, 500, 700],
+    },
+  },
+  runtimeConfig: {
+    public: {
+      NUXT_APP_BASE_HOST: process.env.NUXT_PUBLIC_APP_BASE_HOST,
     },
   },
 })

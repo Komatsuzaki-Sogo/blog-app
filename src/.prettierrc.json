@@ -4,5 +4,9 @@
   "singleQuote": true,
   "printWidth": 100,
   "vueIndentScriptAndStyle": true,
-  "htmlSelfClosing": "auto"
+  "vueSelfClosingTags": {
+    "html": false,
+    "svg": true,
+    "math": true
+  }
 }

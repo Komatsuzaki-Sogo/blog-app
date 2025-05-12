@@ -19,5 +19,10 @@ export default withNuxt({
     'vue/no-multiple-objects-in-class': 'error',
     'vue/no-potential-component-option-typo': 'error',
     'import/no-relative-parent-imports': 'error',
+    'vue/html-self-closing': ['error', {
+      html: {
+        void: 'never',
+      }
+    }]
   },
 })

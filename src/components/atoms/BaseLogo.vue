@@ -1,7 +1,3 @@
-<script setup lang="ts">
-  import { PATHS } from '#imports'
-</script>
-
 <template>
   <div class="c-logo">
     <NuxtLink :to="PATHS.HOME.path" class="c-logo__link">

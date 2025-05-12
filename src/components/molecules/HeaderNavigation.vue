@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { PATHS } from '#imports'
   import { useRoute } from 'vue-router'
+  import BaseButton from '~/components/atoms/BaseButton.vue'
 
   const route = useRoute()
 
@@ -26,16 +26,13 @@
         </ul>
       </nav>
 
-      <div class="c-navigation__contact">
-        <NuxtLink
-          :to="PATHS.CONTACT.path"
-          :aria-current="route.path === PATHS.CONTACT.path ? 'page' : undefined"
-          class="c-navigation__contactItem"
-        >
-          <span class="c-navigation__contactText">{{ PATHS.CONTACT.name }}</span>
-          <Icon name="bytesize:mail" mode="svg" class="c-navigation__contactIcon" />
-        </NuxtLink>
-      </div>
+      <BaseButton
+        :to="PATHS.CONTACT.path"
+        :aria-current="route.path === PATHS.CONTACT.path ? 'page' : undefined"
+        icon-name="bytesize:mail"
+      >
+        {{ PATHS.CONTACT.name }}
+      </BaseButton>
     </div>
   </div>
 </template>
@@ -72,7 +69,7 @@
 
     &__inner {
       @include mixin.media(sp) {
-        padding: var(--header-height) clamp(1.6rem, -2.667rem + 5.556vw, 4rem) 32px;
+        padding: var(--header-height) clamp(1.6rem, -2.667rem + 5.556vw, 4rem) 40px;
       }
 
       @include mixin.media(pc) {
@@ -165,7 +162,7 @@
 
     &__contact {
       @include mixin.media(sp) {
-        max-width: 400px;
+        max-width: 36px;
         margin: 32px auto 0;
       }
 

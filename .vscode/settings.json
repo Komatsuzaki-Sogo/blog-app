@@ -1,15 +1,16 @@
 {
   "stylelint.validate": ["css", "scss", "vue"],
   "cSpell.words": ["Nuxt", "stylelintcache"],
-  // 保存時に Prettier などでコードフォーマット
   "editor.formatOnSave": true,
-  // ESLint による自動修正
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
     "source.fixAll.eslint": "always",
     "source.fixAll.stylelint": "always"
   },
-  // Prettier をフォーマッターとして使用
+  "prettier.configPath": "../src/prettierrc.json",
   "prettier.enable": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "clampExtension.globalMinViewport": 768,
+  "clampExtension.globalMaxViewport": 1200,
+  "clampExtension.baseFontSize": 10
 }

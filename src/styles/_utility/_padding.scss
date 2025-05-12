@@ -1,0 +1,92 @@
+@use '../_base/argument' as *;
+@use '../_common/mixin/' as mixin;
+@use '../_common/extend/' as *;
+
+/* padding */
+$padding-loop-start: 0;
+$padding-loop-max: 40;
+$padding-loop-step: 4;
+$padding-unit: '';
+$padding-array: '', x, y, t, r, b, l;
+
+@each $value in $padding-array {
+  @for $i from $padding-loop-start through $padding-loop-max {
+    $padding-unit: if(($i * $padding-loop-step) > 0, 'px', '');
+
+    .p#{$value}-#{$i * $padding-loop-step} {
+      @if $value == '' {
+        padding: #{$i * $padding-loop-step}#{$padding-unit} !important;
+      } @else if $value == x {
+        padding-right: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        padding-left: #{$i * $padding-loop-step}#{$padding-unit} !important;
+      } @else if $value == y {
+        padding-top: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        padding-bottom: #{$i * $padding-loop-step}#{$padding-unit} !important;
+      } @else if $value == t {
+        padding-top: #{$i * $padding-loop-step}#{$padding-unit} !important;
+      } @else if $value == r {
+        padding-right: #{$i * $padding-loop-step}#{$padding-unit} !important;
+      } @else if $value == b {
+        padding-bottom: #{$i * $padding-loop-step}#{$padding-unit} !important;
+      } @else if $value == l {
+        padding-left: #{$i * $padding-loop-step}#{$padding-unit} !important;
+      }
+    }
+  }
+}
+
+@each $value in $padding-array {
+  @for $i from $padding-loop-start through $padding-loop-max {
+    $padding-unit: if(($i * $padding-loop-step) > 0, 'px', '');
+
+    @include mixin.media(sp) {
+      .sm\:p#{$value}-#{$i * $padding-loop-step} {
+        @if $value == '' {
+          padding: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == x {
+          padding-right: #{$i * $padding-loop-step}#{$padding-unit} !important;
+          padding-left: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == y {
+          padding-top: #{$i * $padding-loop-step}#{$padding-unit} !important;
+          padding-bottom: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == t {
+          padding-top: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == r {
+          padding-right: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == b {
+          padding-bottom: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == l {
+          padding-left: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        }
+      }
+    }
+  }
+}
+
+@each $value in $padding-array {
+  @for $i from $padding-loop-start through $padding-loop-max {
+    $padding-unit: if(($i * $padding-loop-step) > 0, 'px', '');
+
+    @include mixin.media(pc) {
+      .md\:p#{$value}-#{$i * $padding-loop-step} {
+        @if $value == '' {
+          padding: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == x {
+          padding-right: #{$i * $padding-loop-step}#{$padding-unit} !important;
+          padding-left: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == y {
+          padding-top: #{$i * $padding-loop-step}#{$padding-unit} !important;
+          padding-bottom: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == t {
+          padding-top: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == r {
+          padding-right: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == b {
+          padding-bottom: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        } @else if $value == l {
+          padding-left: #{$i * $padding-loop-step}#{$padding-unit} !important;
+        }
+      }
+    }
+  }
+}

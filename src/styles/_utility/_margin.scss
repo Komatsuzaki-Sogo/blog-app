@@ -1,0 +1,92 @@
+@use '../_base/argument' as *;
+@use '../_common/mixin/' as mixin;
+@use '../_common/extend/' as *;
+
+/* margin */
+$margin-loop-start: 0;
+$margin-loop-max: 40;
+$margin-loop-step: 4;
+$margin-unit: '';
+$margin-array: '', x, y, t, r, b, l;
+
+@each $value in $margin-array {
+  @for $i from $margin-loop-start through $margin-loop-max {
+    $margin-unit: if(($i * $margin-loop-step) > 0, 'px', '');
+
+    .m#{$value}-#{$i * $margin-loop-step} {
+      @if $value == '' {
+        margin: #{$i * $margin-loop-step}#{$margin-unit} !important;
+      } @else if $value == x {
+        margin-right: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        margin-left: #{$i * $margin-loop-step}#{$margin-unit} !important;
+      } @else if $value == y {
+        margin-top: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        margin-bottom: #{$i * $margin-loop-step}#{$margin-unit} !important;
+      } @else if $value == t {
+        margin-top: #{$i * $margin-loop-step}#{$margin-unit} !important;
+      } @else if $value == r {
+        margin-right: #{$i * $margin-loop-step}#{$margin-unit} !important;
+      } @else if $value == b {
+        margin-bottom: #{$i * $margin-loop-step}#{$margin-unit} !important;
+      } @else if $value == l {
+        margin-left: #{$i * $margin-loop-step}#{$margin-unit} !important;
+      }
+    }
+  }
+}
+
+@each $value in $margin-array {
+  @for $i from $margin-loop-start through $margin-loop-max {
+    $margin-unit: if(($i * $margin-loop-step) > 0, 'px', '');
+
+    @include mixin.media(sp) {
+      .sm\:m#{$value}-#{$i * $margin-loop-step} {
+        @if $value == '' {
+          margin: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == x {
+          margin-right: #{$i * $margin-loop-step}#{$margin-unit} !important;
+          margin-left: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == y {
+          margin-top: #{$i * $margin-loop-step}#{$margin-unit} !important;
+          margin-bottom: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == t {
+          margin-top: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == r {
+          margin-right: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == b {
+          margin-bottom: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == l {
+          margin-left: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        }
+      }
+    }
+  }
+}
+
+@each $value in $margin-array {
+  @for $i from $margin-loop-start through $margin-loop-max {
+    $margin-unit: if(($i * $margin-loop-step) > 0, 'px', '');
+
+    @include mixin.media(pc) {
+      .md\:m#{$value}-#{$i * $margin-loop-step} {
+        @if $value == '' {
+          margin: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == x {
+          margin-right: #{$i * $margin-loop-step}#{$margin-unit} !important;
+          margin-left: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == y {
+          margin-top: #{$i * $margin-loop-step}#{$margin-unit} !important;
+          margin-bottom: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == t {
+          margin-top: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == r {
+          margin-right: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == b {
+          margin-bottom: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        } @else if $value == l {
+          margin-left: #{$i * $margin-loop-step}#{$margin-unit} !important;
+        }
+      }
+    }
+  }
+}

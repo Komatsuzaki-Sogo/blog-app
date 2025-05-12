@@ -23,52 +23,5 @@
   <BaseContent>
     <h1>heading-level1</h1>
     <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
-    <p>text</p>
   </BaseContent>
 </template>
-
-<style scoped lang="scss">
-  h1 {
-    @include mixin.media(pc) {
-      background-color: red;
-    }
-  }
-
-  p {
-    color: red;
-  }
-</style>

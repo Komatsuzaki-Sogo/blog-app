@@ -12,6 +12,8 @@
 
 <style scoped lang="scss">
   .c-logo {
+    $this: &;
+
     position: relative;
     z-index: 20;
 
@@ -22,6 +24,19 @@
       background: var(--color-gradient);
       background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    // フッター内は前景色を白くする
+    .c-footer & {
+      #{$this}__link {
+        color: var(--color-foreground-light);
+      }
+
+      #{$this}__text {
+        background: transparent;
+        background-clip: unset;
+        -webkit-text-fill-color: unset;
+      }
     }
   }
 </style>

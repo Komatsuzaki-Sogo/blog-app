@@ -16,7 +16,7 @@
     width: 30px;
     height: 30px;
 
-    @include mixin.media(pc, $minor-breakpoint) {
+    @include mixin.media(pc) {
       display: none;
     }
 

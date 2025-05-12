@@ -17,7 +17,7 @@
       opacity var(--transition),
       visibility var(--transition);
 
-    @include mixin.media(pc, $minor-breakpoint) {
+    @include mixin.media(pc) {
       display: none;
     }
 

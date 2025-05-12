@@ -62,6 +62,7 @@
 
     &__link {
       color: var(--color-foreground-gray);
+      transition: color var(--transition);
 
       @include mixin.media(hover) {
         &:hover {

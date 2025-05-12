@@ -1,7 +1,10 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
 
-  const pageLists = [{ name: 'HOME', path: '/' }]
+  const pageLists = [
+    { name: 'HOME', path: '/' },
+    { name: 'HOME', path: '/' },
+  ]
 
   definePageMeta({
     breadcrumb: pageLists,

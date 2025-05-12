@@ -27,7 +27,7 @@
   /* BACKGROUND */
   --color-background-light: #fff;
   --color-background-dark: #333;
-  --color-background-black: #000;
+  --color-background-black: #191b1f;
   --color-background-gray: #f6f6f6;
 
   /* ROLE DANGER */
@@ -47,11 +47,14 @@
   /* BORDER RADIUS */
   --border-radius-circle: 1000px;
 
+  /* OPACITY */
+  --opacity: .7;
+
   /* HEADER HEIGHT */
   --header-height: 62px;
 }
 
-@include mixin.media(pc, $minor-breakpoint) {
+@include mixin.media(pc) {
   :root {
     /* HEADER HEIGHT */
     --header-height: 86px;

@@ -4,7 +4,7 @@
   import BaseOverlay from '~/components/atoms/BaseOverlay.vue'
   import BaseHamburgerMenu from '~/components/atoms/BaseHamburgerMenu.vue'
   import HeaderNavigation from '~/components/molecules/HeaderNavigation.vue'
-  import { minorBreakPoint, getMediaQueryList } from '@/composables/useMediaQuery'
+  import { getMediaQueryList } from '@/composables/useMediaQuery'
 
   const activeBodyClassName = 'is-fixed'
   const menuId = 'MenuControl-1'
@@ -42,10 +42,10 @@
 
     // 初回 & イベントリスナー登録
     handleResize()
-    getMediaQueryList(minorBreakPoint).addEventListener('change', handleResize)
+    getMediaQueryList().addEventListener('change', handleResize)
 
     onUnmounted(() => {
-      getMediaQueryList(minorBreakPoint).removeEventListener('change', handleResize)
+      getMediaQueryList().removeEventListener('change', handleResize)
     })
   })
 
@@ -145,13 +145,13 @@
     }
 
     &__navigationSP {
-      @include mixin.media(pc, $minor-breakpoint) {
+      @include mixin.media(pc) {
         display: none;
       }
     }
 
     &__navigationPC {
-      @include mixin.media(sp, $minor-breakpoint) {
+      @include mixin.media(sp) {
         display: none;
       }
     }

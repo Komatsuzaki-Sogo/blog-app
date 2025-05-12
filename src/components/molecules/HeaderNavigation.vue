@@ -4,8 +4,9 @@
 
   const route = useRoute()
 
+  const excludeKeys = ['HOME', 'CONTACT']
   const pathEntries = Object.entries(PATHS)
-    .filter(([key]) => key !== 'CONTACT')
+    .filter(([key]) => !excludeKeys.includes(key))
     .map(([, value]) => value)
 </script>
 
@@ -32,6 +33,7 @@
           class="c-navigation__contactItem"
         >
           <span class="c-navigation__contactText">{{ PATHS.CONTACT.name }}</span>
+          <Icon name="bytesize:mail" />
         </NuxtLink>
       </div>
     </div>
@@ -42,7 +44,7 @@
   .c-navigation {
     $this: &;
 
-    @include mixin.media(sp, $minor-breakpoint) {
+    @include mixin.media(sp) {
       position: fixed;
       top: 0;
       right: 0;
@@ -69,11 +71,11 @@
     }
 
     &__inner {
-      @include mixin.media(sp, $minor-breakpoint) {
+      @include mixin.media(sp) {
         padding: var(--header-height) clamp(1.6rem, -2.667rem + 5.556vw, 4rem) 32px;
       }
 
-      @include mixin.media(pc, $minor-breakpoint) {
+      @include mixin.media(pc) {
         display: flex;
         gap: 48px;
         align-items: center;
@@ -84,18 +86,18 @@
       display: flex;
       list-style: none;
 
-      @include mixin.media(sp, $minor-breakpoint) {
+      @include mixin.media(sp) {
         flex-direction: column;
         border-top: 1px solid var(--color-outline-gray);
       }
 
-      @include mixin.media(pc, $minor-breakpoint) {
+      @include mixin.media(pc) {
         gap: 48px;
       }
     }
 
     &__item {
-      @include mixin.media(sp, $minor-breakpoint) {
+      @include mixin.media(sp) {
         border-bottom: 1px solid var(--color-outline-gray);
       }
     }
@@ -107,7 +109,7 @@
       font-weight: var(--font-weight-bold);
       transition: var(--transition);
 
-      @include mixin.media(sp, $minor-breakpoint) {
+      @include mixin.media(sp) {
         padding: var(--local-padding-y) 0 var(--local-padding-y) 20px;
       }
 
@@ -124,7 +126,7 @@
           background: var(--color-gradient);
           border-radius: 2px;
 
-          @include mixin.media(pc, $minor-breakpoint) {
+          @include mixin.media(pc) {
             bottom: -10px;
             left: 50%;
             width: 24px;
@@ -136,7 +138,7 @@
       }
 
       &:not([aria-current='page']) {
-        @include mixin.media(sp, $minor-breakpoint) {
+        @include mixin.media(sp) {
           position: relative;
 
           &::before {
@@ -162,7 +164,7 @@
     }
 
     &__contact {
-      @include mixin.media(sp, $minor-breakpoint) {
+      @include mixin.media(sp) {
         margin-top: 32px;
       }
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-useHead({
-  title: "ks blog site",
-});
+  useHead({
+    title: 'KS BLOG',
+  })
 </script>
 
 <template>

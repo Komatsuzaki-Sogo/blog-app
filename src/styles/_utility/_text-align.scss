@@ -1,0 +1,35 @@
+@use '../_base/argument' as *;
+@use '../_common/mixin/' as mixin;
+@use '../_common/extend/' as *;
+
+/* text-align */
+$text-map: (
+  left: left,
+  center: center,
+  right: right,
+  justify: justify,
+  start: start,
+  end: end,
+);
+
+@each $key, $value in $text-map {
+  .text-#{$key} {
+    text-align: $value !important;
+  }
+}
+
+@each $key, $value in $text-map {
+  @include mixin.media(sp) {
+    .sm\:text-#{$key} {
+      text-align: $value !important;
+    }
+  }
+}
+
+@each $key, $value in $text-map {
+  @include mixin.media(pc) {
+    .md\:text-#{$key} {
+      text-align: $value !important;
+    }
+  }
+}

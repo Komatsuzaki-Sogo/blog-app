@@ -1,19 +1,32 @@
+<script setup lang="ts">
+  import SiteBreadcrumbs from '~/components/organisms/SiteBreadcrumbs.vue'
+  import SiteFooter from '~/components/organisms/SiteFooter.vue'
+  import SiteHeader from '~/components/organisms/SiteHeader.vue'
+
+  const isMenuOpen = computed(() => {
+    return easyStore.menuActive
+  })
+</script>
+
 <template>
-  <div class="container">
-    <header>header</header>
-    <slot />
-    <footer>footer</footer>
+  <div class="l-container">
+    <SiteHeader />
+    <div class="l-content" :inert="isMenuOpen ? true : undefined">
+      <slot />
+    </div>
+    <SiteBreadcrumbs />
+    <SiteFooter :inert="isMenuOpen ? true : undefined" />
   </div>
 </template>
 
 <style lang="scss">
-html {
-  font-family: "Noto Sans JP", serif;
-}
+  .l-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+  }
 
-.container {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 40px;
-}
+  .l-content {
+    min-height: 100%;
+  }
 </style>

@@ -1,0 +1,35 @@
+@use '../_base/argument' as *;
+@use '../_common/mixin/' as mixin;
+@use '../_common/extend/' as *;
+
+/* align-items */
+$align-items-map: (
+  normal: normal,
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  baseline: baseline,
+  stretch: stretch,
+);
+
+@each $key, $value in $align-items-map {
+  .items-#{$key} {
+    align-items: $value !important;
+  }
+}
+
+@each $key, $value in $align-items-map {
+  @include mixin.media(sp) {
+    .sm\:items-#{$key} {
+      align-items: $value !important;
+    }
+  }
+}
+
+@each $key, $value in $align-items-map {
+  @include mixin.media(pc) {
+    .md\:items-#{$key} {
+      align-items: $value !important;
+    }
+  }
+}

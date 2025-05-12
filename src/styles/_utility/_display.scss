@@ -1,0 +1,33 @@
+@use '../_base/argument' as *;
+@use '../_common/mixin/' as mixin;
+@use '../_common/extend/' as *;
+
+/* display */
+$display-map: (
+  block: block,
+  inline-block: inline-block,
+  inline: inline,
+  hidden: none,
+);
+
+@each $key, $value in $display-map {
+  .#{$key} {
+    display: $value !important;
+  }
+}
+
+@each $key, $value in $display-map {
+  @include mixin.media(sp) {
+    .sm\:#{$key} {
+      display: $value !important;
+    }
+  }
+}
+
+@each $key, $value in $display-map {
+  @include mixin.media(pc) {
+    .md\:#{$key} {
+      display: $value !important;
+    }
+  }
+}

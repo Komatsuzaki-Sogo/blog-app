@@ -1,6 +1,9 @@
 import { useRoute } from '#imports'
 import type { BreadcrumbItem } from '~/types/breadcrumb'
 
+/**
+ * パンくずリストのデータを取得する
+ */
 export const useBreadcrumb = () => {
   const route = useRoute()
 

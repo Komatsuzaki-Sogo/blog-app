@@ -11,17 +11,17 @@
 </script>
 
 <template>
-  <div class="c-navigation">
-    <div class="c-navigation__inner">
-      <nav class="c-navigation__nav">
-        <ul class="c-navigation__list">
+  <div class="c-header-navigation">
+    <div class="c-header-navigation__inner">
+      <nav class="c-header-navigation__nav">
+        <ul class="c-header-navigation__list">
           <li
             v-for="item in pathEntries"
             :key="item.name"
             :aria-current="route.path === item.path ? 'page' : undefined"
-            class="c-navigation__item"
+            class="c-header-navigation__item"
           >
-            <NuxtLink :to="item.path" class="c-navigation__link">{{ item.name }}</NuxtLink>
+            <NuxtLink :to="item.path" class="c-header-navigation__link">{{ item.name }}</NuxtLink>
           </li>
         </ul>
       </nav>
@@ -38,7 +38,7 @@
 </template>
 
 <style scoped lang="scss">
-  .c-navigation {
+  .c-header-navigation {
     $this: &;
 
     @include mixin.media(sp) {

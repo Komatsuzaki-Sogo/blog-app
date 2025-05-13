@@ -21,8 +21,12 @@ export default withNuxt({
     'import/no-relative-parent-imports': 'error',
     'vue/html-self-closing': ['error', {
       html: {
-        void: 'never',
-      }
+        void: 'always',
+        normal: 'always',
+        component: 'always'
+      },
+      svg: 'always',
+      math: 'always'
     }]
   },
 })

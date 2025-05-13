@@ -29,5 +29,7 @@ export default defineNuxtConfig({
     public: {
       NUXT_APP_BASE_HOST: process.env.NUXT_PUBLIC_APP_BASE_HOST,
     },
+    microcmsServiceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
+    microcmsApiKey: process.env.MICROCMS_API_KEY,
   },
 })

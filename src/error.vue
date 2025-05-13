@@ -63,11 +63,17 @@
         <BaseHeadingLevel1 sub-title="404">Not Found</BaseHeadingLevel1>
         <BaseText>
           <p>
-            大変申し訳ございません。<br>アクセスされたページは、移動または削除された可能性があります。<br>お手数をお掛けしますが、ページ右上のメニューからサイト内検索をご利用いただくか、<br>以下のメニューよりトップページへお戻りください。
+            大変申し訳ございません。
+            <br />
+            アクセスされたページは、移動または削除された可能性があります。
+            <br />
+            お手数をお掛けしますが、ページ右上のメニューからサイト内検索をご利用いただくか、
+            <br />
+            以下のメニューよりトップページへお戻りください。
           </p>
         </BaseText>
 
-        <BaseButton :to="PATHS.HOME.path"> トップページ </BaseButton>
+        <BaseButton :to="PATHS.HOME.path">トップページ</BaseButton>
       </BaseContent>
     </div>
     <SiteFooter :inert="isMenuOpen ? true : undefined" />

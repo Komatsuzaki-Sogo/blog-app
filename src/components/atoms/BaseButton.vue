@@ -10,7 +10,7 @@
   <div class="c-button">
     <NuxtLink :to="to" :aria-current="ariaCurrent" class="c-button__link">
       <span class="c-button__text">
-        <slot/>
+        <slot />
       </span>
       <template v-if="iconName">
         <Icon :name="iconName" mode="svg" class="c-button__icon" />

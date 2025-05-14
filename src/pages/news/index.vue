@@ -26,7 +26,7 @@
       },
       {
         property: 'og:title',
-        content: 'About | KS BLOG',
+        content: 'News | KS BLOG',
       },
       {
         property: 'og:description',
@@ -75,7 +75,7 @@
     </template>
     <template v-else-if="!pending && errorFlag">
       <BaseText>
-        <p><em>データ取得に失敗しました。</em></p>
+        <p><em>データ取得に失敗しました。再度お試しください。</em></p>
       </BaseText>
     </template>
     <template v-else-if="!pending">

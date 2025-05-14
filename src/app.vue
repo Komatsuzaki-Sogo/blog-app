@@ -33,6 +33,6 @@
 
 <template>
   <NuxtLayout>
-    <NuxtPage />
+    <NuxtPage :key="useRoute().fullPath" />
   </NuxtLayout>
 </template>

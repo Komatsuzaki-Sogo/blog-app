@@ -96,7 +96,9 @@
   <header class="c-header">
     <BaseContent padding-y="none">
       <div class="c-header__inner">
-        <BaseLogo />
+        <h1>
+          <BaseLogo />
+        </h1>
         <BaseHamburgerMenu
           :aria-controls="menuId"
           :aria-expanded="isMenuOpen"

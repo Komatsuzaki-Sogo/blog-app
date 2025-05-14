@@ -5,17 +5,16 @@
   import BaseLoading from '~/components/atoms/BaseLoading.vue'
   import NewsLists from '~/components/molecules/NewsLists.vue'
   import type { NewsPost } from '~/types/newsPost'
+  import { useBreadcrumbState } from '~/composables/useBreadcrumbState'
 
-  const pageLists = [
+  const breadcrumbState = useBreadcrumbState()
+
+  breadcrumbState.value = [
     { name: 'HOME', path: '/' },
     { name: 'News', path: '/news' },
   ]
 
-  definePageMeta({
-    breadcrumb: pageLists,
-  })
-
-  const breadcrumbJsonLd = useBreadcrumbJsonLd(pageLists)
+  const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState?.value)
 
   useHead({
     title: 'News | KS BLOG',
@@ -36,6 +35,7 @@
     ],
     script: [
       {
+        key: 'breadcrumb-jsonld',
         type: 'application/ld+json',
         innerHTML: breadcrumbJsonLd.value,
       },

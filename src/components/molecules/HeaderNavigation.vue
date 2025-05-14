@@ -15,13 +15,15 @@
     <div class="c-header-navigation__inner">
       <nav class="c-header-navigation__nav">
         <ul class="c-header-navigation__list">
-          <li
-            v-for="item in pathEntries"
-            :key="item.name"
-            :aria-current="route.path === item.path ? 'page' : undefined"
-            class="c-header-navigation__item"
-          >
-            <NuxtLink :to="item.path" class="c-header-navigation__link">{{ item.name }}</NuxtLink>
+          <li v-for="item in pathEntries" :key="item.name" class="c-header-navigation__item">
+            <NuxtLink
+              :to="item.path"
+              class="c-header-navigation__link"
+              :class="{ 'is-current': route.path.startsWith(item.path) }"
+              :aria-current="route.path === item.path ? 'page' : undefined"
+            >
+              {{ item.name }}
+            </NuxtLink>
           </li>
         </ul>
       </nav>
@@ -110,9 +112,8 @@
         padding: var(--local-padding-y) 0 var(--local-padding-y) 20px;
       }
 
-      &[aria-current='page'] {
-        pointer-events: none;
-
+      &[aria-current='page'],
+      &.is-current {
         &::before {
           position: absolute;
           left: 0;
@@ -132,6 +133,10 @@
             transform: translateX(-50%);
           }
         }
+      }
+
+      &[aria-current='page'] {
+        pointer-events: none;
       }
 
       &:not([aria-current='page']) {

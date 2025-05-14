@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import BaseBadge from '~/components/atoms/BaseBadge.vue'
   import BaseIconNew from '~/components/atoms/BaseIconNew.vue'
-  import { useFormatDate } from '~/composables/useFormatDate'
+  import BaseTextTime from '~/components/atoms/BaseTextTime.vue'
   import { useIsNewContent } from '~/composables/useIsNewContent'
   import type { NewsPost } from '~/types/newsPost'
 
@@ -16,9 +16,7 @@
       <NuxtLink :to="'/news' + newsPost.slug" class="c-list-news__link">
         <span class="c-list-news__inner">
           <span class="c-list-news__info">
-            <time :datetime="newsPost.publishedAt" class="c-list-news__time">
-              {{ useFormatDate(newsPost.publishedAt) }}
-            </time>
+            <BaseTextTime :time="newsPost.publishedAt" />
             <BaseBadge>お知らせ</BaseBadge>
             <BaseIconNew v-if="useIsNewContent(newsPost.publishedAt)" />
           </span>
@@ -87,11 +85,6 @@
       grid-template-columns: auto auto 1fr;
       gap: 16px;
       align-items: center;
-    }
-
-    &__time {
-      font-size: 1.4rem;
-      color: var(--color-foreground-gray);
     }
 
     &__title {

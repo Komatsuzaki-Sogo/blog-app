@@ -36,5 +36,13 @@
       background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
+    & + * {
+      margin-top: 32px !important;
+
+      @include mixin.media(pc) {
+        margin-top: 40px !important;
+      }
+    }
   }
 </style>

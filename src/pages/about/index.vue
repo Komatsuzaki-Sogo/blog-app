@@ -1,16 +1,15 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
+  import { useBreadcrumbState } from '~/composables/useBreadcrumbState'
 
-  const pageLists = [
+  const breadcrumbState = useBreadcrumbState()
+
+  breadcrumbState.value = [
     { name: 'HOME', path: '/' },
     { name: 'About', path: '/about' },
   ]
 
-  definePageMeta({
-    breadcrumb: pageLists,
-  })
-
-  const breadcrumbJsonLd = useBreadcrumbJsonLd(pageLists)
+  const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState?.value)
 
   useHead({
     title: 'About | KS BLOG',
@@ -27,9 +26,11 @@
         property: 'og:description',
         content: 'KS BLOGはブログサイトです。サイト管理者についてをご紹介。',
       },
+      { property: 'og:type', content: 'article' },
     ],
     script: [
       {
+        key: 'breadcrumb-jsonld',
         type: 'application/ld+json',
         innerHTML: breadcrumbJsonLd.value,
       },

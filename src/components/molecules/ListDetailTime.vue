@@ -1,0 +1,51 @@
+<script setup lang="ts">
+  import BaseTextTime from '~/components/atoms/BaseTextTime.vue'
+
+  defineProps<{
+    publishedAt: string
+    updatedAt: string
+  }>()
+</script>
+
+<template>
+  <dl class="c-list-detailTime">
+    <div class="c-list-detailTime__item">
+      <dt class="c-list-detailTime__title">公開日時</dt>
+      <dd class="c-list-detailTime__content">
+        <BaseTextTime :time="publishedAt" />
+      </dd>
+    </div>
+    <div class="c-list-detailTime__item">
+      <dt class="c-list-detailTime__title">更新日時</dt>
+      <dd class="c-list-detailTime__content">
+        <BaseTextTime :time="publishedAt" />
+      </dd>
+    </div>
+  </dl>
+</template>
+
+<style scoped lang="scss">
+  .c-list-detailTime {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    align-items: baseline;
+    width: fit-content;
+    margin-top: 40px;
+    margin-left: auto;
+    color: var(--color-foreground-gray);
+
+    @include mixin.media(pc) {
+      margin-top: 48px;
+    }
+
+    &__item {
+      display: contents;
+    }
+
+    &__title {
+      font-size: 1.4rem;
+      font-weight: var(--font-weight-bold);
+    }
+  }
+</style>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
-  import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
+  import NewsContent from '~/components/pages/news/NewsContent.vue'
+  import { useBreadcrumbState } from '~/composables/useBreadcrumbState'
   import { useRoute } from 'vue-router'
   import type { NewsPost } from '~/types/newsPost'
 
@@ -27,68 +28,72 @@
     return data.value
   }
 
-  const { data, error, pending } = await useAsyncData('news', fetchNewsDetail)
+  const { data, pending, error } = await useAsyncData('news', fetchNewsDetail)
 
   const newsList = computed(() => data.value?.contents[0])
-  const errorFlag = computed(() => (error.value ? true : false))
+  const errorFlag = computed(() => !!error.value)
+  const breadcrumbState = useBreadcrumbState()
 
-  const pageLists = [
-    { name: 'HOME', path: '/' },
-    { name: 'News', path: '/news' },
-  ]
+  onMounted(async () => {
+    watchEffect(() => {
+      if (!newsList.value?.title) return
 
-  definePageMeta({
-    breadcrumb: pageLists,
-  })
+      breadcrumbState.value = [
+        { name: 'HOME', path: '/' },
+        { name: 'News', path: '/news' },
+        { name: newsList.value.title, path: route.fullPath },
+      ]
+    })
 
-  const breadcrumbJsonLd = useBreadcrumbJsonLd(pageLists)
+    if (!newsList.value?.title) return
 
-  useHead({
-    title: 'News | KS BLOG',
-    meta: [
-      {
-        name: 'description',
-        content: 'KS BLOGはブログサイトです。ニュース記事をご紹介。',
-      },
-      {
-        property: 'og:title',
-        content: 'About | KS BLOG',
-      },
-      {
-        property: 'og:description',
-        content: 'KS BLOGはブログサイトです。ニュース記事をご紹介。',
-      },
-      { property: 'og:type', content: 'article' },
-    ],
-    script: [
-      {
-        type: 'application/ld+json',
-        innerHTML: breadcrumbJsonLd.value,
-      },
-    ],
+    const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState.value)
+
+    useHead({
+      title: `${newsList.value.title} | News | KS BLOG`,
+      meta: [
+        {
+          name: 'description',
+          content: `KS BLOGはブログサイトです。ニュース記事の${newsList.value.title}をご紹介。`,
+        },
+        {
+          property: 'og:title',
+          content: `${newsList.value.title} | News | KS BLOG`,
+        },
+        {
+          property: 'og:description',
+          content: `KS BLOGはブログサイトです。ニュース記事の${newsList.value.title}をご紹介。`,
+        },
+        { property: 'og:type', content: 'article' },
+      ],
+      script: [
+        {
+          key: 'breadcrumb-jsonld',
+          type: 'application/ld+json',
+          innerHTML: breadcrumbJsonLd.value,
+        },
+      ],
+    })
   })
 </script>
 
 <template>
   <BaseContent>
-    <div>
-      <template v-if="!pending && newsList">
-        <BaseHeadingLevel1 sub-title="News">{{ newsList.title }}</BaseHeadingLevel1>
-        <div>{{ newsList }}</div>
-      </template>
-      <template v-else-if="!pending && errorFlag">
-        <BaseText>
-          <p><em>データ取得に失敗しました。再度お試しください。</em></p>
-        </BaseText>
-      </template>
-      <template v-else-if="!pending">
-        <BaseText>
-          <p><em>お知らせ情報が1件もありませんでした。</em></p>
-        </BaseText>
-      </template>
-      <template v-else>
-        <BaseLoading />
-      </template>
-    </div>
+    <template v-if="!pending && newsList">
+      <NewsContent :news-list="newsList" />
+    </template>
+    <template v-else-if="!pending && errorFlag">
+      <BaseText>
+        <p><em>データ取得に失敗しました。再度お試しください。</em></p>
+      </BaseText>
+    </template>
+    <template v-else-if="!pending">
+      <BaseText>
+        <p><em>お知らせ情報が1件もありませんでした。</em></p>
+      </BaseText>
+    </template>
+    <template v-else>
+      <BaseLoading />
+    </template>
   </BaseContent>
 </template>

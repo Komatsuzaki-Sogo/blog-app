@@ -26,9 +26,10 @@
 
 <style scoped lang="scss">
   .c-list-detailTime {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 8px 16px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px 24px;
     align-items: baseline;
     width: fit-content;
     margin-top: 40px;
@@ -40,7 +41,10 @@
     }
 
     &__item {
-      display: contents;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 8px 16px;
+      align-items: baseline;
     }
 
     &__title {

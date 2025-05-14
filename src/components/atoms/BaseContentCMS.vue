@@ -5,5 +5,5 @@
 </script>
 
 <template>
-  <div v-html="content" />
+  <div class="c-content-cms" v-html="content" />
 </template>

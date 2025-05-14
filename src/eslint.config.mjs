@@ -27,6 +27,7 @@ export default withNuxt({
       },
       svg: 'always',
       math: 'always'
-    }]
+    }],
+    'vue/no-v-html': 'off'
   },
 })

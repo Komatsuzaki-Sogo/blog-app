@@ -1,6 +1,8 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
+  import BaseText from '~/components/atoms/BaseText.vue'
+  import BaseLoading from '~/components/atoms/BaseLoading.vue'
   import NewsLists from '~/components/molecules/NewsLists.vue'
   import type { NewsPost } from '~/types/newsPost'
 
@@ -41,31 +43,48 @@
   })
 
   const fetchNews = async () => {
-    const { data } = await useMicroCMSGetList<NewsPost>({
+    const { data, error } = await useMicroCMSGetList<NewsPost>({
       endpoint: 'news',
       queries: {
         orders: '-publishedAt',
       },
     })
 
-    // data.value を返す（中身のみ）
+    if (error.value) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'MicroCMS API error',
+      })
+    }
+
     return data.value
   }
 
-  // useAsyncData で fetchNews を使う
-  const { data, pending, error } = await useAsyncData('news', fetchNews)
+  const { data, error, pending } = await useAsyncData('news', fetchNews)
 
   const newsLists = computed(() => data.value?.contents || [])
-  const errorMsg = computed(() => (error.value ? 'データ取得に失敗しました。' : ''))
+  const errorFlag = computed(() => (error.value ? true : false))
 </script>
 
 <template>
   <BaseContent>
     <BaseHeadingLevel1 sub-title="News">ニュース</BaseHeadingLevel1>
 
-    <NewsLists v-if="!pending && newsLists.length > 0" :news-posts="newsLists" />
-    <p v-else-if="!pending && errorMsg">{{ errorMsg }}</p>
-    <p v-else-if="!pending">none</p>
-    <p v-else>Loading...</p>
+    <template v-if="!pending && newsLists.length > 0">
+      <NewsLists :news-posts="newsLists" />
+    </template>
+    <template v-else-if="!pending && errorFlag">
+      <BaseText>
+        <p><em>データ取得に失敗しました。</em></p>
+      </BaseText>
+    </template>
+    <template v-else-if="!pending">
+      <BaseText>
+        <p><em>お知らせ情報が1件もありませんでした。</em></p>
+      </BaseText>
+    </template>
+    <template v-else>
+      <BaseLoading />
+    </template>
   </BaseContent>
 </template>

@@ -1,8 +1,20 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
-  import NewsLists from '~/components/molecules/NewsLists.vue'
-  import type { NewsPost } from '~/types/newsPost'
+  // import { useRoute } from 'vue-router'
+  // import type { NewsPost } from '~/types/newsPost'
+
+  // const route = useRoute()
+  // const slugArray = route.params.slug as string[]
+  // const fullSlug = '/' + slugArray.join('/')
+
+  // const { data } = await useMicroCMSGetList<NewsPost>({
+  //   endpoint: 'news',
+  //   queries: {
+  //     filters: `slug[equals]${fullSlug}`,
+  //     limit: 1,
+  //   },
+  // })
 
   const pageLists = [
     { name: 'HOME', path: '/' },
@@ -39,33 +51,14 @@
       },
     ],
   })
-
-  const fetchNews = async () => {
-    const { data } = await useMicroCMSGetList<NewsPost>({
-      endpoint: 'news',
-      queries: {
-        orders: '-publishedAt',
-      },
-    })
-
-    // data.value を返す（中身のみ）
-    return data.value
-  }
-
-  // useAsyncData で fetchNews を使う
-  const { data, pending, error } = await useAsyncData('news', fetchNews)
-
-  const newsLists = computed(() => data.value?.contents || [])
-  const errorMsg = computed(() => (error.value ? 'データ取得に失敗しました。' : ''))
 </script>
 
 <template>
   <BaseContent>
-    <BaseHeadingLevel1 sub-title="News">ニュース</BaseHeadingLevel1>
-
-    <NewsLists v-if="!pending && newsLists.length > 0" :news-posts="newsLists" />
-    <p v-else-if="!pending && errorMsg">{{ errorMsg }}</p>
-    <p v-else-if="!pending">none</p>
-    <p v-else>Loading...</p>
+    <div>
+      <!-- <BaseHeadingLevel1 sub-title="News">{{ data?.contents[0].title }}</BaseHeadingLevel1>
+      <div>{{ data }}</div> -->
+      test
+    </div>
   </BaseContent>
 </template>

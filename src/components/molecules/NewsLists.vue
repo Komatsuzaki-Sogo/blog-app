@@ -1,7 +1,10 @@
 <script setup lang="ts">
   import BaseBadge from '~/components/atoms/BaseBadge.vue'
+  import BaseIconNew from '~/components/atoms/BaseIconNew.vue'
   import { useFormatDate } from '~/composables/useFormatDate'
+  import { useIsNewContent } from '~/composables/useIsNewContent'
   import type { NewsPost } from '~/types/newsPost'
+
   defineProps<{
     newsPosts: NewsPost[]
   }>()
@@ -17,6 +20,7 @@
               {{ useFormatDate(newsPost.publishedAt) }}
             </time>
             <BaseBadge>お知らせ</BaseBadge>
+            <BaseIconNew v-if="useIsNewContent(newsPost.publishedAt)" />
           </span>
           <span class="c-list-news__title">{{ newsPost.title }}</span>
         </span>

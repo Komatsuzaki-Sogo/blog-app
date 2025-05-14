@@ -2,7 +2,7 @@
  * ニュース投稿の型定義
  */
 export type NewsPost = {
-  id: string // unique id
+  id: string
   createdAt: string
   updatedAt: string
   publishedAt: string

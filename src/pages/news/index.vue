@@ -4,8 +4,6 @@
   import BaseText from '~/components/atoms/BaseText.vue'
   import BaseLoading from '~/components/atoms/BaseLoading.vue'
   import NewsPosts from '~/components/molecules/NewsPosts.vue'
-  import type { NewsPost } from '~/types/newsPost'
-  import { useBreadcrumbState } from '~/composables/useBreadcrumbState'
 
   const breadcrumbState = useBreadcrumbState()
 
@@ -42,28 +40,7 @@
     ],
   })
 
-  const fetchNews = async () => {
-    const { data, error } = await useMicroCMSGetList<NewsPost>({
-      endpoint: 'news',
-      queries: {
-        orders: '-publishedAt',
-      },
-    })
-
-    if (error.value) {
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'MicroCMS API error',
-      })
-    }
-
-    return data.value
-  }
-
-  const { data, error, pending } = await useAsyncData('news', fetchNews)
-
-  const newsPosts = computed(() => data.value?.contents || [])
-  const errorFlag = computed(() => (error.value ? true : false))
+  const { newsPosts, errorFlag, pending } = useFetchNewsPosts()
 </script>
 
 <template>

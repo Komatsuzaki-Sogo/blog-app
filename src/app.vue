@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { useRuntimeConfig } from '#imports'
   const config = useRuntimeConfig()
   const baseHost = config.public.NUXT_APP_BASE_HOST
 

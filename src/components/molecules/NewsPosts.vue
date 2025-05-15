@@ -2,7 +2,6 @@
   import BaseBadge from '~/components/atoms/BaseBadge.vue'
   import BaseIconNew from '~/components/atoms/BaseIconNew.vue'
   import BaseTextTime from '~/components/atoms/BaseTextTime.vue'
-  import { useIsNewContent } from '~/composables/useIsNewContent'
   import type { NewsPost } from '~/types/newsPost'
 
   defineProps<{

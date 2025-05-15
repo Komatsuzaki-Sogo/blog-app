@@ -1,7 +1,5 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
-  import { useBreadcrumbState } from '~/composables/useBreadcrumbState'
-
   const breadcrumbList = useBreadcrumbState()
 </script>
 

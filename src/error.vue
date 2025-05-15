@@ -5,7 +5,6 @@
   import BaseText from '~/components/atoms/BaseText.vue'
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseButton from '~/components/atoms/BaseButton.vue'
-  import { useRuntimeConfig } from '#imports'
 
   const isMenuOpen = computed(() => {
     return easyStore.menuActive

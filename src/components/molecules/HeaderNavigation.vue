@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { useRoute } from 'vue-router'
   import BaseButton from '~/components/atoms/BaseButton.vue'
 
   const route = useRoute()

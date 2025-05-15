@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import { useFormatDate } from '~/composables/useFormatDate'
-
   defineProps<{
     time: string
   }>()

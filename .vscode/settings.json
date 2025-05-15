@@ -1,10 +1,6 @@
 {
   "stylelint.validate": ["css", "scss", "vue"],
-  "cSpell.words": [
-    "MICROCMS",
-    "Nuxt",
-    "stylelintcache"
-  ],
+  "cSpell.words": ["Eyecatch", "MICROCMS", "Nuxt", "stylelintcache"],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",

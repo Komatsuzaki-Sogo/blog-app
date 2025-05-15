@@ -12,7 +12,7 @@
 
 <template>
   <BaseHeadingLevel1 sub-title="News">{{ newsList.title }}</BaseHeadingLevel1>
-  <BaseContentCMS :content="newsList.content" />
+  <BaseContentCMS :content="newsList.contents" />
   <ListDetailTime :published-at="newsList.publishedAt" :updated-at="newsList.updatedAt" />
   <BaseButton :to="PATHS.NEWS.path">ニュース一覧へ戻る</BaseButton>
 </template>

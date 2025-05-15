@@ -21,7 +21,7 @@
 
 <template>
   <BaseContent>
-    <h1>heading-level1</h1>
+    <h1>Home</h1>
     <p>text</p>
   </BaseContent>
 </template>

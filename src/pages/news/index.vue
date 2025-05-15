@@ -3,7 +3,7 @@
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
   import BaseText from '~/components/atoms/BaseText.vue'
   import BaseLoading from '~/components/atoms/BaseLoading.vue'
-  import NewsLists from '~/components/molecules/NewsLists.vue'
+  import NewsPosts from '~/components/molecules/NewsPosts.vue'
   import type { NewsPost } from '~/types/newsPost'
   import { useBreadcrumbState } from '~/composables/useBreadcrumbState'
 
@@ -62,7 +62,7 @@
 
   const { data, error, pending } = await useAsyncData('news', fetchNews)
 
-  const newsLists = computed(() => data.value?.contents || [])
+  const newsPosts = computed(() => data.value?.contents || [])
   const errorFlag = computed(() => (error.value ? true : false))
 </script>
 
@@ -70,8 +70,8 @@
   <BaseContent>
     <BaseHeadingLevel1 sub-title="News">ニュース</BaseHeadingLevel1>
 
-    <template v-if="!pending && newsLists.length > 0">
-      <NewsLists :news-posts="newsLists" />
+    <template v-if="!pending && newsPosts.length > 0">
+      <NewsPosts :news-posts="newsPosts" />
     </template>
     <template v-else-if="!pending && errorFlag">
       <BaseText>

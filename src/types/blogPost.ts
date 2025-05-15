@@ -1,6 +1,22 @@
-export type NewsContent = {
+import type { BlogCategory } from './blogCategory'
+
+/**
+ * アイキャッチ画像の型定義
+ */
+type Eyecatch = {
+  /** 画像URL */
+  url: string
+
+  /** 画像の高さ */
+  height: number
+
+  /** 画像の幅 */
+  width: number
+}
+
+export type BlogContent = {
   /** カスタムフィールドのID */
-  fieldId: 'customNewsContent'
+  fieldId: 'customBlogContent'
 
   /** リッチeditorのコンテンツ */
   richEditor?: string
@@ -9,10 +25,7 @@ export type NewsContent = {
   HTML?: string
 }
 
-/**
- * ニュース投稿の型定義
- */
-export type NewsPost = {
+export type BlogPost = {
   /** 投稿の一意なID */
   id: string
 
@@ -28,12 +41,18 @@ export type NewsPost = {
   /** 修正日時（ISO形式） */
   revisedAt: string
 
-  /** ニュースのタイトル */
+  /** ブログのタイトル */
   title: string
 
   /** 投稿のスラッグ（URLなどで使用） */
   slug: string
 
-  /** ニュース本文（HTMLまたはMarkdown形式） */
-  contents: NewsContent[]
+  /** アイキャッチ */
+  eyecatch?: Eyecatch
+
+  /** ブログカテゴリ */
+  'blog-category': BlogCategory[]
+
+  /** ブログコンテンツ */
+  contents: BlogContent[]
 }

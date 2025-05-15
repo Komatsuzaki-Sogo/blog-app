@@ -10,15 +10,15 @@
 <template>
   <dl class="c-list-detailTime">
     <div class="c-list-detailTime__item">
-      <dt class="c-list-detailTime__title">公開日時</dt>
+      <dt class="c-list-detailTime__title">公開日</dt>
       <dd class="c-list-detailTime__content">
         <BaseTextTime :time="publishedAt" />
       </dd>
     </div>
-    <div class="c-list-detailTime__item">
-      <dt class="c-list-detailTime__title">更新日時</dt>
+    <div v-if="publishedAt === updatedAt" class="c-list-detailTime__item">
+      <dt class="c-list-detailTime__title">更新日</dt>
       <dd class="c-list-detailTime__content">
-        <BaseTextTime :time="publishedAt" />
+        <BaseTextTime :time="updatedAt" />
       </dd>
     </div>
   </dl>
@@ -43,7 +43,7 @@
     &__item {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 8px 16px;
+      gap: 8px;
       align-items: baseline;
     }
 

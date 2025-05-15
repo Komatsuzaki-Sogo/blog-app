@@ -30,39 +30,39 @@
 
   const { data, pending, error } = await useAsyncData('news', fetchNewsDetail)
 
-  const newsList = computed(() => data.value?.contents[0])
+  const newsPost = computed(() => data.value?.contents[0])
   const errorFlag = computed(() => !!error.value)
   const breadcrumbState = useBreadcrumbState()
 
   onMounted(async () => {
     watchEffect(() => {
-      if (!newsList.value?.title) return
+      if (!newsPost.value?.title) return
 
       breadcrumbState.value = [
         { name: 'HOME', path: '/' },
         { name: 'News', path: '/news' },
-        { name: newsList.value.title, path: route.fullPath },
+        { name: newsPost.value.title, path: route.fullPath },
       ]
     })
 
-    if (!newsList.value?.title) return
+    if (!newsPost.value?.title) return
 
     const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState.value)
 
     useHead({
-      title: `${newsList.value.title} | News | KS BLOG`,
+      title: `${newsPost.value.title} | News | KS BLOG`,
       meta: [
         {
           name: 'description',
-          content: `KS BLOGはブログサイトです。ニュース記事の${newsList.value.title}をご紹介。`,
+          content: `KS BLOGはブログサイトです。ニュース記事の${newsPost.value.title}をご紹介。`,
         },
         {
           property: 'og:title',
-          content: `${newsList.value.title} | News | KS BLOG`,
+          content: `${newsPost.value.title} | News | KS BLOG`,
         },
         {
           property: 'og:description',
-          content: `KS BLOGはブログサイトです。ニュース記事の${newsList.value.title}をご紹介。`,
+          content: `KS BLOGはブログサイトです。ニュース記事の${newsPost.value.title}をご紹介。`,
         },
         { property: 'og:type', content: 'article' },
       ],
@@ -79,8 +79,8 @@
 
 <template>
   <BaseContent>
-    <template v-if="!pending && newsList">
-      <NewsContent :news-list="newsList" />
+    <template v-if="!pending && newsPost">
+      <NewsContent :news-list="newsPost" />
     </template>
     <template v-else-if="!pending && errorFlag">
       <BaseText>

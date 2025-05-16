@@ -1,8 +1,3 @@
-<script setup lang="ts">
-  import BaseContent from '~/components/atoms/BaseContent.vue'
-  const breadcrumbList = useBreadcrumbState()
-</script>
-
 <template>
   <div v-if="breadcrumbList && breadcrumbList?.length" class="l-breadcrumb">
     <BaseContent padding-y="none">
@@ -21,6 +16,11 @@
     </BaseContent>
   </div>
 </template>
+
+<script setup lang="ts">
+  import BaseContent from '~/components/atoms/BaseContent.vue'
+  const breadcrumbList = useBreadcrumbState()
+</script>
 
 <style scoped lang="scss">
   .l-breadcrumb {

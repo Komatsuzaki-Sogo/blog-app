@@ -1,9 +1,3 @@
-<script setup lang="ts">
-  defineProps<{
-    subTitle?: string
-  }>()
-</script>
-
 <template>
   <h1 class="c-heading-level1">
     <span class="c-heading-level1__inner">
@@ -16,6 +10,12 @@
     </span>
   </h1>
 </template>
+
+<script setup lang="ts">
+  defineProps<{
+    subTitle?: string
+  }>()
+</script>
 
 <style scoped lang="scss">
   .c-heading-level1 {

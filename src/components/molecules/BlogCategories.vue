@@ -1,13 +1,3 @@
-<script setup lang="ts">
-  import type { BlogCategory } from '~/types/blogCategory'
-
-  defineProps<{
-    blogCategory: BlogCategory[]
-  }>()
-
-  const route = useRoute()
-</script>
-
 <template>
   <div class="c-list-category">
     <em class="c-list-category__title">category</em>
@@ -36,6 +26,16 @@
     </ul>
   </div>
 </template>
+
+<script setup lang="ts">
+  import type { BlogCategory } from '~/types/blogCategory'
+
+  defineProps<{
+    blogCategory: BlogCategory[]
+  }>()
+
+  const route = useRoute()
+</script>
 
 <style scoped lang="scss">
   .c-list-category {

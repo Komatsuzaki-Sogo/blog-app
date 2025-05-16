@@ -1,14 +1,3 @@
-<script setup lang="ts">
-  import BaseBadge from '~/components/atoms/BaseBadge.vue'
-  import BaseIconNew from '~/components/atoms/BaseIconNew.vue'
-  import BaseTextTime from '~/components/atoms/BaseTextTime.vue'
-  import type { BlogPost } from '~/types/blogPost'
-
-  defineProps<{
-    blogPosts: BlogPost[]
-  }>()
-</script>
-
 <template>
   <ul v-if="blogPosts && blogPosts.length > 0" class="c-list-blog">
     <li v-for="blogPost in blogPosts" :key="blogPost.id" class="c-list-blog__item">
@@ -49,6 +38,17 @@
     </li>
   </ul>
 </template>
+
+<script setup lang="ts">
+  import BaseBadge from '~/components/atoms/BaseBadge.vue'
+  import BaseIconNew from '~/components/atoms/BaseIconNew.vue'
+  import BaseTextTime from '~/components/atoms/BaseTextTime.vue'
+  import type { BlogPost } from '~/types/blogPost'
+
+  defineProps<{
+    blogPosts: BlogPost[]
+  }>()
+</script>
 
 <style scoped lang="scss">
   .c-list-blog {

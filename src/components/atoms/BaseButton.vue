@@ -1,11 +1,3 @@
-<script setup lang="ts">
-  defineProps<{
-    to: string
-    ariaCurrent?: string
-    iconName?: string
-  }>()
-</script>
-
 <template>
   <div class="c-button">
     <NuxtLink :to="to" :aria-current="ariaCurrent" class="c-button__link">
@@ -18,6 +10,14 @@
     </NuxtLink>
   </div>
 </template>
+
+<script setup lang="ts">
+  defineProps<{
+    to: string
+    ariaCurrent?: string
+    iconName?: string
+  }>()
+</script>
 
 <style scoped lang="scss">
   .c-button {

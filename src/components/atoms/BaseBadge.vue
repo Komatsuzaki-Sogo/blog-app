@@ -1,3 +1,9 @@
+<template>
+  <span class="c-badge" :class="contentClass">
+    <slot />
+  </span>
+</template>
+
 <script setup lang="ts">
   type Props = {
     size?: 'small'
@@ -9,12 +15,6 @@
     return ['c-content', props.size === 'small' && 'c-badge--small']
   })
 </script>
-
-<template>
-  <span class="c-badge" :class="contentClass">
-    <slot />
-  </span>
-</template>
 
 <style scoped lang="scss">
   .c-badge {

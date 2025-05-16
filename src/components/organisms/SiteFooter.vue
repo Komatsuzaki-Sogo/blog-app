@@ -1,10 +1,3 @@
-<script setup lang="ts">
-  import BaseContent from '~/components/atoms/BaseContent.vue'
-  import BaseLogo from '~/components/atoms/BaseLogo.vue'
-  import FooterSNS from '~/components/molecules/FooterSNS.vue'
-  import FooterNavigation from '~/components/molecules/FooterNavigation.vue'
-</script>
-
 <template>
   <footer class="c-footer">
     <BaseContent padding-y="none">
@@ -30,6 +23,13 @@
     </BaseContent>
   </footer>
 </template>
+
+<script setup lang="ts">
+  import BaseContent from '~/components/atoms/BaseContent.vue'
+  import BaseLogo from '~/components/atoms/BaseLogo.vue'
+  import FooterSNS from '~/components/molecules/FooterSNS.vue'
+  import FooterNavigation from '~/components/molecules/FooterNavigation.vue'
+</script>
 
 <style scoped lang="scss">
   .c-footer {

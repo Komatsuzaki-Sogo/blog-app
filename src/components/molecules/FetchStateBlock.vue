@@ -1,18 +1,3 @@
-<script setup lang="ts">
-  import BaseText from '~/components/atoms/BaseText.vue'
-  import BaseLoading from '~/components/atoms/BaseLoading.vue'
-  import type { BlogCategory } from '~/types/blogCategory'
-  import type { BlogPost } from '~/types/blogPost'
-  import type { NewsPost } from '~/types/newsPost'
-
-  defineProps<{
-    name: string
-    items: BlogCategory[] | BlogPost[] | NewsPost[]
-    pending: boolean
-    errorFlag: boolean
-  }>()
-</script>
-
 <template>
   <template v-if="!pending && items.length > 0">
     <slot :items="items" />
@@ -35,3 +20,18 @@
     <BaseLoading />
   </template>
 </template>
+
+<script setup lang="ts">
+  import BaseText from '~/components/atoms/BaseText.vue'
+  import BaseLoading from '~/components/atoms/BaseLoading.vue'
+  import type { BlogCategory } from '~/types/blogCategory'
+  import type { BlogPost } from '~/types/blogPost'
+  import type { NewsPost } from '~/types/newsPost'
+
+  defineProps<{
+    name: string
+    items: BlogCategory[] | BlogPost[] | NewsPost[]
+    pending: boolean
+    errorFlag: boolean
+  }>()
+</script>

@@ -1,3 +1,9 @@
+<template>
+  <div class="c-content-cms">
+    <div v-for="(item, index) in content" :key="index" v-html="getContentHtml(item)" />
+  </div>
+</template>
+
 <script setup lang="ts">
   import type { NewsContent } from '~/types/newsPost'
   import type { BlogContent } from '~/types/blogPost'
@@ -13,9 +19,3 @@
     return ''
   }
 </script>
-
-<template>
-  <div class="c-content-cms">
-    <div v-for="(item, index) in content" :key="index" v-html="getContentHtml(item)" />
-  </div>
-</template>

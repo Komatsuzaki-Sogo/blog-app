@@ -1,3 +1,41 @@
+<template>
+  <header class="c-header">
+    <BaseContent padding-y="none">
+      <div class="c-header__inner">
+        <h1>
+          <BaseLogo />
+        </h1>
+        <BaseHamburgerMenu
+          :aria-controls="menuId"
+          :aria-expanded="isMenuOpen"
+          :class="{ 'is-active': isMenuOpen }"
+          @click="toggleMenu"
+        />
+        <div class="c-header__navigationPC">
+          <HeaderNavigation :class="{ 'is-active': isMenuOpen }" />
+        </div>
+        <div class="c-header__navigationSP">
+          <Transition
+            name="slide"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter"
+            @before-leave="beforeLeave"
+            @leave="leave"
+          >
+            <HeaderNavigation
+              v-show="isMenuOpen"
+              :id="menuId"
+              :class="{ 'is-active': isMenuOpen }"
+            />
+          </Transition>
+        </div>
+        <BaseOverlay :class="{ 'is-active': isMenuOpen }" @click="closeMenu" />
+      </div>
+    </BaseContent>
+  </header>
+</template>
+
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseLogo from '~/components/atoms/BaseLogo.vue'
@@ -91,44 +129,6 @@
     element.style.height = '0'
   }
 </script>
-
-<template>
-  <header class="c-header">
-    <BaseContent padding-y="none">
-      <div class="c-header__inner">
-        <h1>
-          <BaseLogo />
-        </h1>
-        <BaseHamburgerMenu
-          :aria-controls="menuId"
-          :aria-expanded="isMenuOpen"
-          :class="{ 'is-active': isMenuOpen }"
-          @click="toggleMenu"
-        />
-        <div class="c-header__navigationPC">
-          <HeaderNavigation :class="{ 'is-active': isMenuOpen }" />
-        </div>
-        <div class="c-header__navigationSP">
-          <Transition
-            name="slide"
-            @before-enter="beforeEnter"
-            @enter="enter"
-            @after-enter="afterEnter"
-            @before-leave="beforeLeave"
-            @leave="leave"
-          >
-            <HeaderNavigation
-              v-show="isMenuOpen"
-              :id="menuId"
-              :class="{ 'is-active': isMenuOpen }"
-            />
-          </Transition>
-        </div>
-        <BaseOverlay :class="{ 'is-active': isMenuOpen }" @click="closeMenu" />
-      </div>
-    </BaseContent>
-  </header>
-</template>
 
 <style scoped lang="scss">
   .c-header {

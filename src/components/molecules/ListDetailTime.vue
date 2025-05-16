@@ -1,12 +1,3 @@
-<script setup lang="ts">
-  import BaseTextTime from '~/components/atoms/BaseTextTime.vue'
-
-  defineProps<{
-    publishedAt: string
-    updatedAt: string
-  }>()
-</script>
-
 <template>
   <dl class="c-list-detailTime">
     <div class="c-list-detailTime__item">
@@ -23,6 +14,15 @@
     </div>
   </dl>
 </template>
+
+<script setup lang="ts">
+  import BaseTextTime from '~/components/atoms/BaseTextTime.vue'
+
+  defineProps<{
+    publishedAt: string
+    updatedAt: string
+  }>()
+</script>
 
 <style scoped lang="scss">
   .c-list-detailTime {

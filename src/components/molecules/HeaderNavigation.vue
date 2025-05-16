@@ -1,14 +1,3 @@
-<script setup lang="ts">
-  import BaseButton from '~/components/atoms/BaseButton.vue'
-
-  const route = useRoute()
-
-  const excludeKeys = ['HOME', 'CONTACT']
-  const pathEntries = Object.entries(PATHS)
-    .filter(([key]) => !excludeKeys.includes(key))
-    .map(([, value]) => value)
-</script>
-
 <template>
   <div class="c-header-navigation">
     <div class="c-header-navigation__inner">
@@ -37,6 +26,17 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+  import BaseButton from '~/components/atoms/BaseButton.vue'
+
+  const route = useRoute()
+
+  const excludeKeys = ['HOME', 'CONTACT']
+  const pathEntries = Object.entries(PATHS)
+    .filter(([key]) => !excludeKeys.includes(key))
+    .map(([, value]) => value)
+</script>
 
 <style scoped lang="scss">
   .c-header-navigation {

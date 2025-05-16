@@ -1,3 +1,11 @@
+<template>
+  <div class="c-content" :class="contentClass">
+    <div class="c-content__inner">
+      <slot />
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
   type Props = {
     paddingY?: 'none' | 'narrow' | 'wide'
@@ -14,14 +22,6 @@
     ]
   })
 </script>
-
-<template>
-  <div class="c-content" :class="contentClass">
-    <div class="c-content__inner">
-      <slot />
-    </div>
-  </div>
-</template>
 
 <style scoped lang="scss">
   .c-content {

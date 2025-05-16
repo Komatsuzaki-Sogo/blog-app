@@ -1,14 +1,3 @@
-<script setup lang="ts">
-  import BaseBadge from '~/components/atoms/BaseBadge.vue'
-  import BaseIconNew from '~/components/atoms/BaseIconNew.vue'
-  import BaseTextTime from '~/components/atoms/BaseTextTime.vue'
-  import type { NewsPost } from '~/types/newsPost'
-
-  defineProps<{
-    newsPosts: NewsPost[]
-  }>()
-</script>
-
 <template>
   <ul class="c-list-news">
     <li v-for="newsPost in newsPosts" :key="newsPost.id" class="c-list-news__item">
@@ -25,6 +14,17 @@
     </li>
   </ul>
 </template>
+
+<script setup lang="ts">
+  import BaseBadge from '~/components/atoms/BaseBadge.vue'
+  import BaseIconNew from '~/components/atoms/BaseIconNew.vue'
+  import BaseTextTime from '~/components/atoms/BaseTextTime.vue'
+  import type { NewsPost } from '~/types/newsPost'
+
+  defineProps<{
+    newsPosts: NewsPost[]
+  }>()
+</script>
 
 <style scoped lang="scss">
   .c-list-news {

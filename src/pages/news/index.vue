@@ -54,5 +54,5 @@
     ],
   })
 
-  const { newsPosts, errorFlag, pending } = useFetchNewsPosts()
+  const { newsPosts, errorFlag, pending } = await useFetchNewsPosts()
 </script>

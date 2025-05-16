@@ -6,7 +6,7 @@
       :pending="pending"
       :error-flag="errorFlag"
     >
-      <NewsContent :news-list="newsPosts[0]" />
+      <NewsContent :news-post="newsPosts[0]" />
     </FetchStateBlock>
   </BaseContent>
 </template>
@@ -14,15 +14,15 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
-
   import NewsContent from '~/components/pages/news/NewsContent.vue'
 
   const route = useRoute()
   const slugArray = route.params.slug as string[]
   const fullSlug = '/' + slugArray.join('/')
+  const normalizedSlug = fullSlug.replace(/\/$/, '')
 
   const { newsPosts, errorFlag, pending } = await useFetchNewsPosts({
-    filters: `slug[equals]${fullSlug}`,
+    filters: `slug[equals]${normalizedSlug}`,
     limit: 1,
   })
 

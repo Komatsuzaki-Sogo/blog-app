@@ -12,7 +12,7 @@
 <template>
   <ul class="c-list-news">
     <li v-for="newsPost in newsPosts" :key="newsPost.id" class="c-list-news__item">
-      <NuxtLink :to="'/news' + newsPost.slug" class="c-list-news__link">
+      <NuxtLink :to="'/news' + newsPost.slug + '/'" class="c-list-news__link">
         <span class="c-list-news__inner">
           <span class="c-list-news__info">
             <BaseTextTime :time="newsPost.publishedAt" />

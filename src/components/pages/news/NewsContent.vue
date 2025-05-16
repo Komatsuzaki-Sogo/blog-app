@@ -6,13 +6,13 @@
   import type { NewsPost } from '~/types/newsPost'
 
   defineProps<{
-    newsList: NewsPost
+    newsPost: NewsPost
   }>()
 </script>
 
 <template>
-  <BaseHeadingLevel1 sub-title="News">{{ newsList.title }}</BaseHeadingLevel1>
-  <BaseContentCMS :content="newsList.contents" />
-  <ListDetailTime :published-at="newsList.publishedAt" :updated-at="newsList.updatedAt" />
+  <BaseHeadingLevel1 sub-title="News">{{ newsPost.title }}</BaseHeadingLevel1>
+  <BaseContentCMS :content="newsPost.contents" />
+  <ListDetailTime :published-at="newsPost.publishedAt" :updated-at="newsPost.updatedAt" />
   <BaseButton :to="PATHS.NEWS.path">ニュース一覧へ戻る</BaseButton>
 </template>

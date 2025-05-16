@@ -12,7 +12,7 @@
 <template>
   <ul v-if="blogPosts && blogPosts.length > 0" class="c-list-blog">
     <li v-for="blogPost in blogPosts" :key="blogPost.id" class="c-list-blog__item">
-      <NuxtLink :to="'/blog/' + blogPost.slug" class="c-list-blog__link">
+      <NuxtLink :to="'/blog/' + blogPost.slug + '/'" class="c-list-blog__link">
         <span class="c-list-blog__content">
           <span class="c-list-blog__index">
             <span class="c-list-blog__title">

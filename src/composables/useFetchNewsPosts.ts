@@ -25,7 +25,7 @@ export const useFetchNewsPosts = async (queries?: Queries) => {
     return data.value
   }
 
-  const { data, error, pending } = await useAsyncData('news', fetchNews, { server: true })
+  const { data, error, pending } = await useAsyncData('news', fetchNews)
 
   const newsPosts = computed(() => data.value?.contents || [])
   const errorFlag = computed(() => !!error.value)

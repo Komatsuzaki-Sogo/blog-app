@@ -5,7 +5,7 @@ type Queries = {
   filters?: string
 }
 
-export const useFetchBlogPosts = (queries?: Queries) => {
+export const useFetchBlogPosts = async (queries?: Queries) => {
   const fetchBlogPosts = async () => {
     const { data, error } = await useMicroCMSGetList<BlogPost>({
       endpoint: 'blog',
@@ -25,7 +25,7 @@ export const useFetchBlogPosts = (queries?: Queries) => {
     return data.value
   }
 
-  const { data, error, pending: blogPostsPending } = useAsyncData('blog', fetchBlogPosts)
+  const { data, error, pending: blogPostsPending } = await useAsyncData('blog', fetchBlogPosts)
   const blogPosts = computed(() => data.value?.contents || [])
   const blogPostsErrorFlag = computed(() => !!error.value)
 

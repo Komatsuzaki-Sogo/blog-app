@@ -41,8 +41,8 @@
     ],
   })
 
-  const { blogCategory, blogCategoryErrorFlag, blogCategoryPending } = useFetchBlogCategory()
-  const { blogPosts, blogPostsErrorFlag, blogPostsPending } = useFetchBlogPosts()
+  const { blogCategory, blogCategoryErrorFlag, blogCategoryPending } = await useFetchBlogCategory()
+  const { blogPosts, blogPostsErrorFlag, blogPostsPending } = await useFetchBlogPosts()
 </script>
 
 <template>

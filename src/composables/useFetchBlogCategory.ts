@@ -5,7 +5,7 @@ type Queries = {
   filters?: string
 }
 
-export const useFetchBlogCategory = (queries?: Queries) => {
+export const useFetchBlogCategory = async (queries?: Queries) => {
   const fetchBlogCategory = async () => {
     const { data, error } = await useMicroCMSGetList<BlogCategory>({
       endpoint: 'blog-category',
@@ -24,11 +24,13 @@ export const useFetchBlogCategory = (queries?: Queries) => {
     return data.value
   }
 
+  const asyncKey = queries ? `blog-category-filtered-${queries.filters ?? ''}` : 'blog-category'
+
   const {
     data,
     error,
     pending: blogCategoryPending,
-  } = useAsyncData('blog-category', fetchBlogCategory)
+  } = await useAsyncData(asyncKey, fetchBlogCategory)
   const blogCategory = computed(() => data.value?.contents || [])
   const blogCategoryErrorFlag = computed(() => !!error.value)
 

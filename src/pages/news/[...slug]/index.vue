@@ -6,7 +6,7 @@
   const slugArray = route.params.slug as string[]
   const fullSlug = '/' + slugArray.join('/')
 
-  const { newsPosts, errorFlag, pending } = useFetchNewsPosts({
+  const { newsPosts, errorFlag, pending } = await useFetchNewsPosts({
     filters: `slug[equals]${fullSlug}`,
     limit: 1,
   })

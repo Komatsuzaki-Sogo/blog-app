@@ -1,98 +1,63 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
-  import type { BlogCategory } from '~/types/blogCategory'
-  import type { BlogPost } from '~/types/blogPost'
+  import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
+  import BaseText from '~/components/atoms/BaseText.vue'
+  import BaseLoading from '~/components/atoms/BaseLoading.vue'
+  import BlogCategories from '~/components/molecules/BlogCategories.vue'
+  import BlogPosts from '~/components/molecules/BlogPosts.vue'
 
   const route = useRoute()
 
-  const fetchBlogCategory = async () => {
-    const { data, error } = await useMicroCMSGetList<BlogCategory>({
-      endpoint: 'blog-category',
-      queries: {
-        filters: `slug[equals]${route.params.slug}`,
-        limit: 1,
-      },
-    })
-
-    if (error.value) {
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'MicroCMS API error',
-      })
-    }
-
-    return data.value
-  }
+  const {
+    blogCategory: blogMatchCategory,
+    blogCategoryErrorFlag: blogMatchCategoryErrorFlag,
+    blogCategoryPending: blogMatchCategoryPending,
+  } = await useFetchBlogCategory({
+    filters: `slug[equals]${route.params.slug}`,
+    limit: 1,
+  })
 
   const {
-    data: categoryData,
-    pending: categoryPending,
-    error: categoryError,
-  } = await useAsyncData('blog-category', fetchBlogCategory)
+    blogCategory: blogCategoryAll,
+    blogCategoryErrorFlag: blogCategoryAllErrorFlag,
+    blogCategoryPending: blogCategoryAllPending,
+  } = await useFetchBlogCategory()
 
-  const blogCategory = computed(() => categoryData.value?.contents[0])
-  const blogCategoryErrorFlag = computed(() => (categoryError.value ? true : false))
-
-  const fetchBlogPostsByCategory = async () => {
-    if (!blogCategory.value?.id) return { contents: [] }
-
-    const { data, error } = await useMicroCMSGetList<BlogPost>({
-      endpoint: 'blog',
-      queries: {
-        filters: `blog-category[contains]${blogCategory.value.id}`,
-      },
-    })
-
-    if (error.value) {
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'MicroCMS API error (posts)',
-      })
-    }
-
-    return data.value
-  }
-
-  const {
-    data: postsData,
-    pending: postsPending,
-    error: postsError,
-  } = await useAsyncData('blog', fetchBlogPostsByCategory)
-
-  const blogPosts = computed(() => postsData.value?.contents ?? [])
-  const blogPostsErrorFlag = computed(() => (postsError.value ? true : false))
+  const { blogPosts, blogPostsErrorFlag, blogPostsPending } = await useFetchBlogPosts({
+    filters: `blog-category[contains]${blogMatchCategory.value[0]?.id}`,
+  })
 
   const breadcrumbState = useBreadcrumbState()
 
   onMounted(async () => {
     watchEffect(() => {
-      if (!blogCategory.value?.name) return
+      if (!blogMatchCategory.value[0]?.name) return
 
       breadcrumbState.value = [
         { name: 'HOME', path: '/' },
         { name: 'Blog', path: '/blog' },
-        { name: blogCategory.value.name, path: route.fullPath },
+        { name: blogMatchCategory.value[0].name, path: route.fullPath },
       ]
     })
 
-    if (!blogCategory.value?.name) return
+    if (!blogMatchCategory.value[0]?.name) return
 
     const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState.value)
 
     useHead({
-      title: `${blogCategory.value.name} | News | KS BLOG`,
+      title: `${blogMatchCategory.value[0].name} | News | KS BLOG`,
       meta: [
         {
           name: 'description',
-          content: `KS BLOGはブログサイトです。ブログカテゴリの${blogCategory.value.name}をご紹介。`,
+          content: `KS BLOGはブログサイトです。ブログカテゴリの${blogMatchCategory.value[0].name}をご紹介。`,
         },
         {
           property: 'og:title',
-          content: `${blogCategory.value.name} | News | KS BLOG`,
+          content: `${blogMatchCategory.value[0].name} | News | KS BLOG`,
         },
         {
           property: 'og:description',
-          content: `KS BLOGはブログサイトです。ブログカテゴリの${blogCategory.value.name}をご紹介。`,
+          content: `KS BLOGはブログサイトです。ブログカテゴリの${blogMatchCategory.value[0].name}をご紹介。`,
         },
         { property: 'og:type', content: 'article' },
       ],
@@ -109,19 +74,37 @@
 
 <template>
   <BaseContent>
-    <template v-if="!categoryPending && blogCategory">
-      {{ blogCategory }}
-      <hr />
-      <template v-if="!postsPending && blogPosts">
-        {{ blogPosts }}
-        <hr />
+    <template v-if="!blogMatchCategoryPending && blogMatchCategory">
+      <BaseHeadingLevel1 sub-title="Blogカテゴリ">{{
+        blogMatchCategory[0].name
+      }}</BaseHeadingLevel1>
+
+      <template v-if="!blogCategoryAllPending && blogCategoryAll.length > 0">
+        <BlogCategories :blog-category="blogCategoryAll" />
       </template>
-      <template v-else-if="!postsPending && blogPostsErrorFlag">
+      <template v-else-if="!blogCategoryAllPending && blogCategoryAllErrorFlag">
         <BaseText>
           <p><em>データ取得に失敗しました。再度お試しください。</em></p>
         </BaseText>
       </template>
-      <template v-else-if="!postsPending">
+      <template v-else-if="!blogCategoryAllPending">
+        <BaseText>
+          <p><em>お知らせ情報が1件もありませんでした。</em></p>
+        </BaseText>
+      </template>
+      <template v-else>
+        <BaseLoading />
+      </template>
+
+      <template v-if="!blogPostsPending && blogPosts">
+        <BlogPosts :blog-posts="blogPosts" />
+      </template>
+      <template v-else-if="!blogPostsPending && blogPostsErrorFlag">
+        <BaseText>
+          <p><em>データ取得に失敗しました。再度お試しください。</em></p>
+        </BaseText>
+      </template>
+      <template v-else-if="!blogPostsPending">
         <BaseText>
           <p><em>お知らせ情報が1件もありませんでした。</em></p>
         </BaseText>
@@ -130,12 +113,12 @@
         <BaseLoading />
       </template>
     </template>
-    <template v-else-if="!categoryPending && blogCategoryErrorFlag">
+    <template v-else-if="!blogMatchCategoryPending && blogMatchCategoryErrorFlag">
       <BaseText>
         <p><em>データ取得に失敗しました。再度お試しください。</em></p>
       </BaseText>
     </template>
-    <template v-else-if="!categoryPending">
+    <template v-else-if="!blogMatchCategoryPending">
       <BaseText>
         <p><em>お知らせ情報が1件もありませんでした。</em></p>
       </BaseText>

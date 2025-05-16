@@ -1,3 +1,11 @@
+<template>
+  <div :class="contentClass">
+    <div class="c-content__inner">
+      <slot />
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
   type Props = {
     paddingY?: 'none' | 'narrow' | 'wide'
@@ -6,22 +14,9 @@
   const props = defineProps<Props>()
 
   const contentClass = computed(() => {
-    return [
-      'c-content',
-      props.paddingY === 'none' && 'c-content--none',
-      props.paddingY === 'narrow' && 'c-content--narrow',
-      props.paddingY === 'wide' && 'c-content--wide',
-    ]
+    return ['c-content', props.paddingY === 'none' && 'c-content--none']
   })
 </script>
-
-<template>
-  <div class="c-content" :class="contentClass">
-    <div class="c-content__inner">
-      <slot />
-    </div>
-  </div>
-</template>
 
 <style scoped lang="scss">
   .c-content {
@@ -30,11 +25,11 @@
     grid-column: 1 / 4;
     gap: 0 clamp(1.6rem, calc(-2.667rem + 5.556vw), 4rem);
     width: 100%;
-    padding-top: 64px;
+    padding-top: 24px;
     padding-bottom: 64px;
 
     @include mixin.media(pc) {
-      padding-top: 80px;
+      padding-top: 32px;
       padding-bottom: 80px;
     }
 
@@ -52,24 +47,24 @@
       }
     }
 
-    &--narrow {
-      padding-top: 32px;
-      padding-bottom: 32px;
+    // &--narrow {
+    //   padding-top: 32px;
+    //   padding-bottom: 32px;
 
-      @include mixin.media(pc) {
-        padding-top: 48px;
-        padding-bottom: 48px;
-      }
-    }
+    //   @include mixin.media(pc) {
+    //     padding-top: 48px;
+    //     padding-bottom: 48px;
+    //   }
+    // }
 
-    &--wide {
-      padding-top: 64px;
-      padding-bottom: 64px;
+    // &--wide {
+    //   padding-top: 64px;
+    //   padding-bottom: 64px;
 
-      @include mixin.media(pc) {
-        padding-top: 80px;
-        padding-bottom: 80px;
-      }
-    }
+    //   @include mixin.media(pc) {
+    //     padding-top: 80px;
+    //     padding-bottom: 80px;
+    //   }
+    // }
   }
 </style>

@@ -1,13 +1,13 @@
 {
   "stylelint.validate": ["css", "scss", "vue"],
-  "cSpell.words": ["Nuxt", "stylelintcache"],
+  "cSpell.words": ["Eyecatch", "MICROCMS", "Nuxt", "stylelintcache"],
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
     "source.fixAll.eslint": "always",
     "source.fixAll.stylelint": "always"
   },
-  "prettier.configPath": "../src/prettierrc.json",
+  // "prettier.configPath": "../src/prettierrc.json",
   "prettier.enable": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "clampExtension.globalMinViewport": 768,

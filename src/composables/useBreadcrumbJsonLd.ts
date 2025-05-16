@@ -1,6 +1,10 @@
 import type { BreadcrumbItem } from '~/types/breadcrumb'
 import { useRuntimeConfig } from '#imports'
 
+/**
+ * パンくずリストのJSON-LDを取得する
+ * @param pageLists パンくずリストのデータ
+ */
 export const useBreadcrumbJsonLd = (pageLists: BreadcrumbItem[]) => {
   const config = useRuntimeConfig()
   const baseHost = config.public.NUXT_APP_BASE_HOST

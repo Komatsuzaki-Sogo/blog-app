@@ -1,25 +1,46 @@
-<script setup lang="ts">
-  defineProps<{
-    subTitle?: string
-  }>()
-</script>
-
 <template>
-  <h1 class="c-heading-level1">
-    <span class="c-heading-level1__inner">
+  <div :class="contentClass">
+    <h1 class="c-heading-level1__title">
       <span class="c-heading-level1__mainTitle">
         <slot />
       </span>
-      <template v-if="subTitle">
+      <template v-if="props.subTitle">
         <span class="c-heading-level1__subTitle">{{ subTitle }}</span>
       </template>
-    </span>
-  </h1>
+    </h1>
+    <div
+      v-if="props.type && props.badges && props.badges.length > 0"
+      class="c-heading-level1__badgeList"
+    >
+      <BaseBadge v-for="badge in props.badges" :key="badge.id">{{ badge.name }}</BaseBadge>
+    </div>
+  </div>
 </template>
+
+<script setup lang="ts">
+  import BaseBadge from '~/components/atoms/BaseBadge.vue'
+  type BadgeType = {
+    id: string
+    name: string
+  }
+  type Props = {
+    subTitle?: string
+    type?: 'cms'
+    badges?: BadgeType[]
+  }
+
+  const props = defineProps<Props>()
+
+  const contentClass = computed(() => {
+    return ['c-heading-level1', props.type === 'cms' && 'c-heading-level1--cms']
+  })
+</script>
 
 <style scoped lang="scss">
   .c-heading-level1 {
-    &__inner {
+    $this: &;
+
+    &__title {
       display: flex;
       flex-direction: column-reverse;
       text-align: center;
@@ -35,6 +56,29 @@
       background: var(--color-gradient);
       background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    &--cms {
+      display: flex;
+      flex-direction: column-reverse;
+
+      #{$this}__title {
+        text-align: left;
+      }
+
+      #{$this}__badgeList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    }
+
+    & + *:not(.c-list-detailTime) {
+      margin-top: 32px !important;
+
+      @include mixin.media(pc) {
+        margin-top: 40px !important;
+      }
     }
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <BaseContent>
-    <h1>About</h1>
+    <h1>Contact</h1>
     <p>text</p>
   </BaseContent>
 </template>
@@ -12,25 +12,25 @@
 
   breadcrumbState.value = [
     { name: 'HOME', path: '/' },
-    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' },
   ]
 
   const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState?.value)
 
   useHead({
-    title: 'About | KS BLOG',
+    title: 'Contact | KS BLOG',
     meta: [
       {
         name: 'description',
-        content: 'KS BLOGはブログサイトです。サイト管理者についてをご紹介。',
+        content: 'KS BLOGはブログサイトです。お問い合わせページ。',
       },
       {
         property: 'og:title',
-        content: 'About | KS BLOG',
+        content: 'Contact | KS BLOG',
       },
       {
         property: 'og:description',
-        content: 'KS BLOGはブログサイトです。サイト管理者についてをご紹介。',
+        content: 'KS BLOGはブログサイトです。お問い合わせページ。',
       },
     ],
     script: [

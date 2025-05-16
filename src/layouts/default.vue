@@ -1,13 +1,3 @@
-<script setup lang="ts">
-  import SiteBreadcrumbs from '~/components/organisms/SiteBreadcrumbs.vue'
-  import SiteFooter from '~/components/organisms/SiteFooter.vue'
-  import SiteHeader from '~/components/organisms/SiteHeader.vue'
-
-  const isMenuOpen = computed(() => {
-    return easyStore.menuActive
-  })
-</script>
-
 <template>
   <div class="l-container">
     <SiteHeader />
@@ -18,6 +8,16 @@
     <SiteFooter :inert="isMenuOpen ? true : undefined" />
   </div>
 </template>
+
+<script setup lang="ts">
+  import SiteBreadcrumbs from '~/components/organisms/SiteBreadcrumbs.vue'
+  import SiteFooter from '~/components/organisms/SiteFooter.vue'
+  import SiteHeader from '~/components/organisms/SiteHeader.vue'
+
+  const isMenuOpen = computed(() => {
+    return easyStore.menuActive
+  })
+</script>
 
 <style lang="scss">
   .l-container {

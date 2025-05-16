@@ -1,3 +1,18 @@
+<template>
+  <BaseContent>
+    <BaseHeadingLevel1 sub-title="News">ニュース</BaseHeadingLevel1>
+
+    <FetchStateBlock
+      name="ニュース記事"
+      :items="newsPosts"
+      :pending="pending"
+      :error-flag="errorFlag"
+    >
+      <NewsPosts :news-posts="newsPosts" />
+    </FetchStateBlock>
+  </BaseContent>
+</template>
+
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
@@ -41,18 +56,3 @@
 
   const { newsPosts, errorFlag, pending } = await useFetchNewsPosts()
 </script>
-
-<template>
-  <BaseContent>
-    <BaseHeadingLevel1 sub-title="News">ニュース</BaseHeadingLevel1>
-
-    <FetchStateBlock
-      name="ニュース記事"
-      :items="newsPosts"
-      :pending="pending"
-      :error-flag="errorFlag"
-    >
-      <NewsPosts :news-posts="newsPosts" />
-    </FetchStateBlock>
-  </BaseContent>
-</template>

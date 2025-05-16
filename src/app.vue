@@ -1,3 +1,9 @@
+<template>
+  <NuxtLayout>
+    <NuxtPage :key="useRoute().fullPath" />
+  </NuxtLayout>
+</template>
+
 <script setup lang="ts">
   const config = useRuntimeConfig()
   const baseHost = config.public.NUXT_APP_BASE_HOST
@@ -11,6 +17,7 @@
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'format-detection', content: 'telephone=no' },
+      { name: 'robots', content: 'noindex' },
       { name: 'description', content: 'KS BLOGはブログサイトです。' },
       { name: 'twitter:card', content: 'summary' },
       { property: 'og:url', content: currentPath },
@@ -29,9 +36,3 @@
     ],
   })
 </script>
-
-<template>
-  <NuxtLayout>
-    <NuxtPage :key="useRoute().fullPath" />
-  </NuxtLayout>
-</template>

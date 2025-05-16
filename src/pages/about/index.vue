@@ -1,3 +1,10 @@
+<template>
+  <BaseContent>
+    <h1>About</h1>
+    <p>text</p>
+  </BaseContent>
+</template>
+
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
 
@@ -35,10 +42,3 @@
     ],
   })
 </script>
-
-<template>
-  <BaseContent>
-    <h1>About</h1>
-    <p>text</p>
-  </BaseContent>
-</template>

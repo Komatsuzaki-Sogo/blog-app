@@ -1,3 +1,29 @@
+<template>
+  <BaseContent>
+    <BaseHeadingLevel1 sub-title="Blogカテゴリ">
+      {{ blogMatchCategory[0].name }}
+    </BaseHeadingLevel1>
+
+    <FetchStateBlock
+      name="ブログカテゴリ"
+      :items="blogCategoryAll"
+      :pending="blogCategoryAllPending"
+      :error-flag="blogCategoryAllErrorFlag"
+    >
+      <BlogCategories :blog-category="blogCategoryAll" />
+    </FetchStateBlock>
+
+    <FetchStateBlock
+      name="ブログ記事"
+      :items="blogPosts"
+      :pending="blogPostsPending"
+      :error-flag="blogPostsErrorFlag"
+    >
+      <BlogPosts :blog-posts="blogPosts" />
+    </FetchStateBlock>
+  </BaseContent>
+</template>
+
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
@@ -66,29 +92,3 @@
     })
   })
 </script>
-
-<template>
-  <BaseContent>
-    <BaseHeadingLevel1 sub-title="Blogカテゴリ">
-      {{ blogMatchCategory[0].name }}
-    </BaseHeadingLevel1>
-
-    <FetchStateBlock
-      name="ブログカテゴリ"
-      :items="blogCategoryAll"
-      :pending="blogCategoryAllPending"
-      :error-flag="blogCategoryAllErrorFlag"
-    >
-      <BlogCategories :blog-category="blogCategoryAll" />
-    </FetchStateBlock>
-
-    <FetchStateBlock
-      name="ブログ記事"
-      :items="blogPosts"
-      :pending="blogPostsPending"
-      :error-flag="blogPostsErrorFlag"
-    >
-      <BlogPosts :blog-posts="blogPosts" />
-    </FetchStateBlock>
-  </BaseContent>
-</template>

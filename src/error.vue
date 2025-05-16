@@ -1,3 +1,28 @@
+<template>
+  <div class="l-container">
+    <SiteHeader />
+    <div class="l-content" :inert="isMenuOpen ? true : undefined">
+      <BaseContent>
+        <BaseHeadingLevel1 sub-title="404">Not Found</BaseHeadingLevel1>
+        <BaseText>
+          <p>
+            大変申し訳ございません。
+            <br />
+            アクセスされたページは、移動または削除された可能性があります。
+            <br />
+            お手数をお掛けしますが、ページ右上のメニューからサイト内検索をご利用いただくか、
+            <br />
+            以下のメニューよりトップページへお戻りください。
+          </p>
+        </BaseText>
+
+        <BaseButton :to="PATHS.HOME.path">トップページ</BaseButton>
+      </BaseContent>
+    </div>
+    <SiteFooter :inert="isMenuOpen ? true : undefined" />
+  </div>
+</template>
+
 <script setup lang="ts">
   import SiteFooter from '~/components/organisms/SiteFooter.vue'
   import SiteHeader from '~/components/organisms/SiteHeader.vue'
@@ -53,31 +78,6 @@
     ],
   })
 </script>
-
-<template>
-  <div class="l-container">
-    <SiteHeader />
-    <div class="l-content" :inert="isMenuOpen ? true : undefined">
-      <BaseContent>
-        <BaseHeadingLevel1 sub-title="404">Not Found</BaseHeadingLevel1>
-        <BaseText>
-          <p>
-            大変申し訳ございません。
-            <br />
-            アクセスされたページは、移動または削除された可能性があります。
-            <br />
-            お手数をお掛けしますが、ページ右上のメニューからサイト内検索をご利用いただくか、
-            <br />
-            以下のメニューよりトップページへお戻りください。
-          </p>
-        </BaseText>
-
-        <BaseButton :to="PATHS.HOME.path">トップページ</BaseButton>
-      </BaseContent>
-    </div>
-    <SiteFooter :inert="isMenuOpen ? true : undefined" />
-  </div>
-</template>
 
 <style lang="scss">
   .l-container {

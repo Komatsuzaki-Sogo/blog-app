@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
+  import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
+
   import NewsContent from '~/components/pages/news/NewsContent.vue'
 
   const route = useRoute()
@@ -58,21 +60,13 @@
 
 <template>
   <BaseContent>
-    <template v-if="!pending && newsPosts[0]">
+    <FetchStateBlock
+      name="ニュース記事"
+      :items="newsPosts"
+      :pending="pending"
+      :error-flag="errorFlag"
+    >
       <NewsContent :news-list="newsPosts[0]" />
-    </template>
-    <template v-else-if="!pending && errorFlag">
-      <BaseText>
-        <p><em>データ取得に失敗しました。再度お試しください。</em></p>
-      </BaseText>
-    </template>
-    <template v-else-if="!pending">
-      <BaseText>
-        <p><em>お知らせ情報が1件もありませんでした。</em></p>
-      </BaseText>
-    </template>
-    <template v-else>
-      <BaseLoading />
-    </template>
+    </FetchStateBlock>
   </BaseContent>
 </template>

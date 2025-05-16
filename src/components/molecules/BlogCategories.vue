@@ -25,7 +25,7 @@
       </li>
       <li v-for="category in blogCategory" :key="category.id" class="c-list-category__listItem">
         <NuxtLink
-          :to="'/blog/category/' + category.slug"
+          :to="'/blog/category/' + category.slug + '/'"
           class="c-list-category__link"
           :aria-current="route.path === `/blog/category/${category.slug}` ? true : undefined"
         >

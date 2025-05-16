@@ -1,18 +1,13 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
-  import BaseText from '~/components/atoms/BaseText.vue'
-  import BaseLoading from '~/components/atoms/BaseLoading.vue'
   import BlogCategories from '~/components/molecules/BlogCategories.vue'
   import BlogPosts from '~/components/molecules/BlogPosts.vue'
+  import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
 
   const route = useRoute()
 
-  const {
-    blogCategory: blogMatchCategory,
-    blogCategoryErrorFlag: blogMatchCategoryErrorFlag,
-    blogCategoryPending: blogMatchCategoryPending,
-  } = await useFetchBlogCategory({
+  const { blogCategory: blogMatchCategory } = await useFetchBlogCategory({
     filters: `slug[equals]${route.params.slug}`,
     limit: 1,
   })
@@ -74,57 +69,26 @@
 
 <template>
   <BaseContent>
-    <template v-if="!blogMatchCategoryPending && blogMatchCategory">
-      <BaseHeadingLevel1 sub-title="Blogカテゴリ">{{
-        blogMatchCategory[0].name
-      }}</BaseHeadingLevel1>
+    <BaseHeadingLevel1 sub-title="Blogカテゴリ">
+      {{ blogMatchCategory[0].name }}
+    </BaseHeadingLevel1>
 
-      <template v-if="!blogCategoryAllPending && blogCategoryAll.length > 0">
-        <BlogCategories :blog-category="blogCategoryAll" />
-      </template>
-      <template v-else-if="!blogCategoryAllPending && blogCategoryAllErrorFlag">
-        <BaseText>
-          <p><em>データ取得に失敗しました。再度お試しください。</em></p>
-        </BaseText>
-      </template>
-      <template v-else-if="!blogCategoryAllPending">
-        <BaseText>
-          <p><em>お知らせ情報が1件もありませんでした。</em></p>
-        </BaseText>
-      </template>
-      <template v-else>
-        <BaseLoading />
-      </template>
+    <FetchStateBlock
+      name="ブログカテゴリ"
+      :items="blogCategoryAll"
+      :pending="blogCategoryAllPending"
+      :error-flag="blogCategoryAllErrorFlag"
+    >
+      <BlogCategories :blog-category="blogCategoryAll" />
+    </FetchStateBlock>
 
-      <template v-if="!blogPostsPending && blogPosts">
-        <BlogPosts :blog-posts="blogPosts" />
-      </template>
-      <template v-else-if="!blogPostsPending && blogPostsErrorFlag">
-        <BaseText>
-          <p><em>データ取得に失敗しました。再度お試しください。</em></p>
-        </BaseText>
-      </template>
-      <template v-else-if="!blogPostsPending">
-        <BaseText>
-          <p><em>お知らせ情報が1件もありませんでした。</em></p>
-        </BaseText>
-      </template>
-      <template v-else>
-        <BaseLoading />
-      </template>
-    </template>
-    <template v-else-if="!blogMatchCategoryPending && blogMatchCategoryErrorFlag">
-      <BaseText>
-        <p><em>データ取得に失敗しました。再度お試しください。</em></p>
-      </BaseText>
-    </template>
-    <template v-else-if="!blogMatchCategoryPending">
-      <BaseText>
-        <p><em>お知らせ情報が1件もありませんでした。</em></p>
-      </BaseText>
-    </template>
-    <template v-else>
-      <BaseLoading />
-    </template>
+    <FetchStateBlock
+      name="ブログ記事"
+      :items="blogPosts"
+      :pending="blogPostsPending"
+      :error-flag="blogPostsErrorFlag"
+    >
+      <BlogPosts :blog-posts="blogPosts" />
+    </FetchStateBlock>
   </BaseContent>
 </template>

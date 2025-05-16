@@ -1,8 +1,7 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
-  import BaseText from '~/components/atoms/BaseText.vue'
-  import BaseLoading from '~/components/atoms/BaseLoading.vue'
+  import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
   import NewsPosts from '~/components/molecules/NewsPosts.vue'
 
   const breadcrumbState = useBreadcrumbState()
@@ -47,21 +46,13 @@
   <BaseContent>
     <BaseHeadingLevel1 sub-title="News">ニュース</BaseHeadingLevel1>
 
-    <template v-if="!pending && newsPosts.length > 0">
+    <FetchStateBlock
+      name="ニュース記事"
+      :items="newsPosts"
+      :pending="pending"
+      :error-flag="errorFlag"
+    >
       <NewsPosts :news-posts="newsPosts" />
-    </template>
-    <template v-else-if="!pending && errorFlag">
-      <BaseText>
-        <p><em>データ取得に失敗しました。再度お試しください。</em></p>
-      </BaseText>
-    </template>
-    <template v-else-if="!pending">
-      <BaseText>
-        <p><em>お知らせ情報が1件もありませんでした。</em></p>
-      </BaseText>
-    </template>
-    <template v-else>
-      <BaseLoading />
-    </template>
+    </FetchStateBlock>
   </BaseContent>
 </template>

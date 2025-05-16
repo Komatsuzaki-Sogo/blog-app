@@ -1,8 +1,7 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
-  import BaseText from '~/components/atoms/BaseText.vue'
-  import BaseLoading from '~/components/atoms/BaseLoading.vue'
+  import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
   import BlogCategories from '~/components/molecules/BlogCategories.vue'
   import BlogPosts from '~/components/molecules/BlogPosts.vue'
 
@@ -49,38 +48,22 @@
   <BaseContent>
     <BaseHeadingLevel1 sub-title="Blog">ブログ</BaseHeadingLevel1>
 
-    <template v-if="!blogCategoryPending && blogCategory.length > 0">
+    <FetchStateBlock
+      name="ブログカテゴリ"
+      :items="blogCategory"
+      :pending="blogCategoryPending"
+      :error-flag="blogCategoryErrorFlag"
+    >
       <BlogCategories :blog-category="blogCategory" />
-    </template>
-    <template v-else-if="!blogCategoryPending && blogCategoryErrorFlag">
-      <BaseText>
-        <p><em>データ取得に失敗しました。再度お試しください。</em></p>
-      </BaseText>
-    </template>
-    <template v-else-if="!blogCategoryPending">
-      <BaseText>
-        <p><em>お知らせ情報が1件もありませんでした。</em></p>
-      </BaseText>
-    </template>
-    <template v-else>
-      <BaseLoading />
-    </template>
+    </FetchStateBlock>
 
-    <template v-if="!blogPostsPending && blogPosts.length > 0">
+    <FetchStateBlock
+      name="ブログ記事"
+      :items="blogPosts"
+      :pending="blogPostsPending"
+      :error-flag="blogPostsErrorFlag"
+    >
       <BlogPosts :blog-posts="blogPosts" />
-    </template>
-    <template v-else-if="!blogPostsPending && blogPostsErrorFlag">
-      <BaseText>
-        <p><em>データ取得に失敗しました。再度お試しください。</em></p>
-      </BaseText>
-    </template>
-    <template v-else-if="!blogPostsPending">
-      <BaseText>
-        <p><em>お知らせ情報が1件もありませんでした。</em></p>
-      </BaseText>
-    </template>
-    <template v-else>
-      <BaseLoading />
-    </template>
+    </FetchStateBlock>
   </BaseContent>
 </template>

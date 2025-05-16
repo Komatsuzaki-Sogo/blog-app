@@ -19,6 +19,8 @@
   import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
   import NewsPosts from '~/components/molecules/NewsPosts.vue'
 
+  definePageMeta({ ssr: true })
+
   const breadcrumbState = useBreadcrumbState()
 
   breadcrumbState.value = [

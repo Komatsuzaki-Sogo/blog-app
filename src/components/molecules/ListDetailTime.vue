@@ -33,7 +33,6 @@
     align-items: baseline;
     width: fit-content;
     margin-top: 40px;
-    margin-left: auto;
     color: var(--color-foreground-gray);
 
     @include mixin.media(pc) {

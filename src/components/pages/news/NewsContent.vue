@@ -8,11 +8,19 @@
   defineProps<{
     newsPost: NewsPost
   }>()
+
+  const newsBadges = [{ id: 'news', name: 'お知らせ' }]
 </script>
 
 <template>
-  <BaseHeadingLevel1 sub-title="News">{{ newsPost.title }}</BaseHeadingLevel1>
+  <BaseHeadingLevel1 type="cms" :badges="newsBadges">
+    {{ newsPost.title }}
+  </BaseHeadingLevel1>
+  <ListDetailTime
+    :published-at="newsPost.publishedAt"
+    :updated-at="newsPost.updatedAt"
+    class="mt-0"
+  />
   <BaseContentCMS :content="newsPost.contents" />
-  <ListDetailTime :published-at="newsPost.publishedAt" :updated-at="newsPost.updatedAt" />
   <BaseButton :to="PATHS.NEWS.path">ニュース一覧へ戻る</BaseButton>
 </template>

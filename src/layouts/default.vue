@@ -1,9 +1,9 @@
 <template>
   <div class="l-container">
     <SiteHeader />
-    <div class="l-content" :inert="isMenuOpen ? true : undefined">
+    <main class="l-content" :inert="isMenuOpen ? true : undefined">
       <slot />
-    </div>
+    </main>
     <SiteBreadcrumbs />
     <SiteFooter :inert="isMenuOpen ? true : undefined" />
   </div>

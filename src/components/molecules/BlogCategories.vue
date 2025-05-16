@@ -1,8 +1,8 @@
 <template>
-  <div class="c-list-category">
+  <div :class="contentClass">
     <em class="c-list-category__title">category</em>
 
-    <ul v-if="blogCategory && blogCategory.length > 0" class="c-list-category__list">
+    <ul v-if="props.blogCategory && props.blogCategory.length > 0" class="c-list-category__list">
       <li class="c-list-category__listItem">
         <NuxtLink
           to="/blog/"
@@ -13,7 +13,11 @@
           <Icon name="mdi:tag-text" mode="svg" class="c-list-category__icon" />
         </NuxtLink>
       </li>
-      <li v-for="category in blogCategory" :key="category.id" class="c-list-category__listItem">
+      <li
+        v-for="category in props.blogCategory"
+        :key="category.id"
+        class="c-list-category__listItem"
+      >
         <NuxtLink
           :to="'/blog/category/' + category.slug + '/'"
           class="c-list-category__link"
@@ -30,15 +34,22 @@
 <script setup lang="ts">
   import type { BlogCategory } from '~/types/blogCategory'
 
-  defineProps<{
+  const props = defineProps<{
     blogCategory: BlogCategory[]
+    type?: 'sidenav'
   }>()
+
+  const contentClass = computed(() => {
+    return ['c-list-category', props.type === 'sidenav' && 'c-list-category--sidenav']
+  })
 
   const route = useRoute()
 </script>
 
 <style scoped lang="scss">
   .c-list-category {
+    $this: &;
+
     display: flex;
     flex-wrap: wrap;
     gap: 16px 32px;
@@ -47,9 +58,6 @@
       flex: 0 0 auto;
       padding-right: 2px;
       font-size: 2rem;
-      background: var(--color-gradient);
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
 
     &__list {
@@ -94,6 +102,55 @@
 
     &__icon {
       font-size: 1.6rem;
+    }
+
+    &--sidenav {
+      margin-top: 40px;
+
+      @include mixin.media(pc) {
+        position: sticky;
+        top: var(--header-height);
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 8px;
+        height: fit-content;
+        max-height: calc(100vh - var(--header-height));
+        overflow-y: auto;
+      }
+
+      #{$this}__title {
+        @include mixin.media(pc) {
+          font-size: 2.4rem;
+        }
+      }
+
+      #{$this}__list {
+        @include mixin.media(pc) {
+          flex-direction: column;
+          gap: 0;
+          padding-top: 0;
+        }
+      }
+
+      #{$this}__link {
+        @include mixin.media(pc) {
+          gap: 16px;
+          justify-content: flex-end;
+          padding: 8px 0;
+          font-size: 1.6rem;
+          color: var(--color-foreground-dark);
+          background-color: unset;
+          border-width: 0 0 1px;
+          border-radius: 0;
+          transition: opacity var(--transition);
+
+          @include mixin.media(hover) {
+            &:hover {
+              opacity: var(--opacity);
+            }
+          }
+        }
+      }
     }
   }
 </style>

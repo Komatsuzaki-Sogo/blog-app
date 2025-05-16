@@ -1,19 +1,33 @@
 <template>
   <BaseContent>
-    <FetchStateBlock
-      name="ブログ記事"
-      :items="blogPosts"
-      :pending="blogPostsPending"
-      :error-flag="blogPostsErrorFlag"
-    >
-      <BlogContent :blog-post="blogPosts[0]" />
-    </FetchStateBlock>
+    <BaseContentWithSidenav>
+      <FetchStateBlock
+        name="ブログ記事"
+        :items="blogPosts"
+        :pending="blogPostsPending"
+        :error-flag="blogPostsErrorFlag"
+      >
+        <BlogContent :blog-post="blogPosts[0]" />
+      </FetchStateBlock>
+      <FetchStateBlock
+        name="ブログカテゴリ"
+        :items="blogCategory"
+        :pending="blogCategoryPending"
+        :error-flag="blogCategoryErrorFlag"
+      >
+        <BlogCategories :blog-category="blogCategory" type="sidenav" />
+      </FetchStateBlock>
+    </BaseContentWithSidenav>
+    <BaseButton :to="PATHS.BLOG.path">ブログ一覧へ戻る</BaseButton>
   </BaseContent>
 </template>
 
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
+  import BaseContentWithSidenav from '~/components/atoms/BaseContentWithSidenav.vue'
   import BlogContent from '~/components/pages/blog/BlogContent.vue'
+  import BaseButton from '~/components/atoms/BaseButton.vue'
+  import BlogCategories from '~/components/molecules/BlogCategories.vue'
   import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
 
   const route = useRoute()
@@ -22,6 +36,8 @@
     filters: `slug[equals]${route.params.slug}`,
     limit: 1,
   })
+
+  const { blogCategory, blogCategoryErrorFlag, blogCategoryPending } = await useFetchBlogCategory()
 
   const breadcrumbState = useBreadcrumbState()
 

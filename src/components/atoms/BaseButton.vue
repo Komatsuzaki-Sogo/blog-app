@@ -23,7 +23,7 @@
   .c-button {
     $this: &;
 
-    max-width: 360px;
+    max-width: 320px;
     margin: 40px auto 0;
 
     @include mixin.media(pc) {
@@ -48,7 +48,7 @@
       gap: 8px;
       align-items: center;
       justify-content: center;
-      padding: 16px 36px;
+      padding: 12px 24px;
       font-weight: var(--font-weight-bold);
       color: var(--color-foreground-light);
       background-image: var(--color-gradient-reverse);

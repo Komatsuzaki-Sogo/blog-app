@@ -1,5 +1,5 @@
 <template>
-  <div class="c-content" :class="contentClass">
+  <div :class="contentClass">
     <div class="c-content__inner">
       <slot />
     </div>
@@ -14,12 +14,7 @@
   const props = defineProps<Props>()
 
   const contentClass = computed(() => {
-    return [
-      'c-content',
-      props.paddingY === 'none' && 'c-content--none',
-      // props.paddingY === 'narrow' && 'c-content--narrow',
-      // props.paddingY === 'wide' && 'c-content--wide',
-    ]
+    return ['c-content', props.paddingY === 'none' && 'c-content--none']
   })
 </script>
 

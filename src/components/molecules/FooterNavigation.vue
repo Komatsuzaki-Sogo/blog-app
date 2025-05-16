@@ -1,14 +1,3 @@
-<script setup lang="ts">
-  import { useRoute } from 'vue-router'
-
-  const route = useRoute()
-
-  const excludeKeys = ['HOME']
-  const pathEntries = Object.entries(PATHS)
-    .filter(([key]) => !excludeKeys.includes(key))
-    .map(([, value]) => value)
-</script>
-
 <template>
   <nav class="c-footer-navigation">
     <ul class="c-footer-navigation__list">
@@ -23,6 +12,15 @@
     </ul>
   </nav>
 </template>
+
+<script setup lang="ts">
+  const route = useRoute()
+
+  const excludeKeys = ['HOME']
+  const pathEntries = Object.entries(PATHS)
+    .filter(([key]) => !excludeKeys.includes(key))
+    .map(([, value]) => value)
+</script>
 
 <style scoped lang="scss">
   .c-footer-navigation {

@@ -2,11 +2,6 @@
   "$schema": "https://json.schemastore.org/prettierrc",
   "semi": false,
   "singleQuote": true,
-  "printWidth": 100,
   "vueIndentScriptAndStyle": true,
-  "vueSelfClosingTags": {
-    "html": false,
-    "svg": true,
-    "math": true
-  }
+  "printWidth": 100
 }

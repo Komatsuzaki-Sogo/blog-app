@@ -1,16 +1,8 @@
-<script setup lang="ts">
-  defineProps<{
-    to: string
-    ariaCurrent?: string
-    iconName?: string
-  }>()
-</script>
-
 <template>
   <div class="c-button">
     <NuxtLink :to="to" :aria-current="ariaCurrent" class="c-button__link">
       <span class="c-button__text">
-        <slot/>
+        <slot />
       </span>
       <template v-if="iconName">
         <Icon :name="iconName" mode="svg" class="c-button__icon" />
@@ -19,11 +11,19 @@
   </div>
 </template>
 
+<script setup lang="ts">
+  defineProps<{
+    to: string
+    ariaCurrent?: string
+    iconName?: string
+  }>()
+</script>
+
 <style scoped lang="scss">
   .c-button {
     $this: &;
 
-    max-width: 360px;
+    max-width: 320px;
     margin: 40px auto 0;
 
     @include mixin.media(pc) {
@@ -48,7 +48,7 @@
       gap: 8px;
       align-items: center;
       justify-content: center;
-      padding: 16px 36px;
+      padding: 12px 24px;
       font-weight: var(--font-weight-bold);
       color: var(--color-foreground-light);
       background-image: var(--color-gradient-reverse);

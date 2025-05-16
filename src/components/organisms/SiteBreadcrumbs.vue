@@ -1,19 +1,14 @@
-<script setup lang="ts">
-  import BaseContent from '~/components/atoms/BaseContent.vue'
-  const { pageLists } = useBreadcrumb()
-</script>
-
 <template>
-  <div v-if="pageLists && pageLists?.length" class="l-breadcrumb">
+  <div v-if="breadcrumbList && breadcrumbList?.length" class="l-breadcrumb">
     <BaseContent padding-y="none">
       <ul class="l-breadcrumb__list">
-        <li v-for="(item, index) in pageLists" :key="item.path" class="l-breadcrumb__item">
+        <li v-for="(item, index) in breadcrumbList" :key="item.path" class="l-breadcrumb__item">
           <NuxtLink
             :href="item.path"
             class="l-breadcrumb__link"
-            :aria-current="index === pageLists.length - 1 ? 'page' : undefined"
+            :aria-current="index === breadcrumbList.length - 1 ? 'page' : undefined"
           >
-            <em v-if="index === pageLists.length - 1">{{ item.name }}</em>
+            <em v-if="index === breadcrumbList.length - 1">{{ item.name }}</em>
             <template v-else>{{ item.name }}</template>
           </NuxtLink>
         </li>
@@ -21,6 +16,11 @@
     </BaseContent>
   </div>
 </template>
+
+<script setup lang="ts">
+  import BaseContent from '~/components/atoms/BaseContent.vue'
+  const breadcrumbList = useBreadcrumbState()
+</script>
 
 <style scoped lang="scss">
   .l-breadcrumb {

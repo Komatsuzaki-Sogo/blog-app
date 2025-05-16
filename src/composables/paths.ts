@@ -1,7 +1,10 @@
+/**
+ * サイト全体で利用するページパスを定義
+ */
 export const PATHS = {
   HOME: { name: 'HOME', path: '/' },
-  ABOUT: { name: 'ABOUT', path: '/about' },
-  NEWS: { name: 'NEWS', path: '/news' },
-  BLOG: { name: 'BLOG', path: '/blog' },
-  CONTACT: { name: 'CONTACT', path: '/contact' },
+  ABOUT: { name: 'About', path: '/about/' },
+  NEWS: { name: 'News', path: '/news/' },
+  BLOG: { name: 'Blog', path: '/blog/' },
+  CONTACT: { name: 'Contact', path: '/contact/' },
 } as const

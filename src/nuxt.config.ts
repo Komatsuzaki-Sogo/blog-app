@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/google-fonts',
     '@nuxtjs/stylelint-module',
+    'nuxt-microcms-module',
   ],
   googleFonts: {
     families: {
@@ -29,5 +30,9 @@ export default defineNuxtConfig({
     public: {
       NUXT_APP_BASE_HOST: process.env.NUXT_PUBLIC_APP_BASE_HOST,
     },
+  },
+  microCMS: {
+    serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
+    apiKey: process.env.MICROCMS_API_KEY,
   },
 })

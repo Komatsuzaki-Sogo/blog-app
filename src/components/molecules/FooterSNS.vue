@@ -1,3 +1,14 @@
+<template>
+  <ul v-if="iconLists.length > 0" class="c-list-sns">
+    <li v-for="iconList in iconLists" :key="iconList.src" class="c-list-sns__item">
+      <NuxtLink :to="iconList.href" class="c-list-sns__link" external target="_blank">
+        <span class="c-list-sns__text">{{ iconList.label }}</span>
+        <Icon :name="iconList.src" mode="svg" class="c-list-sns__icon" />
+      </NuxtLink>
+    </li>
+  </ul>
+</template>
+
 <script setup lang="ts">
   const iconLists = [
     {
@@ -17,17 +28,6 @@
     },
   ]
 </script>
-
-<template>
-  <ul v-if="iconLists.length > 0" class="c-list-sns">
-    <li v-for="iconList in iconLists" :key="iconList.src" class="c-list-sns__item">
-      <NuxtLink :to="iconList.href" class="c-list-sns__link" external target="_blank">
-        <span class="c-list-sns__text">{{ iconList.label }}</span>
-        <Icon :name="iconList.src" mode="svg" class="c-list-sns__icon" />
-      </NuxtLink>
-    </li>
-  </ul>
-</template>
 
 <style scoped lang="scss">
   .c-list-sns {

@@ -1,14 +1,14 @@
-<script setup lang="ts">
-  defineProps<{
-    subTitle?: string
-  }>()
-</script>
-
 <template>
   <div class="c-text">
     <slot />
   </div>
 </template>
+
+<script setup lang="ts">
+  defineProps<{
+    subTitle?: string
+  }>()
+</script>
 
 <style scoped lang="scss">
   .c-text {

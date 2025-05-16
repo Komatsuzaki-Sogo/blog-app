@@ -21,7 +21,7 @@
   const fullSlug = '/' + slugArray.join('/')
   const normalizedSlug = fullSlug.replace(/\/$/, '')
 
-  const { newsPosts, errorFlag, pending } = await useFetchNewsPosts({
+  const { newsPosts, errorFlag, pending } = useFetchNewsPosts({
     filters: `slug[equals]${normalizedSlug}`,
     limit: 1,
   })

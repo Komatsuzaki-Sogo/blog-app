@@ -1,11 +1,6 @@
 <template>
   <BaseContent>
-    <FetchStateBlock
-      name="ニュース記事"
-      :items="newsPosts"
-      :pending="pending"
-      :error-flag="errorFlag"
-    >
+    <FetchStateBlock name="ニュース記事" :items="newsPosts" :error-flag="errorFlag">
       <NewsContent :news-post="newsPosts[0]" />
     </FetchStateBlock>
   </BaseContent>
@@ -21,10 +16,12 @@
   const fullSlug = '/' + slugArray.join('/')
   const normalizedSlug = fullSlug.replace(/\/$/, '')
 
-  const { newsPosts, errorFlag, pending } = await useFetchNewsPosts({
+  const { data, error } = await useFetchMicroCMS('news', {
     filters: `slug[equals]${normalizedSlug}`,
     limit: 1,
   })
+  const newsPosts = computed(() => data.value?.contents || [])
+  const errorFlag = computed(() => !!error.value)
 
   const breadcrumbState = useBreadcrumbState()
 

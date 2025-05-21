@@ -31,7 +31,7 @@
   defineProps<{
     name: string
     items: BlogCategory[] | BlogPost[] | NewsPost[]
-    pending: boolean
+    pending?: boolean
     errorFlag: boolean
   }>()
 </script>

@@ -5,7 +5,7 @@
     <FetchStateBlock
       name="ニュース記事"
       :items="newsPosts"
-      :pending="pending"
+      :pending="pendingFlag"
       :error-flag="errorFlag"
     >
       <NewsPosts :news-posts="newsPosts" />
@@ -54,5 +54,8 @@
     ],
   })
 
-  const { newsPosts, errorFlag, pending } = await useFetchNewsPosts()
+  const { data, error, pending } = await useFetchMicroCMS('news')
+  const newsPosts = computed(() => data.value?.contents || [])
+  const errorFlag = computed(() => !!error.value)
+  const pendingFlag = computed(() => !!pending.value)
 </script>

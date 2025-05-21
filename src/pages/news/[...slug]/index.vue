@@ -1,18 +1,17 @@
 <template>
   <BaseContent>
-    home
-    <!-- <FetchStateBlock
+    <FetchStateBlock
       name="ニュース記事"
       :items="newsPosts"
       :pending="pending"
       :error-flag="errorFlag"
     >
       <NewsContent :news-post="newsPosts[0]" />
-    </FetchStateBlock> -->
+    </FetchStateBlock>
   </BaseContent>
 </template>
 
-<!-- <script setup lang="ts">
+<script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
   import NewsContent from '~/components/pages/news/NewsContent.vue'
@@ -70,4 +69,4 @@
       ],
     })
   })
-</script> -->
+</script>

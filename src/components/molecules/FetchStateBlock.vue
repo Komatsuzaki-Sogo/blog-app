@@ -27,11 +27,10 @@
   import type { BlogCategory } from '~/types/blogCategory'
   import type { BlogPost } from '~/types/blogPost'
   import type { NewsPost } from '~/types/newsPost'
-  import type { MicroCMSListResponse } from 'microcms-js-sdk'
 
   defineProps<{
     name: string
-    items: BlogCategory[] | BlogPost[] | MicroCMSListResponse<NewsPost>
+    items: BlogCategory[] | BlogPost[] | NewsPost[]
     pending: boolean
     errorFlag: boolean
   }>()

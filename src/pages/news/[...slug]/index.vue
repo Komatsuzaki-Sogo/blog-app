@@ -1,14 +1,11 @@
 <template>
   <BaseContent>
-    <FetchStateBlock name="ニュース記事" :items="newsPosts" :error-flag="errorFlag">
-      <NewsContent :news-post="newsPosts[0]" />
-    </FetchStateBlock>
+    <NewsContent :news-post="newsPosts[0]" />
   </BaseContent>
 </template>
 
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
-  import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
   import NewsContent from '~/components/pages/news/NewsContent.vue'
 
   const route = useRoute()
@@ -16,12 +13,11 @@
   const fullSlug = '/' + slugArray.join('/')
   const normalizedSlug = fullSlug.replace(/\/$/, '')
 
-  const { data, error } = await useFetchMicroCMS('news', {
+  const { data } = await useFetchMicroCMS('news', {
     filters: `slug[equals]${normalizedSlug}`,
     limit: 1,
   })
   const newsPosts = computed(() => data.value?.contents || [])
-  const errorFlag = computed(() => !!error.value)
 
   const breadcrumbState = useBreadcrumbState()
 

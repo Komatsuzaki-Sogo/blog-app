@@ -64,6 +64,17 @@
     ],
   })
 
-  const { blogCategory, blogCategoryErrorFlag, blogCategoryPending } = await useFetchBlogCategory()
-  const { blogPosts, blogPostsErrorFlag, blogPostsPending } = await useFetchBlogPosts()
+  // ブログカテゴリの一覧取得
+  const {
+    dataArray: blogCategory,
+    errorFlag: blogCategoryErrorFlag,
+    pending: blogCategoryPending,
+  } = await useFetchMicroCMS('blog-category')
+
+  // ブログ記事の一覧取得
+  const {
+    dataArray: blogPosts,
+    errorFlag: blogPostsErrorFlag,
+    pending: blogPostsPending,
+  } = await useFetchMicroCMS('blog')
 </script>

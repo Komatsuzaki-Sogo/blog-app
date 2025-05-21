@@ -21,7 +21,12 @@
   const fullSlug = '/' + slugArray.join('/')
   const normalizedSlug = fullSlug.replace(/\/$/, '')
 
-  const { newsPosts, errorFlag, pending } = await useFetchNewsPosts({
+  // ニュース記事の取得
+  const {
+    dataArray: newsPosts,
+    errorFlag,
+    pending,
+  } = await useFetchMicroCMS('news', {
     filters: `slug[equals]${normalizedSlug}`,
     limit: 1,
   })

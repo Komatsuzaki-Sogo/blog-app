@@ -33,18 +33,25 @@
 
   const route = useRoute()
 
-  const { blogCategory: blogMatchCategory } = await useFetchBlogCategory({
+  // マッチするブログカテゴリの取得
+  const { dataArray: blogMatchCategory } = await useFetchMicroCMS('blog-category', {
     filters: `slug[equals]${route.params.slug}`,
     limit: 1,
   })
 
+  // ブログカテゴリの一覧取得
   const {
-    blogCategory: blogCategoryAll,
-    blogCategoryErrorFlag: blogCategoryAllErrorFlag,
-    blogCategoryPending: blogCategoryAllPending,
-  } = await useFetchBlogCategory()
+    dataArray: blogCategoryAll,
+    errorFlag: blogCategoryAllErrorFlag,
+    pending: blogCategoryAllPending,
+  } = await useFetchMicroCMS('blog-category')
 
-  const { blogPosts, blogPostsErrorFlag, blogPostsPending } = await useFetchBlogPosts({
+  // マッチするブログ記事の取得
+  const {
+    dataArray: blogPosts,
+    errorFlag: blogPostsErrorFlag,
+    pending: blogPostsPending,
+  } = await useFetchMicroCMS('blog', {
     filters: `blog-category[contains]${blogMatchCategory.value[0]?.id}`,
   })
 

@@ -142,7 +142,7 @@
         @include mixin.media(sp) {
           position: relative;
 
-          &::before {
+          &::after {
             position: absolute;
             top: 50%;
             right: 10px;

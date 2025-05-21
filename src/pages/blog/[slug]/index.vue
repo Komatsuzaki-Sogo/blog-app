@@ -32,12 +32,22 @@
 
   const route = useRoute()
 
-  const { blogPosts, blogPostsErrorFlag, blogPostsPending } = await useFetchBlogPosts({
+  // ブログカテゴリの一覧取得
+  const {
+    dataArray: blogCategory,
+    errorFlag: blogCategoryErrorFlag,
+    pending: blogCategoryPending,
+  } = await useFetchMicroCMS('blog-category')
+
+  // カテゴリがマッチするブログ記事の一覧取得
+  const {
+    dataArray: blogPosts,
+    errorFlag: blogPostsErrorFlag,
+    pending: blogPostsPending,
+  } = await useFetchMicroCMS('blog', {
     filters: `slug[equals]${route.params.slug}`,
     limit: 1,
   })
-
-  const { blogCategory, blogCategoryErrorFlag, blogCategoryPending } = await useFetchBlogCategory()
 
   const breadcrumbState = useBreadcrumbState()
 

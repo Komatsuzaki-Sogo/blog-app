@@ -54,5 +54,6 @@
     ],
   })
 
-  const { newsPosts, errorFlag, pending } = await useFetchNewsPosts()
+  // ニュース記事の一覧取得
+  const { dataArray: newsPosts, errorFlag, pending } = await useFetchMicroCMS('news')
 </script>

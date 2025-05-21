@@ -55,7 +55,6 @@
     $this: &;
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     margin-top: 40px;
     list-style: none;

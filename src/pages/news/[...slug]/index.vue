@@ -28,19 +28,12 @@
 
   const breadcrumbState = useBreadcrumbState()
 
-  onMounted(async () => {
-    watchEffect(() => {
-      if (!newsPosts.value[0]?.title) return
-
-      breadcrumbState.value = [
-        { name: 'HOME', path: '/' },
-        { name: 'News', path: '/news' },
-        { name: newsPosts.value[0].title, path: route.fullPath },
-      ]
-    })
-
-    if (!newsPosts.value[0]?.title) return
-
+  if (newsPosts.value[0]?.title) {
+    breadcrumbState.value = [
+      { name: 'HOME', path: '/' },
+      { name: 'News', path: '/news' },
+      { name: newsPosts.value[0].title, path: route.fullPath },
+    ]
     const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState.value)
 
     useHead({
@@ -68,5 +61,5 @@
         },
       ],
     })
-  })
+  }
 </script>

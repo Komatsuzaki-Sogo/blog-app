@@ -2,13 +2,21 @@
   <BaseContent>
     <BaseHeadingLevel1 sub-title="News">ニュース</BaseHeadingLevel1>
 
-    <NewsPosts :news-posts="newsPosts" />
+    <FetchStateBlock
+      name="ニュース記事"
+      :items="newsPosts"
+      :pending="pending"
+      :error-flag="errorFlag"
+    >
+      <NewsPosts :news-posts="newsPosts" />
+    </FetchStateBlock>
   </BaseContent>
 </template>
 
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
+  import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
   import NewsPosts from '~/components/molecules/NewsPosts.vue'
 
   const breadcrumbState = useBreadcrumbState()
@@ -46,6 +54,5 @@
     ],
   })
 
-  const { data } = await useFetchMicroCMS('news')
-  const newsPosts = computed(() => data.value?.contents || [])
+  const { newsPosts, errorFlag, pending } = await useFetchNewsPosts()
 </script>

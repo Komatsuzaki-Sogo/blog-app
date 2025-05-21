@@ -28,7 +28,8 @@
     border-radius: 4px;
 
     &--small {
-      padding: 2px 8px;
+      padding: 1px 4px 2px;
+      font-size: 1.1rem;
     }
   }
 </style>

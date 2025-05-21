@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <NuxtPage :key="useRoute().fullPath" />
+    <NuxtPage />
   </NuxtLayout>
 </template>
 

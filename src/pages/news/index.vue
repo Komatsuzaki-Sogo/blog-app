@@ -2,22 +2,35 @@
   <BaseContent>
     <BaseHeadingLevel1 sub-title="News">ニュース</BaseHeadingLevel1>
 
-    <FetchStateBlock
-      name="ニュース記事"
-      :items="newsPosts"
-      :pending="pending"
-      :error-flag="errorFlag"
-    >
-      <NewsPosts :news-posts="newsPosts" />
-    </FetchStateBlock>
+    <template v-if="!pending && newsPosts && newsPosts?.contents.length > 0">
+      <NewsPosts :news-posts="newsPosts?.contents" />
+    </template>
+    <template v-else-if="!pending && errorFlag">
+      <BaseText>
+        <p>
+          <em>データ取得に失敗しました。再度お試しください。</em>
+        </p>
+      </BaseText>
+    </template>
+    <template v-else-if="!pending">
+      <BaseText>
+        <p>
+          <em>データがありませんでした。</em>
+        </p>
+      </BaseText>
+    </template>
+    <template v-else>
+      <BaseLoading />
+    </template>
   </BaseContent>
 </template>
 
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
-  import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
+  // import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
   import NewsPosts from '~/components/molecules/NewsPosts.vue'
+  import type { NewsPost } from '~/types/newsPost'
 
   const breadcrumbState = useBreadcrumbState()
 
@@ -54,5 +67,11 @@
     ],
   })
 
-  const { newsPosts, errorFlag, pending } = await useFetchNewsPosts()
+  const {
+    data: newsPosts,
+    error: errorFlag,
+    pending,
+  } = await useMicroCMSGetList<NewsPost>({
+    endpoint: 'news',
+  })
 </script>

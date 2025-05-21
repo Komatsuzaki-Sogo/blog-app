@@ -1,11 +1,7 @@
 import type { NewsPost } from '~/types/newsPost'
+import type { MicroCMSQueries } from 'microcms-js-sdk'
 
-type Queries = {
-  limit?: number
-  filters?: string
-}
-
-export const useFetchNewsPosts = async (queries?: Queries) => {
+export const useFetchNewsPosts = async (queries?: MicroCMSQueries) => {
   const fetchNews = async () => {
     const { data, error } = await useMicroCMSGetList<NewsPost>({
       endpoint: 'news',

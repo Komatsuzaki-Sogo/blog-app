@@ -6,5 +6,6 @@ export const PATHS = {
   ABOUT: { name: 'About', path: '/about/' },
   NEWS: { name: 'News', path: '/news/' },
   BLOG: { name: 'Blog', path: '/blog/' },
+  FAQ: { name: 'FAQ', path: '/faq/' },
   CONTACT: { name: 'Contact', path: '/contact/' },
 } as const

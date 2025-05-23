@@ -19,10 +19,10 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/icon',
-    '@nuxt/image',
     '@nuxtjs/google-fonts',
     '@nuxtjs/stylelint-module',
     'nuxt-microcms-module',
+    '@nuxt/image-edge',
   ],
   googleFonts: {
     families: {

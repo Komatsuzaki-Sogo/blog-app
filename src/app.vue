@@ -12,6 +12,9 @@
   const currentPath = computed(() => `${baseHost}${router.currentRoute.value.path}`)
 
   useHead({
+    htmlAttrs: {
+      lang: 'ja',
+    },
     title: 'KS BLOG',
     meta: [
       { charset: 'utf-8' },

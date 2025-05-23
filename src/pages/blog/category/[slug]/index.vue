@@ -64,7 +64,7 @@
       breadcrumbState.value = [
         { name: 'HOME', path: '/' },
         { name: 'Blog', path: '/blog' },
-        { name: blogMatchCategory.value[0].name, path: route.fullPath },
+        { name: `ブログカテゴリ：${blogMatchCategory.value[0].name}`, path: route.fullPath },
       ]
     })
 

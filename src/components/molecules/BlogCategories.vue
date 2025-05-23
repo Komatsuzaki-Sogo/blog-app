@@ -5,9 +5,9 @@
     <ul v-if="props.blogCategory && props.blogCategory.length > 0" class="c-list-category__list">
       <li class="c-list-category__listItem">
         <NuxtLink
-          to="/blog/"
+          to="/blog"
           class="c-list-category__link"
-          :aria-current="route.path === '/blog/' ? true : undefined"
+          :aria-current="route.path === '/blog' ? true : undefined"
         >
           <span class="c-list-category__text">全ての記事</span>
           <Icon name="mdi:tag-text" mode="svg" class="c-list-category__icon" />

@@ -1,3 +1,8 @@
+/**
+ * アコーディオンの動き
+ * @param detailsRefKey
+ * @param contentRefKey
+ */
 export const useAccordion = (detailsRefKey: string, contentRefKey: string) => {
   const isOpened = ref(false)
   const animStatus = ref<'idle' | 'running'>('idle')
@@ -52,7 +57,6 @@ export const useAccordion = (detailsRefKey: string, contentRefKey: string) => {
 
   return {
     isOpened,
-    animStatus,
     openContent,
     closeContent,
     onClickSummary,

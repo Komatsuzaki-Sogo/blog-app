@@ -1,12 +1,15 @@
+/**
+ * アニメーション
+ */
 export const useAnimation = () => {
   const animationTiming: KeyframeAnimationOptions = {
-    duration: 300,
+    duration: 3000,
     easing: 'ease-out',
   }
 
   const closingAnimationKeyframes = (height: number): Keyframe[] => [
-    { height: `${height}px`, visibility: 'visible' },
-    { height: '0px', visibility: 'hidden' },
+    { height: `${height}px` },
+    { height: '0px' },
   ]
 
   const openingAnimationKeyframes = (height: number): Keyframe[] => [

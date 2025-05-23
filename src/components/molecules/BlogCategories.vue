@@ -19,9 +19,9 @@
         class="c-list-category__listItem"
       >
         <NuxtLink
-          :to="'/blog/category/' + category.slug + '/'"
+          :to="'/blog/category/' + category.slug"
           class="c-list-category__link"
-          :aria-current="route.path === `/blog/category/${category.slug}/` ? true : undefined"
+          :aria-current="route.path === `/blog/category/${category.slug}` ? true : undefined"
         >
           <span class="c-list-category__text">{{ category.name }}</span>
           <Icon name="mdi:tag-text" mode="svg" class="c-list-category__icon" />

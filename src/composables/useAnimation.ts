@@ -3,7 +3,7 @@
  */
 export const useAnimation = () => {
   const animationTiming: KeyframeAnimationOptions = {
-    duration: 3000,
+    duration: 300,
     easing: 'ease-out',
   }
 

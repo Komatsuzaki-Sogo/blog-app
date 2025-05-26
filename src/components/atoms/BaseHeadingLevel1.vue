@@ -78,12 +78,6 @@
       }
     }
 
-    &--level2 {
-      #{$this}__mainTitle {
-        font-size: clamp(2.4rem, calc(0.978rem + 1.852vw), 3.2rem); /* min: 24px, max: 32px */
-      }
-    }
-
     .c-content--bgPrimary & {
       #{$this}__mainTitle {
         color: var(--color-foreground-light);

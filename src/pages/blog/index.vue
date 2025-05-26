@@ -69,12 +69,16 @@
     dataArray: blogCategory,
     errorFlag: blogCategoryErrorFlag,
     pending: blogCategoryPending,
-  } = await useFetchMicroCMS('blog-category')
+  } = await useFetchMicroCMS('blog-category', {
+    limit: 100,
+  })
 
   // ブログ記事の一覧取得
   const {
     dataArray: blogPosts,
     errorFlag: blogPostsErrorFlag,
     pending: blogPostsPending,
-  } = await useFetchMicroCMS('blog')
+  } = await useFetchMicroCMS('blog', {
+    limit: 100,
+  })
 </script>

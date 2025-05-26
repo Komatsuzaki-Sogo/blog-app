@@ -1,6 +1,6 @@
 <template>
   <BaseContent>
-    <BaseHeadingLevel1 sub-title="Contact">お問い合わせ</BaseHeadingLevel1>
+    <BaseHeadingLevel1 sub-title="Contact me">お問い合わせ</BaseHeadingLevel1>
     <p>text</p>
   </BaseContent>
 </template>

@@ -49,7 +49,9 @@ export const useFetchMicroCMS = async <T extends ValidEndpoint>(
     return data.value
   }
 
-  const asyncKey = queries ? `${endpoint}-filtered-${queries.filters ?? ''}` : `${endpoint}`
+  const asyncKey = queries
+    ? `${endpoint}-filtered-${queries.filters ?? 'filter-none'}-${queries.limit ?? 'limit-none'}`
+    : `${endpoint}`
 
   const { data, error, pending } = await useAsyncData(asyncKey, fetchGetList)
 

@@ -44,7 +44,9 @@
     dataArray: blogCategoryAll,
     errorFlag: blogCategoryAllErrorFlag,
     pending: blogCategoryAllPending,
-  } = await useFetchMicroCMS('blog-category')
+  } = await useFetchMicroCMS('blog-category', {
+    limit: 100,
+  })
 
   // マッチするブログ記事の取得
   const {
@@ -53,6 +55,7 @@
     pending: blogPostsPending,
   } = await useFetchMicroCMS('blog', {
     filters: `blog-category[contains]${blogMatchCategory.value[0]?.id}`,
+    limit: 100,
   })
 
   const breadcrumbState = useBreadcrumbState()

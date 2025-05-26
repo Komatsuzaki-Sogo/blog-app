@@ -8,18 +8,29 @@
 
 <script setup lang="ts">
   type Props = {
-    paddingY?: 'none' | 'narrow' | 'wide'
+    paddingY?: 'none' | 'top' | 'wide'
+    width?: 'full'
+    bgColor?: 'white' | 'primary'
   }
 
   const props = defineProps<Props>()
 
   const contentClass = computed(() => {
-    return ['c-content', props.paddingY === 'none' && 'c-content--none']
+    return [
+      'c-content',
+      props.paddingY === 'none' && 'c-content--none',
+      props.paddingY === 'top' && 'c-content--top',
+      props.bgColor === 'white' && 'c-content--bgWhite',
+      props.bgColor === 'primary' && 'c-content--bgPrimary',
+      props.width === 'full' && 'c-content--full',
+    ]
   })
 </script>
 
 <style scoped lang="scss">
   .c-content {
+    $this: &;
+
     display: grid;
     grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
     grid-column: 1 / 4;
@@ -47,24 +58,32 @@
       }
     }
 
-    // &--narrow {
-    //   padding-top: 32px;
-    //   padding-bottom: 32px;
+    &--top {
+      padding-top: 80px;
+      padding-bottom: 80px;
 
-    //   @include mixin.media(pc) {
-    //     padding-top: 48px;
-    //     padding-bottom: 48px;
-    //   }
-    // }
+      @include mixin.media(pc) {
+        padding-top: 120px;
+        padding-bottom: 120px;
+      }
+    }
 
-    // &--wide {
-    //   padding-top: 64px;
-    //   padding-bottom: 64px;
+    &--full {
+      grid-template-columns: 100%;
+      grid-column: auto;
+      gap: 0;
 
-    //   @include mixin.media(pc) {
-    //     padding-top: 80px;
-    //     padding-bottom: 80px;
-    //   }
-    // }
+      #{$this}__inner {
+        grid-column: auto;
+      }
+    }
+
+    &--bgWhite {
+      background-color: var(--color-background-light);
+    }
+
+    &--bgPrimary {
+      background-color: var(--color-primary);
+    }
   }
 </style>

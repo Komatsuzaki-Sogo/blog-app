@@ -18,10 +18,6 @@
               </template>
             </span>
           </span>
-
-          <span class="c-list-blog__text">
-            <span class="c-list-blog__textItem"> Read more</span>
-          </span>
         </span>
         <span class="c-list-blog__media">
           <img
@@ -55,12 +51,17 @@
     $this: &;
 
     display: grid;
-    gap: 24px;
+    gap: 16px;
     margin-top: 40px;
     list-style: none;
 
+    @include mixin.media(pc, 450px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     @include mixin.media(pc) {
       grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
       margin-top: 48px;
     }
 
@@ -100,7 +101,7 @@
     &__title {
       display: flex;
       flex-direction: column;
-      font-size: 2rem;
+      font-size: 1.8rem;
 
       @include mixin.media(pc) {
         font-size: 2.4rem;

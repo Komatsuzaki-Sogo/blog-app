@@ -1,7 +1,7 @@
 <template>
   <div>
     <BaseContent padding-y="none" width="full">
-      <div class="mv">MV</div>
+      <div class="mv">MV MV</div>
     </BaseContent>
     <BaseContent padding-y="top">
       <BaseHeadingLevel1 markup="h2">About</BaseHeadingLevel1>

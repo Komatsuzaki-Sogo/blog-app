@@ -1,12 +1,13 @@
 <template>
   <BaseContent>
-    <h1>About</h1>
+    <BaseHeadingLevel1 sub-title="About">私について</BaseHeadingLevel1>
     <p>text</p>
   </BaseContent>
 </template>
 
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
+  import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
 
   const breadcrumbState = useBreadcrumbState()
 

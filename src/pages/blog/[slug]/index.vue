@@ -37,7 +37,9 @@
     dataArray: blogCategory,
     errorFlag: blogCategoryErrorFlag,
     pending: blogCategoryPending,
-  } = await useFetchMicroCMS('blog-category')
+  } = await useFetchMicroCMS('blog-category', {
+    limit: 100,
+  })
 
   // カテゴリがマッチするブログ記事の一覧取得
   const {

@@ -26,6 +26,7 @@ type ValidEndpoint = keyof EndpointMap
  *
  * @throws {Error} MicroCMS API からの取得に失敗した場合、HTTP 500 エラーをスロー。
  */
+// useFetchMicroCMS.ts
 export const useFetchMicroCMS = async <T extends ValidEndpoint>(
   endpoint: T,
   queries?: MicroCMSQueries,
@@ -50,17 +51,19 @@ export const useFetchMicroCMS = async <T extends ValidEndpoint>(
   }
 
   const asyncKey = queries
-    ? `${endpoint}-filtered-${queries.filters ?? 'filter-none'}-${queries.limit ?? 'limit-none'}`
+    ? `${endpoint}-filtered-${queries.filters ?? 'filter-none'}-${queries.offset ?? 'offset-none'}-${queries.limit ?? 'limit-none'}`
     : `${endpoint}`
 
   const { data, error, pending } = await useAsyncData(asyncKey, fetchGetList)
 
   const dataArray = computed(() => data.value?.contents || []) as ComputedRef<EndpointMap[T][]>
   const errorFlag = computed(() => !!error.value)
+  const totalCount = computed(() => data.value?.totalCount || 0)
 
   return {
     dataArray,
     errorFlag,
     pending,
+    totalCount,
   }
 }

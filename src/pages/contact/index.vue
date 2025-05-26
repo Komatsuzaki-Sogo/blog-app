@@ -1,12 +1,13 @@
 <template>
   <BaseContent>
-    <h1>Contact</h1>
+    <BaseHeadingLevel1 sub-title="Contact">お問い合わせ</BaseHeadingLevel1>
     <p>text</p>
   </BaseContent>
 </template>
 
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
+  import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
 
   const breadcrumbState = useBreadcrumbState()
 
@@ -22,7 +23,7 @@
     meta: [
       {
         name: 'description',
-        content: 'KS BLOGはブログサイトです。お問い合わせページ。',
+        content: 'KS BLOGはブログサイトです。お問い合わせはこちらから。',
       },
       {
         property: 'og:title',
@@ -30,7 +31,7 @@
       },
       {
         property: 'og:description',
-        content: 'KS BLOGはブログサイトです。お問い合わせページ。',
+        content: 'KS BLOGはブログサイトです。お問い合わせはこちらから。',
       },
     ],
     script: [

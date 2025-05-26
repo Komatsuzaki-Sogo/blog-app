@@ -1,13 +1,13 @@
 <template>
   <div :class="contentClass">
-    <h1 class="c-heading-level1__title">
+    <component :is="props.markup ? markup : 'h1'" class="c-heading-level1__title">
       <span class="c-heading-level1__mainTitle">
         <slot />
       </span>
       <template v-if="props.subTitle">
         <span class="c-heading-level1__subTitle">{{ subTitle }}</span>
       </template>
-    </h1>
+    </component>
     <div
       v-if="props.type && props.badges && props.badges.length > 0"
       class="c-heading-level1__badgeList"
@@ -24,6 +24,7 @@
     name: string
   }
   type Props = {
+    markup?: 'h2'
     subTitle?: string
     type?: 'cms'
     badges?: BadgeType[]
@@ -32,7 +33,11 @@
   const props = defineProps<Props>()
 
   const contentClass = computed(() => {
-    return ['c-heading-level1', props.type === 'cms' && 'c-heading-level1--cms']
+    return [
+      'c-heading-level1',
+      props.type === 'cms' && 'c-heading-level1--cms',
+      props.markup === 'h2' && 'c-heading-level1--level2',
+    ]
   })
 </script>
 
@@ -47,7 +52,7 @@
     }
 
     &__mainTitle {
-      font-size: clamp(3.6rem, calc(0.044rem + 4.63vw), 5.6rem); /* min: 36px, max: 56px */
+      font-size: clamp(3.6rem, calc(1.467rem + 2.778vw), 4.8rem); /* min: 36px, max: 48px */
     }
 
     &__subTitle {
@@ -73,11 +78,23 @@
       }
     }
 
+    &--level2 {
+      #{$this}__mainTitle {
+        font-size: clamp(2.4rem, calc(0.978rem + 1.852vw), 3.2rem); /* min: 24px, max: 32px */
+      }
+    }
+
+    .c-content--bgPrimary & {
+      #{$this}__mainTitle {
+        color: var(--color-foreground-light);
+      }
+    }
+
     & + *:not(.c-list-detailTime) {
-      margin-top: 32px !important;
+      margin-top: 40px !important;
 
       @include mixin.media(pc) {
-        margin-top: 40px !important;
+        margin-top: 48px !important;
       }
     }
   }

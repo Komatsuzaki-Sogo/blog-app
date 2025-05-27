@@ -77,14 +77,6 @@
             transform: rotate(225deg);
             transition: border-color var(--transition);
           }
-
-          @include mixin.media(hover) {
-            &:hover {
-              &::before {
-                border-color: var(--color-outline-white);
-              }
-            }
-          }
         }
 
         #{$this}__text {
@@ -121,16 +113,13 @@
       height: 36px;
       color: var(--color-primary);
       background-color: var(--color-background-light);
-      border: 2px solid var(--color-primary);
+      border: 1px solid var(--color-primary);
       border-radius: 4px;
-      transition:
-        color var(--transition),
-        background-color var(--transition);
+      transition: background-color var(--transition);
 
       @include mixin.media(hover) {
         &:hover {
-          color: var(--color-foreground-light);
-          background-color: var(--color-primary);
+          background-color: #0093e930;
         }
       }
     }

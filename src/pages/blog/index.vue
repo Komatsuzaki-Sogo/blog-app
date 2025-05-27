@@ -78,7 +78,7 @@
 
   const route = useRoute()
   const currentPage = computed(() => parseInt((route.query.page as string) || '1', 10))
-  const limit = 2
+  const limit = 12
   const offset = computed(() => (currentPage.value - 1) * limit)
 
   // ブログ記事の一覧取得

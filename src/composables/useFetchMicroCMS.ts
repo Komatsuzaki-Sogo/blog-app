@@ -1,14 +1,5 @@
 import type { MicroCMSQueries } from 'microcms-js-sdk'
-import type { NewsPost } from '~/types/newsPost'
-import type { BlogPost } from '~/types/blogPost'
-import type { BlogCategory } from '~/types/blogCategory'
-
-// endpointごとの型をマップ
-type EndpointMap = {
-  news: NewsPost
-  blog: BlogPost
-  'blog-category': BlogCategory
-}
+import type { EndpointMap } from '~/types/endpointMap'
 
 type ValidEndpoint = keyof EndpointMap
 
@@ -26,7 +17,6 @@ type ValidEndpoint = keyof EndpointMap
  *
  * @throws {Error} MicroCMS API からの取得に失敗した場合、HTTP 500 エラーをスロー。
  */
-// useFetchMicroCMS.ts
 export const useFetchMicroCMS = async <T extends ValidEndpoint>(
   endpoint: T,
   queries?: MicroCMSQueries,

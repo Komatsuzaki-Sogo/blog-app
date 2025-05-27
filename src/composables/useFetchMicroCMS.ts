@@ -1,14 +1,5 @@
 import type { MicroCMSQueries } from 'microcms-js-sdk'
-import type { NewsPost } from '~/types/newsPost'
-import type { BlogPost } from '~/types/blogPost'
-import type { BlogCategory } from '~/types/blogCategory'
-
-// endpointごとの型をマップ
-type EndpointMap = {
-  news: NewsPost
-  blog: BlogPost
-  'blog-category': BlogCategory
-}
+import type { EndpointMap } from '~/types/endpointMap'
 
 type ValidEndpoint = keyof EndpointMap
 
@@ -50,17 +41,19 @@ export const useFetchMicroCMS = async <T extends ValidEndpoint>(
   }
 
   const asyncKey = queries
-    ? `${endpoint}-filtered-${queries.filters ?? 'filter-none'}-${queries.limit ?? 'limit-none'}`
+    ? `${endpoint}-filtered-${queries.filters ?? 'filter-none'}-${queries.offset ?? 'offset-none'}-${queries.limit ?? 'limit-none'}`
     : `${endpoint}`
 
   const { data, error, pending } = await useAsyncData(asyncKey, fetchGetList)
 
   const dataArray = computed(() => data.value?.contents || []) as ComputedRef<EndpointMap[T][]>
   const errorFlag = computed(() => !!error.value)
+  const totalCount = computed(() => data.value?.totalCount || 0)
 
   return {
     dataArray,
     errorFlag,
     pending,
+    totalCount,
   }
 }

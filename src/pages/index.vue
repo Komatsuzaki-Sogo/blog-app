@@ -9,26 +9,48 @@
     </BaseContent>
     <BaseContent padding-y="top" bg-color="white">
       <BaseHeadingLevel1 markup="h2">News</BaseHeadingLevel1>
-      <FetchStateBlock
-        name="ニュース記事"
-        :items="newsPosts"
-        :pending="pending"
-        :error-flag="errorFlag"
-      >
-        <NewsPosts :news-posts="newsPosts" />
-      </FetchStateBlock>
+
+      <template v-if="newsPosts && newsPosts?.contents.length > 0">
+        <NewsPosts :news-posts="newsPosts.contents" />
+      </template>
+      <template v-else-if="newsPostsError">
+        <BaseText>
+          <p>
+            <em>ニュース一覧のデータの取得に失敗しました。</em>
+          </p>
+        </BaseText>
+      </template>
+      <template v-else>
+        <BaseText>
+          <p>
+            <em>ニュース一覧のデータがありませんでした。</em>
+          </p>
+        </BaseText>
+      </template>
+
       <BaseButton :to="PATHS.NEWS.path">ニュース一覧</BaseButton>
     </BaseContent>
     <BaseContent padding-y="top">
       <BaseHeadingLevel1 markup="h2">Blog</BaseHeadingLevel1>
-      <FetchStateBlock
-        name="ブログ記事"
-        :items="blogPosts"
-        :pending="blogPostsPending"
-        :error-flag="blogPostsErrorFlag"
-      >
-        <BlogPosts :blog-posts="blogPosts" />
-      </FetchStateBlock>
+
+      <template v-if="blogPosts && blogPosts?.contents.length > 0">
+        <BlogPosts :blog-posts="blogPosts.contents" />
+      </template>
+      <template v-else-if="blogPostsError">
+        <BaseText>
+          <p>
+            <em>ブログ一覧のデータの取得に失敗しました。</em>
+          </p>
+        </BaseText>
+      </template>
+      <template v-else>
+        <BaseText>
+          <p>
+            <em>ブログ一覧のデータがありませんでした。</em>
+          </p>
+        </BaseText>
+      </template>
+
       <BaseButton :to="PATHS.BLOG.path">ブログ一覧</BaseButton>
     </BaseContent>
     <BaseContent padding-y="top" bg-color="primary">
@@ -39,9 +61,10 @@
 </template>
 
 <script setup lang="ts">
+  import { pageLimitTop } from '~/composables/utilities/pageLimit'
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
-  import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
+  import BaseText from '~/components/atoms/BaseText.vue'
   import NewsPosts from '~/components/molecules/NewsPosts.vue'
   import BlogPosts from '~/components/molecules/BlogPosts.vue'
   import BaseButton from '~/components/atoms/BaseButton.vue'
@@ -62,22 +85,14 @@
     ],
   })
 
-  // ニュース記事の一覧取得
-  const {
-    dataArray: newsPosts,
-    errorFlag,
-    pending,
-  } = await useFetchMicroCMS('news', {
-    limit: 3,
+  const { data: newsPosts, error: newsPostsError } = await useMicroCMSaGetListPerPage({
+    endpoint: 'news',
+    pageLimit: pageLimitTop,
   })
 
-  // ブログ記事の一覧取得
-  const {
-    dataArray: blogPosts,
-    errorFlag: blogPostsErrorFlag,
-    pending: blogPostsPending,
-  } = await useFetchMicroCMS('blog', {
-    limit: 3,
+  const { data: blogPosts, error: blogPostsError } = await useMicroCMSaGetListPerPage({
+    endpoint: 'blog',
+    pageLimit: pageLimitTop,
   })
 </script>
 

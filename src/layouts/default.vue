@@ -4,7 +4,7 @@
     <main class="l-content" :inert="isMenuOpen ? true : undefined">
       <slot />
     </main>
-    <SiteBreadcrumbs v-if="route.path !== PATHS.HOME.path" />
+    <SiteBreadcrumbs />
     <SiteFooter :inert="isMenuOpen ? true : undefined" />
   </div>
 </template>
@@ -13,8 +13,6 @@
   import SiteBreadcrumbs from '~/components/organisms/SiteBreadcrumbs.vue'
   import SiteFooter from '~/components/organisms/SiteFooter.vue'
   import SiteHeader from '~/components/organisms/SiteHeader.vue'
-
-  const route = useRoute()
 
   const isMenuOpen = computed(() => {
     return easyStore.menuActive

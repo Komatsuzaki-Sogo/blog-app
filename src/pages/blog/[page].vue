@@ -4,7 +4,7 @@
     <template v-if="blogCategory && blogCategory?.contents.length > 0">
       <BlogCategories :blog-category="blogCategory?.contents" />
     </template>
-    <template v-else-if="blogCategoryPosts">
+    <template v-else-if="blogCategoryError">
       <BaseText>
         <p>
           <em>ブログカテゴリのデータの取得に失敗しました。</em>
@@ -80,7 +80,7 @@
     })
   }
 
-  const { data: blogCategory, error: blogCategoryPosts } = await useMicroCMSaGetListPerPage({
+  const { data: blogCategory, error: blogCategoryError } = await useMicroCMSaGetListPerPage({
     endpoint: 'blog-category',
     filters: '',
   })
@@ -95,19 +95,19 @@
   const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState?.value)
 
   useHead({
-    title: 'Blog | KS BLOG',
+    title: `Blog一覧の${page.value}ページ | KS BLOG`,
     meta: [
       {
         name: 'description',
-        content: `KS BLOGはブログサイトです。ブログ一覧${page.value}ページをご紹介。`,
+        content: `KS BLOGはブログサイトです。ブログ一覧の${page.value}ページをご紹介。`,
       },
       {
         property: 'og:title',
-        content: 'Blog | KS BLOG',
+        content: `Blog一覧の${page.value}ページ | KS BLOG`,
       },
       {
         property: 'og:description',
-        content: `KS BLOGはブログサイトです。ブログ一覧${page.value}ページをご紹介。`,
+        content: `KS BLOGはブログサイトです。ブログ一覧の${page.value}ページをご紹介。`,
       },
       { property: 'og:type', content: 'article' },
     ],

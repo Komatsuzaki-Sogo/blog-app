@@ -59,7 +59,7 @@
     pageLimit: pageLimit,
   })
 
-  const totalCount = await useMicroCMSGetPostCount({
+  const totalCount = await useMicroCMSGetTotalCount({
     endpoint: 'blog',
     filters: '',
   })

@@ -7,7 +7,7 @@
       <template v-else>
         <BaseText>
           <p>
-            <em>ブログ一覧のデータがありませんでした。</em>
+            <em>ブログ記事のデータがありませんでした。</em>
           </p>
         </BaseText>
       </template>

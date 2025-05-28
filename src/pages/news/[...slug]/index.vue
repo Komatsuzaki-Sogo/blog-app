@@ -1,19 +1,21 @@
 <template>
   <BaseContent>
-    <FetchStateBlock
-      name="ニュース記事"
-      :items="newsPosts"
-      :pending="pending"
-      :error-flag="errorFlag"
-    >
-      <NewsContent :news-post="newsPosts[0]" />
-    </FetchStateBlock>
+    <template v-if="matchedNewsPostData && matchedNewsPostData.contents[0]">
+      <NewsContent :news-post="matchedNewsPostData.contents[0]" />
+    </template>
+    <template v-else>
+      <BaseText>
+        <p>
+          <em>ブログ記事のデータがありませんでした。</em>
+        </p>
+      </BaseText>
+    </template>
   </BaseContent>
 </template>
 
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
-  import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
+  import BaseText from '~/components/atoms/BaseText.vue'
   import NewsContent from '~/components/pages/news/NewsContent.vue'
 
   const route = useRoute()
@@ -22,56 +24,54 @@
   const normalizedSlug = fullSlug.replace(/\/$/, '')
 
   // ニュース記事の取得
-  const {
-    dataArray: newsPosts,
-    errorFlag,
-    pending,
-  } = await useFetchMicroCMS('news', {
-    filters: `slug[equals]${normalizedSlug}`,
-    limit: 1,
-  })
+  const { data: matchedNewsPostData, error: matchedNewsPostDataError } =
+    await useMicroCMSaGetListPerPage({
+      endpoint: 'news',
+      filters: `slug[equals]${normalizedSlug}`,
+      page: 1,
+      pageLimit: 1,
+    })
+
+  if (!matchedNewsPostDataError) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: '指定されたカテゴリが見つかりません',
+    })
+  }
 
   const breadcrumbState = useBreadcrumbState()
 
-  onMounted(async () => {
-    watchEffect(() => {
-      if (!newsPosts.value[0]?.title) return
+  breadcrumbState.value = [
+    { name: 'HOME', path: '/' },
+    { name: 'News', path: '/news' },
+    { name: `${matchedNewsPostData.value?.contents[0].title}`, path: route.fullPath },
+  ]
 
-      breadcrumbState.value = [
-        { name: 'HOME', path: '/' },
-        { name: 'News', path: '/news' },
-        { name: newsPosts.value[0].title, path: route.fullPath },
-      ]
-    })
+  const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState.value)
 
-    if (!newsPosts.value[0]?.title) return
-
-    const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState.value)
-
-    useHead({
-      title: `${newsPosts.value[0].title} | News | KS BLOG`,
-      meta: [
-        {
-          name: 'description',
-          content: `KS BLOGはブログサイトです。ニュース記事の${newsPosts.value[0].title}をご紹介。`,
-        },
-        {
-          property: 'og:title',
-          content: `${newsPosts.value[0].title} | News | KS BLOG`,
-        },
-        {
-          property: 'og:description',
-          content: `KS BLOGはブログサイトです。ニュース記事の${newsPosts.value[0].title}をご紹介。`,
-        },
-        { property: 'og:type', content: 'article' },
-      ],
-      script: [
-        {
-          key: 'breadcrumb-jsonld',
-          type: 'application/ld+json',
-          innerHTML: breadcrumbJsonLd.value,
-        },
-      ],
-    })
+  useHead({
+    title: `${matchedNewsPostData.value?.contents[0].title} | News | KS BLOG`,
+    meta: [
+      {
+        name: 'description',
+        content: `KS BLOGはブログサイトです。ニュース記事の${matchedNewsPostData.value?.contents[0].title}をご紹介。`,
+      },
+      {
+        property: 'og:title',
+        content: `${matchedNewsPostData.value?.contents[0].title} | News | KS BLOG`,
+      },
+      {
+        property: 'og:description',
+        content: `KS BLOGはブログサイトです。ニュース記事の${matchedNewsPostData.value?.contents[0].title}をご紹介。`,
+      },
+      { property: 'og:type', content: 'article' },
+    ],
+    script: [
+      {
+        key: 'breadcrumb-jsonld',
+        type: 'application/ld+json',
+        innerHTML: breadcrumbJsonLd.value,
+      },
+    ],
   })
 </script>

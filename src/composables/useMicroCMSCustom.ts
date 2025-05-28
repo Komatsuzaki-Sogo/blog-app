@@ -34,7 +34,7 @@ export const useMicroCMSaGetListPerPage = async <T extends ValidEndpoint>({
 /**
  * 総記事数を取得
  */
-export async function useMicroCMSGetPostCount({ endpoint, filters = '' }: GetPostCountArgs) {
+export async function useMicroCMSGetTotalCount({ endpoint, filters = '' }: GetPostCountArgs) {
   const { data } = await useMicroCMSGetList(
     {
       endpoint,
@@ -44,7 +44,7 @@ export async function useMicroCMSGetPostCount({ endpoint, filters = '' }: GetPos
       },
     },
     {
-      key: `useMicroCMSGetPostCount-${endpoint}-${filters}-count`,
+      key: `useMicroCMSGetTotalCount-${endpoint}-${filters}-count`,
     },
   )
 

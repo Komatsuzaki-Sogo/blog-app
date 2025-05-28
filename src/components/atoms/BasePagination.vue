@@ -1,42 +1,51 @@
 <template>
-  <nav v-if="totalPages > 1" class="c-pagination">
+  <nav v-if="totalPage > 1" class="c-pagination" role="navigation" aria-label="ページネーション">
     <ul class="c-pagination__list">
-      <li v-if="currentPage > 1" class="c-pagination__item--prev">
-        <NuxtLink :to="{ query: { page: currentPage - 1 } }" class="c-pagination__link">
-          <span class="c-pagination__text">1つ前に戻る</span>
-        </NuxtLink>
+      <li v-if="currentPage > 1" class="c-pagination__item c-pagination__item--prev">
+        <button
+          type="button"
+          class="c-pagination__button"
+          :disabled="currentPage <= 1"
+          aria-label="前のページへ"
+          @click="() => onPaging(currentPage - 1)"
+        >
+          <span class="c-pagination__text">1ページ前に戻る</span>
+        </button>
       </li>
 
-      <li
-        v-for="page in totalPages"
-        :key="page"
-        class="c-pagination__item"
-        :class="{ 'is-current': page === currentPage }"
-      >
-        <NuxtLink :to="{ query: { page } }" class="c-pagination__link">
-          <span class="c-pagination__text">{{ page }}</span>
-        </NuxtLink>
+      <li v-for="pageNumber in totalPage" :key="pageNumber" class="c-pagination__item">
+        <button
+          type="button"
+          class="c-pagination__button"
+          :class="{ 'is-current': pageNumber === currentPage }"
+          :aria-current="pageNumber === currentPage ? 'page' : undefined"
+          @click="() => onPaging(pageNumber)"
+        >
+          <span class="c-pagination__text">{{ pageNumber }}</span>
+        </button>
       </li>
 
-      <li v-if="currentPage < totalPages" class="c-pagination__item--next">
-        <NuxtLink :to="{ query: { page: currentPage + 1 } }" class="c-pagination__link">
-          <span class="c-pagination__text">1つ後に進む</span>
-        </NuxtLink>
+      <li v-if="currentPage < totalPage" class="c-pagination__item c-pagination__item--next">
+        <button
+          type="button"
+          class="c-pagination__button"
+          :disabled="currentPage >= totalPage"
+          @click="() => onPaging(currentPage + 1)"
+        >
+          <span class="c-pagination__text">1ページ前に戻る</span>
+        </button>
       </li>
     </ul>
   </nav>
 </template>
 
 <script setup lang="ts">
-  type Props = {
-    totalCount: number
-    currentPage: number
+  defineProps<{
+    totalPage: number
     perPage: number
-  }
-
-  const props = defineProps<Props>()
-
-  const totalPages = computed(() => Math.ceil(props.totalCount / props.perPage))
+    currentPage: number
+    onPaging: (pageNumber: number) => void
+  }>()
 </script>
 
 <style scoped lang="scss">
@@ -61,7 +70,7 @@
     &__item {
       &--prev,
       &--next {
-        #{$this}__link {
+        #{$this}__button {
           position: relative;
 
           &::before {
@@ -89,23 +98,15 @@
       }
 
       &--next {
-        #{$this}__link {
+        #{$this}__button {
           &::before {
             transform: rotate(45deg);
           }
         }
       }
-
-      &.is-current {
-        #{$this}__link {
-          color: var(--color-foreground-light);
-          pointer-events: none;
-          background-color: var(--color-primary);
-        }
-      }
     }
 
-    &__link {
+    &__button {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -116,6 +117,12 @@
       border: 1px solid var(--color-primary);
       border-radius: 4px;
       transition: background-color var(--transition);
+
+      &.is-current {
+        color: var(--color-foreground-light);
+        pointer-events: none;
+        background-color: var(--color-primary);
+      }
 
       @include mixin.media(hover) {
         &:hover {

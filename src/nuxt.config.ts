@@ -5,6 +5,24 @@ export default defineNuxtConfig({
   css: ['@/styles/main.scss'],
   nitro: {
     preset: 'static',
+    prerender: {
+      routes: [
+        '/blog/1',
+        '/blog/2',
+        '/blog/3',
+        '/blog/4',
+        '/blog/5',
+        '/blog/6',
+        '/blog/7',
+        '/blog/8',
+        '/blog/9',
+      ], // 必要に応じて拡張
+    },
+  },
+  appConfig: {
+    router: {
+      trailingSlash: false,
+    },
   },
   vite: {
     css: {

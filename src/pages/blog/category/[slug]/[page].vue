@@ -1,6 +1,8 @@
 <template>
   <BaseContent>
-    <BaseHeadingLevel1 sub-title="Blog">ブログ</BaseHeadingLevel1>
+    <BaseHeadingLevel1 sub-title="Blog">
+      {{ matchedCategoryData?.contents[0].name }}
+    </BaseHeadingLevel1>
     <template v-if="blogCategory && blogCategory?.contents.length > 0">
       <BlogCategories :blog-category="blogCategory?.contents" />
     </template>

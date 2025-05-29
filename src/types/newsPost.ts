@@ -1,3 +1,6 @@
+/**
+ * ニュースコンテンツの型定義
+ */
 export type NewsContent = {
   /** カスタムフィールドのID */
   fieldId: 'customNewsContent'

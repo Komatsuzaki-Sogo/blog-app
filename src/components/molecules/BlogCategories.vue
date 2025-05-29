@@ -2,12 +2,12 @@
   <div :class="contentClass">
     <em class="c-list-category__title">category</em>
 
-    <ul v-if="props.blogCategory && props.blogCategory.length > 0" class="c-list-category__list">
+    <ul class="c-list-category__list">
       <li class="c-list-category__listItem">
         <NuxtLink
           to="/blog"
           class="c-list-category__link"
-          :aria-current="route.path === '/blog' ? true : undefined"
+          :aria-current="/^\/blog\/\d+$/.test(route.path) ? true : false"
         >
           <span class="c-list-category__text">全ての記事</span>
           <Icon name="mdi:tag-text" mode="svg" class="c-list-category__icon" />
@@ -21,7 +21,9 @@
         <NuxtLink
           :to="'/blog/category/' + category.slug"
           class="c-list-category__link"
-          :aria-current="route.path === `/blog/category/${category.slug}` ? true : undefined"
+          :aria-current="
+            new RegExp(`^/blog/category/${category.slug}/\\d+$`).test(route.path) ? true : undefined
+          "
         >
           <span class="c-list-category__text">{{ category.name }}</span>
           <Icon name="mdi:tag-text" mode="svg" class="c-list-category__icon" />

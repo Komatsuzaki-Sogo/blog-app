@@ -1,10 +1,41 @@
+import { pageLimitBase } from './composables/utilities/pageLimit'
+import {
+  useNewsRoutes,
+  useBlogArticleRoutes,
+  useBlogListRoutes,
+  useBlogCategoryRoutes,
+} from './composables/useFetchMicroCMSGetURL'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   css: ['@/styles/main.scss'],
+  hooks: {
+    async 'nitro:config'(nitroConfig) {
+      nitroConfig.prerender = nitroConfig.prerender || {}
+      nitroConfig.prerender.routes = nitroConfig.prerender.routes || []
+
+      const newsRoutes = await useNewsRoutes()
+      nitroConfig.prerender?.routes?.push(...newsRoutes)
+
+      const blogArticleRoutes = await useBlogArticleRoutes()
+      nitroConfig.prerender?.routes?.push(...blogArticleRoutes)
+
+      const blogListRoutes = await useBlogListRoutes(pageLimitBase)
+      nitroConfig.prerender?.routes?.push(...blogListRoutes)
+
+      const blogCategoryRoutes = await useBlogCategoryRoutes(pageLimitBase)
+      nitroConfig.prerender?.routes?.push(...blogCategoryRoutes)
+    },
+  },
   nitro: {
     preset: 'static',
+  },
+  appConfig: {
+    router: {
+      trailingSlash: false,
+    },
   },
   vite: {
     css: {

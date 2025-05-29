@@ -14,6 +14,9 @@ type Eyecatch = {
   width: number
 }
 
+/**
+ * ブログコンテンツの型定義
+ */
 export type BlogContent = {
   /** カスタムフィールドのID */
   fieldId: 'customBlogContent'
@@ -25,6 +28,9 @@ export type BlogContent = {
   HTML?: string
 }
 
+/**
+ * ブログ投稿の型定義
+ */
 export type BlogPost = {
   /** 投稿の一意なID */
   id: string

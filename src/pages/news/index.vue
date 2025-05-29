@@ -2,21 +2,29 @@
   <BaseContent>
     <BaseHeadingLevel1 sub-title="News">ニュース</BaseHeadingLevel1>
 
-    <FetchStateBlock
-      name="ニュース記事"
-      :items="newsPosts"
-      :pending="pending"
-      :error-flag="errorFlag"
-    >
-      <NewsPosts :news-posts="newsPosts" />
-    </FetchStateBlock>
+    <template v-if="newsPosts && newsPosts?.contents.length > 0">
+      <NewsPosts :news-posts="newsPosts.contents" />
+    </template>
+    <template v-else-if="newsPostsError">
+      <BaseText>
+        <p>
+          <em>ニュース一覧のデータの取得に失敗しました。</em>
+        </p>
+      </BaseText>
+    </template>
+    <template v-else>
+      <BaseText>
+        <p>
+          <em>ニュース一覧のデータがありませんでした。</em>
+        </p>
+      </BaseText>
+    </template>
   </BaseContent>
 </template>
 
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
-  import FetchStateBlock from '~/components/molecules/FetchStateBlock.vue'
   import NewsPosts from '~/components/molecules/NewsPosts.vue'
 
   const breadcrumbState = useBreadcrumbState()
@@ -54,12 +62,7 @@
     ],
   })
 
-  // ニュース記事の一覧取得
-  const {
-    dataArray: newsPosts,
-    errorFlag,
-    pending,
-  } = await useFetchMicroCMS('news', {
-    limit: 100,
+  const { data: newsPosts, error: newsPostsError } = await useFetchMicroCMSGetList({
+    endpoint: 'news',
   })
 </script>

@@ -62,7 +62,7 @@
     ],
   })
 
-  const { data: newsPosts, error: newsPostsError } = await useMicroCMSaGetListPerPage({
+  const { data: newsPosts, error: newsPostsError } = await useFetchMicroCMSGetList({
     endpoint: 'news',
   })
 </script>

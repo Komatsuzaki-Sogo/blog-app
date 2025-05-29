@@ -85,12 +85,12 @@
     ],
   })
 
-  const { data: newsPosts, error: newsPostsError } = await useMicroCMSaGetListPerPage({
+  const { data: newsPosts, error: newsPostsError } = await useFetchMicroCMSGetList({
     endpoint: 'news',
     pageLimit: pageLimitTop,
   })
 
-  const { data: blogPosts, error: blogPostsError } = await useMicroCMSaGetListPerPage({
+  const { data: blogPosts, error: blogPostsError } = await useFetchMicroCMSGetList({
     endpoint: 'blog',
     pageLimit: pageLimitTop,
   })

@@ -25,7 +25,7 @@
 
   // ニュース記事の取得
   const { data: matchedNewsPostData, error: matchedNewsPostDataError } =
-    await useMicroCMSaGetListPerPage({
+    await useFetchMicroCMSGetList({
       endpoint: 'news',
       filters: `slug[equals]${normalizedSlug}`,
       page: 1,

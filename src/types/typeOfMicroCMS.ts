@@ -10,3 +10,17 @@ export type EndpointMap = {
   blog: BlogPost
   'blog-category': BlogCategory
 }
+
+export type ValidEndpoint = keyof EndpointMap
+
+export type GetListPerPage<T extends ValidEndpoint> = {
+  endpoint: T
+  filters?: string
+  page?: number
+  pageLimit?: number
+}
+
+export type GetTotalCount<T extends ValidEndpoint> = {
+  endpoint: T
+  filters?: string
+}

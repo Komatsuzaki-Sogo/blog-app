@@ -23,7 +23,7 @@
 
     <template v-if="blogPosts && blogPosts?.contents.length > 0">
       <BlogPosts :blog-posts="blogPosts.contents" />
-      <BasePagination
+      <Pagination
         :total-page="totalPage"
         :per-page="pageLimit"
         :current-page="page"
@@ -45,7 +45,7 @@
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
   import BaseText from '~/components/atoms/BaseText.vue'
-  import BasePagination from '~/components/atoms/BasePagination.vue'
+  import Pagination from '~/components/molecules/Pagination.vue'
   import BlogCategories from '~/components/molecules/BlogCategories.vue'
   import BlogPosts from '~/components/molecules/BlogPosts.vue'
 
@@ -54,7 +54,7 @@
   const slug = route.params.slug as string
 
   const { data: matchedCategoryData, error: matchedCategoryDataError } =
-    await useMicroCMSaGetListPerPage({
+    await useFetchMicroCMSGetList({
       endpoint: 'blog-category',
       filters: `slug[equals]${slug}`,
       page: 1,
@@ -71,14 +71,14 @@
   const page = ref(Number(Array.isArray(params.page) ? params.page[0] : params.page))
   const pageLimit = pageLimitBase
 
-  const { data: blogPosts, error: blogPostsError } = await useMicroCMSaGetListPerPage({
+  const { data: blogPosts, error: blogPostsError } = await useFetchMicroCMSGetList({
     endpoint: 'blog',
     filters: `blog-category[contains]${matchedCategoryData.value?.contents[0]?.id}`,
     page: page.value,
     pageLimit: pageLimit,
   })
 
-  const totalCount = await useMicroCMSGetTotalCount({
+  const totalCount = await useFetchMicroCMSTotalCount({
     endpoint: 'blog',
     filters: `blog-category[contains]${matchedCategoryData.value?.contents[0]?.id}`,
   })
@@ -99,7 +99,7 @@
     })
   }
 
-  const { data: blogCategory, error: blogCategoryError } = await useMicroCMSaGetListPerPage({
+  const { data: blogCategory, error: blogCategoryError } = await useFetchMicroCMSGetList({
     endpoint: 'blog-category',
     filters: '',
   })

@@ -1,59 +1,64 @@
-import type { MicroCMSQueries } from 'microcms-js-sdk'
-import type { EndpointMap } from '~/types/endpointMap'
-
-type ValidEndpoint = keyof EndpointMap
+import type {
+  EndpointMap,
+  ValidEndpoint,
+  GetListPerPage,
+  GetTotalCount,
+} from '~/types/typeOfMicroCMS'
 
 /**
- * 指定された MicroCMS エンドポイントからデータを非同期に取得し、Nuxt の useAsyncData と組み合わせて扱いやすく整形された結果を返すユーティリティ。
+ * microCMSから指定エンドポイントのリストデータをページ単位で取得
  *
- * @template T - 使用する MicroCMS のエンドポイント名。`ValidEndpoint` 型に制限される。
- * @param {T} endpoint - 取得対象の MicroCMS のエンドポイント名（例：`blog`、`news` など）。
- * @param {MicroCMSQueries} [queries] - フィルター、ソートなどのクエリオプション（任意）。
- * @returns {{
- *   dataArray: ComputedRef<EndpointMap[T][]>;
- *   errorFlag: ComputedRef<boolean>;
- *   pending: Ref<boolean>;
- * }} MicroCMS から取得されたデータ、エラーフラグ、読み込み状態を含むオブジェクト。
- *
- * @throws {Error} MicroCMS API からの取得に失敗した場合、HTTP 500 エラーをスロー。
+ * @template T - 有効なmicroCMSのエンドポイント
+ * @param {Object} params - パラメータオブジェクト
+ * @param {T} params.endpoint - microCMSのエンドポイント名
+ * @param {string} [params.filters=''] - microCMSのフィルター条件（省略可能）
+ * @param {number} [params.page=1] - 現在のページ番号（1始まり）
+ * @param {number} [params.pageLimit=100] - 1ページあたりの取得件数
+ * @returns {Promise<ReturnType<typeof useMicroCMSGetList<EndpointMap[T]>>>} - microCMSから取得したデータ
  */
-export const useFetchMicroCMS = async <T extends ValidEndpoint>(
-  endpoint: T,
-  queries?: MicroCMSQueries,
-) => {
-  const fetchGetList = async () => {
-    const { data, error } = await useMicroCMSGetList<EndpointMap[T]>({
+export const useFetchMicroCMSGetList = async <T extends ValidEndpoint>({
+  endpoint,
+  filters = '',
+  page = 1,
+  pageLimit = 100,
+}: GetListPerPage<T>) => {
+  const offset = pageLimit * (page - 1)
+  return await useMicroCMSGetList<EndpointMap[T]>(
+    {
+      endpoint: endpoint,
+      queries: { limit: pageLimit, offset: offset, filters: filters },
+    },
+    {
+      key: `useFetchMicroCMSGetList-${endpoint}-${filters}-${pageLimit}-${page}-${offset}`,
+    },
+  )
+}
+
+/**
+ * microCMSから指定エンドポイントのリストデータの総記事を取得
+ *
+ * @template T - 有効なmicroCMSのエンドポイント
+ * @param {Object} params - パラメータオブジェクト
+ * @param {T} params.endpoint - microCMSのエンドポイント名
+ * @param {string} [params.filters=''] - microCMSのフィルター条件（省略可能）
+ * @returns {Promise<number>} - 合計件数（取得できなかった場合は0）
+ */
+export const useFetchMicroCMSTotalCount = async <T extends ValidEndpoint>({
+  endpoint,
+  filters = '',
+}: GetTotalCount<T>) => {
+  const { data } = await useMicroCMSGetList<EndpointMap[T]>(
+    {
       endpoint,
       queries: {
-        ...(endpoint !== 'blog-category' ? { orders: '-publishedAt' } : {}),
-        ...queries,
+        limit: 1,
+        filters,
       },
-    })
+    },
+    {
+      key: `useFetchMicroCMSTotalCount-${endpoint}-${filters}-count`,
+    },
+  )
 
-    if (error.value) {
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'MicroCMS API error',
-      })
-    }
-
-    return data.value
-  }
-
-  const asyncKey = queries
-    ? `${endpoint}-filtered-${queries.filters ?? 'filter-none'}-${queries.offset ?? 'offset-none'}-${queries.limit ?? 'limit-none'}`
-    : `${endpoint}`
-
-  const { data, error, pending } = await useAsyncData(asyncKey, fetchGetList)
-
-  const dataArray = computed(() => data.value?.contents || []) as ComputedRef<EndpointMap[T][]>
-  const errorFlag = computed(() => !!error.value)
-  const totalCount = computed(() => data.value?.totalCount || 0)
-
-  return {
-    dataArray,
-    errorFlag,
-    pending,
-    totalCount,
-  }
+  return data.value?.totalCount || 0
 }

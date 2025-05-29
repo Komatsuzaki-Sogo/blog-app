@@ -47,7 +47,7 @@
   const slug = route.params.slug as string
 
   const { data: matchedBlogPostData, error: matchedBlogPostDataError } =
-    await useMicroCMSaGetListPerPage({
+    await useFetchMicroCMSGetList({
       endpoint: 'blog',
       filters: `slug[equals]${slug}`,
       page: 1,
@@ -61,7 +61,7 @@
     })
   }
 
-  const { data: blogCategory, error: blogCategoryError } = await useMicroCMSaGetListPerPage({
+  const { data: blogCategory, error: blogCategoryError } = await useFetchMicroCMSGetList({
     endpoint: 'blog-category',
     filters: '',
   })

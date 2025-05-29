@@ -35,6 +35,14 @@
 
     &__inner {
       @extend %reset-margin;
+
+      & + & {
+        margin-top: 64px;
+
+        @include mixin.media(pc) {
+          margin-top: 100px;
+        }
+      }
     }
   }
 </style>

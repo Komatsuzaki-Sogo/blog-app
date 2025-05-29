@@ -1,0 +1,25 @@
+@use '@/styles/_common/mixin/' as mixin;
+
+.c-content-cms {
+  /* テキスト */
+  p {
+    margin-top: 24px;
+    font-size: 1.6rem;
+
+    @include mixin.media(pc) {
+      margin-top: 32px;
+    }
+
+    & + p {
+      margin-top: 12px;
+
+      @include mixin.media(pc) {
+        margin-top: 16px;
+      }
+    }
+
+    em {
+      font-style: normal;
+    }
+  }
+}

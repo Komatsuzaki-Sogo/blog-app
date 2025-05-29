@@ -49,7 +49,7 @@
       z-index: 5;
       width: 100%;
       max-height: 100vh;
-      background-color: var(--color-background-gray);
+      background-color: var(--color-background-light);
 
       &::after {
         position: fixed;
@@ -58,7 +58,7 @@
         width: 100%;
         height: var(--header-height);
         content: '';
-        background-color: var(--color-background-gray);
+        background-color: var(--color-background-light);
       }
 
       &.is-active {

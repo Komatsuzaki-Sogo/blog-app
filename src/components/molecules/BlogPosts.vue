@@ -71,10 +71,12 @@
       gap: 16px;
       justify-content: flex-end;
       height: 100%;
-      padding: 16px;
-      background-color: var(--color-foreground-light);
-      border-radius: 12px;
-      box-shadow: var(--box-shadow);
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-outline-gray);
+
+      @include mixin.media(pc) {
+        padding-bottom: 24px;
+      }
 
       @include mixin.media(hover) {
         &:hover {
@@ -149,7 +151,7 @@
       justify-content: center;
       aspect-ratio: 16 / 9;
       overflow: hidden;
-      background-color: var(--color-background-gray);
+      background-color: #eee;
       border-radius: 8px;
     }
 

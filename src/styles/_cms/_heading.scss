@@ -1,0 +1,95 @@
+@use '@/styles/_common/mixin/' as mixin;
+
+.c-content-cms {
+  /* h2見出し */
+  h2 {
+    position: relative;
+    padding-bottom: 12px;
+    margin-top: 64px;
+    font-size: clamp(2.4rem, calc(0.978rem + 1.852vw), 3.2rem); /* min: 24px, max: 32px */
+
+    @include mixin.media(pc) {
+      margin-top: 80px;
+    }
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      content: '';
+      background-color: var(--color-primary);
+    }
+
+    & + * {
+      margin-top: 32px !important;
+
+      @include mixin.media(pc) {
+        margin-top: 40px !important;
+      }
+    }
+  }
+
+  /* h3見出し */
+  h3 {
+    position: relative;
+    padding-left: 12px;
+    margin-top: 48px;
+    font-size: clamp(2rem, calc(0.933rem + 1.389vw), 2.6rem); /* min: 20px, max: 26px */
+
+    @include mixin.media(pc) {
+      margin-top: 64px;
+    }
+
+    &::before {
+      --local-padding-y: 4px;
+
+      position: absolute;
+      top: var(--local-padding-y);
+      left: 0;
+      width: 4px;
+      height: calc(100% - var(--local-padding-y) * 2);
+      content: '';
+      background-color: var(--color-primary);
+    }
+
+    & + * {
+      margin-top: 16px !important;
+
+      @include mixin.media(pc) {
+        margin-top: 24px !important;
+      }
+    }
+  }
+
+  /* h4見出し */
+  h4 {
+    padding-bottom: 8px;
+    margin-top: 40px;
+    font-size: clamp(1.8rem, calc(1.444rem + 0.463vw), 2rem); /* min: 18px, max: 20px */
+    border-bottom: 2px solid var(--color-outline-gray);
+
+    @include mixin.media(pc) {
+      margin-top: 48px;
+    }
+
+    & + * {
+      margin-top: 16px !important;
+    }
+  }
+
+  /* h5見出し */
+  h5 {
+    margin-top: 32px;
+    font-size: 1.6rem;
+
+    @include mixin.media(pc) {
+      margin-top: 40px;
+    }
+
+    & + * {
+      margin-top: 8px !important;
+    }
+  }
+}

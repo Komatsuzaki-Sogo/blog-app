@@ -11,8 +11,15 @@ export type EndpointMap = {
   'blog-category': BlogCategory
 }
 
+/**
+ * `EndpointMap` に定義された有効なエンドポイントのキー型。
+ */
 export type ValidEndpoint = keyof EndpointMap
 
+/**
+ * ページごとのリストデータを取得するためのパラメータ型。
+ * @template T - 有効なエンドポイント
+ */
 export type GetListPerPage<T extends ValidEndpoint> = {
   endpoint: T
   filters?: string
@@ -20,6 +27,10 @@ export type GetListPerPage<T extends ValidEndpoint> = {
   pageLimit?: number
 }
 
+/**
+ * 総件数（totalCount）のみを取得するためのパラメータ型。
+ * @template T - 有効なエンドポイント
+ */
 export type GetTotalCount<T extends ValidEndpoint> = {
   endpoint: T
   filters?: string

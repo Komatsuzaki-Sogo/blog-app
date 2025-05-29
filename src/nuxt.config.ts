@@ -81,7 +81,10 @@ export default defineNuxtConfig({
           })
 
           const totalBlogMatchCategoryCount = res.totalCount || 0
-          const totalBlogMatchCategoryPages = Math.ceil(totalBlogMatchCategoryCount / blogPageLimit)
+          const totalBlogMatchCategoryPages = Math.max(
+            1,
+            Math.ceil(totalBlogMatchCategoryCount / blogPageLimit),
+          )
 
           for (let page = 1; page <= totalBlogMatchCategoryPages; page++) {
             nitroConfig.prerender.routes.push(`/blog/category/${category.slug}/${page}`)

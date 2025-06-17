@@ -1,5 +1,5 @@
 <template>
-  <div :class="contentClass">
+  <div :class="rootClass">
     <div class="c-content__inner">
       <slot />
     </div>
@@ -15,7 +15,7 @@
 
   const props = defineProps<Props>()
 
-  const contentClass = computed(() => {
+  const rootClass = computed(() => {
     return [
       'c-content',
       props.paddingY === 'none' && 'c-content--none',

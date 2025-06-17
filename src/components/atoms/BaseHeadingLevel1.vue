@@ -1,5 +1,5 @@
 <template>
-  <div :class="contentClass">
+  <div :class="rootClass">
     <component :is="props.markup ? markup : 'h1'" class="c-heading-level1__title">
       <span class="c-heading-level1__mainTitle">
         <slot />
@@ -32,7 +32,7 @@
 
   const props = defineProps<Props>()
 
-  const contentClass = computed(() => {
+  const rootClass = computed(() => {
     return [
       'c-heading-level1',
       props.type === 'cms' && 'c-heading-level1--cms',

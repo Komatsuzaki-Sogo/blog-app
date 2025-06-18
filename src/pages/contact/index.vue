@@ -1,13 +1,14 @@
 <template>
   <BaseContent>
     <BaseHeadingLevel1 sub-title="Contact me">お問い合わせ</BaseHeadingLevel1>
-    <p>text</p>
+    <ContactFrom />
   </BaseContent>
 </template>
 
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseHeadingLevel1 from '~/components/atoms/BaseHeadingLevel1.vue'
+  import ContactFrom from '~/components/pages/contact/ContactFrom.vue'
 
   const breadcrumbState = useBreadcrumbState()
 

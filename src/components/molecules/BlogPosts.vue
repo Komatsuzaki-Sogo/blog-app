@@ -3,12 +3,10 @@
     <li v-for="blogPost in blogPosts" :key="blogPost.id" class="c-list-blog__item">
       <NuxtLink :to="'/blog/article/' + blogPost.slug" class="c-list-blog__link">
         <span class="c-list-blog__content">
-          <span class="c-list-blog__index">
-            <span class="c-list-blog__title">
-              <BaseIconNew v-if="useIsNewContent(blogPost.publishedAt)" />
-              <b>{{ blogPost.title }}</b>
-            </span>
-            <BaseTextTime :time="blogPost.publishedAt" />
+          <span class="c-list-blog__title">
+            <b class="c-list-blog__titleInner">{{ blogPost.title }}</b>
+          </span>
+          <div class="c-list-blog__other">
             <span class="c-list-blog__badgeList">
               <template
                 v-for="category in blogPost['blog-category']"
@@ -17,7 +15,8 @@
                 <BaseBadge size="small">{{ category.name }}</BaseBadge>
               </template>
             </span>
-          </span>
+            <BaseTextTime :time="blogPost.publishedAt" />
+          </div>
         </span>
         <span class="c-list-blog__media">
           <img
@@ -29,6 +28,7 @@
             class="c-list-blog__mediaItem"
           />
           <Icon v-else name="material-symbols:article" mode="svg" class="c-list-blog__mediaIcon" />
+          <BaseIconNew v-if="useIsNewContent(blogPost.publishedAt)" type="badge" />
         </span>
       </NuxtLink>
     </li>
@@ -50,19 +50,30 @@
   .c-list-blog {
     $this: &;
 
-    display: grid;
-    gap: 16px;
+    --local-column-gap: 16px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--local-column-gap) + 8px) var(--local-column-gap);
     margin-top: 40px;
     list-style: none;
 
-    @include mixin.media(pc, 450px) {
-      grid-template-columns: repeat(2, 1fr);
+    @include mixin.media(pc) {
+      --local-column-gap: 24px;
+
+      margin-top: 48px;
     }
 
-    @include mixin.media(pc) {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 48px;
+    &__item {
+      width: 100%;
+
+      @include mixin.media(pc, 450px) {
+        width: calc((100% - var(--local-column-gap)) / 2);
+      }
+
+      @include mixin.media(pc) {
+        width: calc((100% - (var(--local-column-gap) * 2)) / 3);
+      }
     }
 
     &__link {
@@ -71,10 +82,6 @@
       gap: 16px;
       justify-content: flex-end;
       height: 100%;
-      padding: 16px;
-      background-color: var(--color-foreground-light);
-      border-radius: 12px;
-      box-shadow: var(--box-shadow);
 
       @include mixin.media(hover) {
         &:hover {
@@ -83,7 +90,7 @@
             transform: scale(1.1);
           }
 
-          #{$this}__text {
+          #{$this}__titleInner {
             color: var(--color-primary);
           }
         }
@@ -92,9 +99,9 @@
 
     &__content {
       display: flex;
-      flex-direction: column;
-      gap: 24px;
-      justify-content: space-between;
+      flex-direction: column-reverse;
+      gap: 8px;
+      justify-content: flex-end;
       height: 100%;
     }
 
@@ -104,8 +111,21 @@
       font-size: 1.8rem;
 
       @include mixin.media(pc) {
-        font-size: 2.4rem;
+        font-size: 2.2rem;
       }
+    }
+
+    &__titleInner {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      transition: color var(--transition);
+    }
+
+    &__other {
+      @extend %reset-margin;
     }
 
     &__badgeList {
@@ -115,42 +135,22 @@
       margin-top: 8px;
     }
 
-    &__text {
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      height: 100%;
-      transition: color var(--transition);
-    }
-
-    &__textItem {
-      position: relative;
-      display: block;
-      padding-right: 24px;
-
-      &::before {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        display: block;
-        width: 8px;
-        height: 8px;
-        content: '';
-        border-top: 2px solid var(--color-primary);
-        border-right: 2px solid var(--color-primary);
-        transform: translateY(-50%) rotate(45deg);
-      }
-    }
-
     &__media {
+      position: relative;
       display: flex;
       flex: 0 0 auto;
       align-items: center;
       justify-content: center;
       aspect-ratio: 16 / 9;
       overflow: hidden;
-      background-color: var(--color-background-gray);
+      background-color: #eee;
       border-radius: 8px;
+
+      :deep(.c-icon-new--badge) {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+      }
     }
 
     &__mediaItem {

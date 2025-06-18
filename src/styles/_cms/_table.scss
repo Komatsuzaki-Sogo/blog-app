@@ -1,0 +1,39 @@
+@use '@/styles/_common/mixin/' as mixin;
+@use '@/styles/_common/extend/' as *;
+
+.c-content-cms {
+  /* テーブル */
+  table {
+    width: 100%;
+    margin-top: 32px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-top: 1px solid var(--color-outline-gray);
+    border-left: 1px solid var(--color-outline-gray);
+
+    @include mixin.media(pc) {
+      margin-top: 40px;
+    }
+
+    th,
+    td {
+      @extend %reset-margin;
+
+      padding: 16px;
+      border-right: 1px solid var(--color-outline-gray);
+      border-bottom: 1px solid var(--color-outline-gray);
+
+      @include mixin.media(pc) {
+        margin-top: 24px;
+      }
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    td {
+      background-color: var(--color-background-light);
+    }
+  }
+}

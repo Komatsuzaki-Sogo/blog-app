@@ -56,6 +56,7 @@
     margin: 40px auto 0;
     overflow: hidden;
     background: var(--color-background-light);
+    border: 1px solid var(--color-primary);
     border-radius: 16px;
     box-shadow: var(--box-shadow);
 

@@ -1,6 +1,6 @@
 <template>
   <BaseContent>
-    <BaseHeadingLevel1 sub-title="Blog">ブログ</BaseHeadingLevel1>
+    <BaseHeadingLevel1 sub-title="Blog">ブログ記事一覧</BaseHeadingLevel1>
     <template v-if="blogCategory && blogCategory?.contents.length > 0">
       <BlogCategories :blog-category="blogCategory?.contents" />
     </template>
@@ -31,7 +31,7 @@
     <template v-else>
       <BaseText>
         <p>
-          <em>ブログ一覧のデータがありませんでした。</em>
+          <em>ブログ記事一覧のデータがありませんでした。</em>
         </p>
       </BaseText>
     </template>
@@ -89,25 +89,25 @@
 
   breadcrumbState.value = [
     { name: 'HOME', path: '/' },
-    { name: `Blog一覧：${page.value}ページ`, path: `/blog/${page.value}` },
+    { name: `ブログ記事一覧：${page.value}ページ`, path: `/blog/${page.value}` },
   ]
 
   const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState?.value)
 
   useHead({
-    title: `Blog一覧の${page.value}ページ | KS BLOG`,
+    title: `ブログ記事一覧の${page.value}ページ | KS BLOG`,
     meta: [
       {
         name: 'description',
-        content: `KS BLOGはブログサイトです。ブログ一覧の${page.value}ページをご紹介。`,
+        content: `KS BLOGはブログサイトです。ブログ記事一覧の${page.value}ページをご紹介。`,
       },
       {
         property: 'og:title',
-        content: `Blog一覧の${page.value}ページ | KS BLOG`,
+        content: `ブログ記事一覧の${page.value}ページ | KS BLOG`,
       },
       {
         property: 'og:description',
-        content: `KS BLOGはブログサイトです。ブログ一覧の${page.value}ページをご紹介。`,
+        content: `KS BLOGはブログサイトです。ブログ記事一覧の${page.value}ページをご紹介。`,
       },
       { property: 'og:type', content: 'article' },
     ],

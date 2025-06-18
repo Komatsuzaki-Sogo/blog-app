@@ -1,0 +1,47 @@
+/* stylelint-disable no-descending-specificity */
+@use '@/styles/_common/mixin/' as mixin;
+
+.c-content-cms {
+  /* 単一リンク  */
+  p {
+    a {
+      position: relative;
+      width: fit-content;
+      padding-right: 24px;
+      text-decoration: underline;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 16px;
+        height: 16px;
+        margin: auto;
+        content: '';
+        background: var(--color-primary);
+        border-radius: 50%;
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 4px;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        margin: auto;
+        content: '';
+        border-color: transparent transparent transparent var(--color-background-light);
+        border-style: solid;
+        border-width: 4px 0 4px 6px;
+      }
+
+      @include mixin.media(hover) {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

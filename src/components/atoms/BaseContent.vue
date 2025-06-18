@@ -1,5 +1,5 @@
 <template>
-  <div :class="contentClass">
+  <div :class="rootClass">
     <div class="c-content__inner">
       <slot />
     </div>
@@ -10,17 +10,17 @@
   type Props = {
     paddingY?: 'none' | 'top' | 'wide'
     width?: 'full'
-    bgColor?: 'white' | 'primary'
+    bgColor?: 'gray' | 'primary'
   }
 
   const props = defineProps<Props>()
 
-  const contentClass = computed(() => {
+  const rootClass = computed(() => {
     return [
       'c-content',
       props.paddingY === 'none' && 'c-content--none',
       props.paddingY === 'top' && 'c-content--top',
-      props.bgColor === 'white' && 'c-content--bgWhite',
+      props.bgColor === 'gray' && 'c-content--bgGray',
       props.bgColor === 'primary' && 'c-content--bgPrimary',
       props.width === 'full' && 'c-content--full',
     ]
@@ -78,8 +78,8 @@
       }
     }
 
-    &--bgWhite {
-      background-color: var(--color-background-light);
+    &--bgGray {
+      background-color: var(--color-background-gray);
     }
 
     &--bgPrimary {

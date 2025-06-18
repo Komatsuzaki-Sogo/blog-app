@@ -1,5 +1,5 @@
 <template>
-  <span class="c-badge" :class="contentClass">
+  <span class="c-badge" :class="rootClass">
     <slot />
   </span>
 </template>
@@ -11,7 +11,7 @@
 
   const props = defineProps<Props>()
 
-  const contentClass = computed(() => {
+  const rootClass = computed(() => {
     return ['c-content', props.size === 'small' && 'c-badge--small']
   })
 </script>

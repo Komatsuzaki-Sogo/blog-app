@@ -1,5 +1,5 @@
 <template>
-  <div :class="contentClass">
+  <div :class="rootClass">
     <em class="c-list-category__title">category</em>
 
     <ul class="c-list-category__list">
@@ -41,7 +41,7 @@
     type?: 'sidenav'
   }>()
 
-  const contentClass = computed(() => {
+  const rootClass = computed(() => {
     return ['c-list-category', props.type === 'sidenav' && 'c-list-category--sidenav']
   })
 

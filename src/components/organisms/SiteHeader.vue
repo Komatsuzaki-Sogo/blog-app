@@ -139,7 +139,6 @@
     flex-direction: column;
     justify-content: center;
     height: var(--header-height);
-    background-color: rgb(246 246 246 / 60%);
     backdrop-filter: blur(15px);
 
     &__inner {

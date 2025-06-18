@@ -1,0 +1,35 @@
+/* stylelint-disable no-descending-specificity */
+@use '@/styles/_common/mixin/' as mixin;
+
+.c-content-cms {
+  /* 画像キャプション */
+  figure {
+    display: table;
+    margin: auto;
+    margin-top: 32px;
+
+    @include mixin.media(pc) {
+      margin-top: 40px;
+    }
+
+    img {
+      transition: opacity var(--transition);
+    }
+
+    figcaption {
+      width: fit-content;
+      margin: 8px auto 0;
+      text-align: center;
+    }
+
+    a {
+      @include mixin.media(hover) {
+        &:hover {
+          img {
+            opacity: var(--opacity);
+          }
+        }
+      }
+    }
+  }
+}

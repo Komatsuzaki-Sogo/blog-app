@@ -1,0 +1,20 @@
+@use '@/styles/_common/mixin/' as mixin;
+
+.c-content-cms {
+  /* 水平線 */
+  hr {
+    margin-top: 40px;
+
+    @include mixin.media(pc) {
+      margin-top: 48px;
+    }
+
+    & + * {
+      margin-top: 40px !important;
+
+      @include mixin.media(pc) {
+        margin-top: 48px;
+      }
+    }
+  }
+}

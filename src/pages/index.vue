@@ -7,7 +7,7 @@
       <BaseHeadingLevel1 markup="h2">About</BaseHeadingLevel1>
       <p>text</p>
     </BaseContent>
-    <BaseContent padding-y="top" bg-color="white">
+    <BaseContent padding-y="top" bg-color="gray">
       <BaseHeadingLevel1 markup="h2">News</BaseHeadingLevel1>
 
       <template v-if="newsPosts && newsPosts?.contents.length > 0">

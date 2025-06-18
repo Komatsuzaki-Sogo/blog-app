@@ -25,7 +25,7 @@
 <style scoped lang="scss">
   .l-breadcrumb {
     font-size: 1.2rem;
-    background-color: var(--color-background-light);
+    background-color: var(--color-background-gray);
 
     @include mixin.media(pc) {
       font-size: 1.3rem;
@@ -61,7 +61,7 @@
     }
 
     &__link {
-      color: var(--color-foreground-gray);
+      color: var(--color-foreground-dark);
       transition: color var(--transition);
 
       @include mixin.media(hover) {

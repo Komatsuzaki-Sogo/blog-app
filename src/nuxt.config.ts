@@ -63,6 +63,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       NUXT_APP_BASE_HOST: process.env.NUXT_PUBLIC_APP_BASE_HOST,
+      RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
     },
   },
   microCMS: {

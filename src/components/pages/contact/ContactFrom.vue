@@ -113,11 +113,12 @@
       })
 
       if (!res.ok) {
-        throw new Error('送信に失敗しました')
+        throw new Error('送信に失敗しました、再度お試しください。')
       }
       resetForm()
+      alert('送信完了しました。')
     } catch (error) {
-      alert('送信中にエラーが発生しました')
+      alert('送信中にエラーが発生しました、再度お試しください。')
       console.error(error)
     } finally {
       isSubmitting.value = false

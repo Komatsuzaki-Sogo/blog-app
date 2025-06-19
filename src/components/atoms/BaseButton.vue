@@ -1,22 +1,42 @@
 <template>
   <div class="c-button">
-    <NuxtLink :to="to" :aria-current="ariaCurrent" class="c-button__link">
+    <component
+      :is="to ? NuxtLink : 'button'"
+      :to="to"
+      :aria-current="to ? ariaCurrent : undefined"
+      :type="to ? undefined : type"
+      class="c-button__item"
+      :disabled="disabledState === true ? true : undefined"
+      @click="handleClick"
+    >
       <span class="c-button__text">
         <slot />
       </span>
       <template v-if="iconName">
         <Icon :name="iconName" mode="svg" class="c-button__icon" />
       </template>
-    </NuxtLink>
+    </component>
   </div>
 </template>
 
 <script setup lang="ts">
+  import { NuxtLink } from '#components'
+
   defineProps<{
-    to: string
+    to?: string
+    type?: 'button' | 'submit'
     ariaCurrent?: string
     iconName?: string
+    disabledState?: boolean
   }>()
+
+  const emit = defineEmits<{
+    (e: 'click', event: MouseEvent): void
+  }>()
+
+  const handleClick = (e: MouseEvent) => {
+    emit('click', e)
+  }
 </script>
 
 <style scoped lang="scss">
@@ -35,19 +55,20 @@
         margin-top: 0;
       }
 
-      #{$this}__link {
+      #{$this}__item {
         padding-top: 12px;
         padding-bottom: 12px;
       }
     }
 
-    &__link {
+    &__item {
       position: relative;
       display: flex;
       flex-direction: row-reverse;
       gap: 8px;
       align-items: center;
       justify-content: center;
+      width: 100%;
       padding: 12px 24px;
       font-weight: var(--font-weight-bold);
       color: var(--color-foreground-light);
@@ -87,6 +108,12 @@
       width: 24px;
       height: 24px;
       text-align: center;
+    }
+
+    &__item[disabled] {
+      pointer-events: none;
+      cursor: auto;
+      opacity: 0.4;
     }
   }
 </style>

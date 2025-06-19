@@ -19,8 +19,6 @@
 
   const breadcrumbJsonLd = useBreadcrumbJsonLd(breadcrumbState?.value)
 
-  const config = useRuntimeConfig()
-
   useHead({
     title: 'Contact | KS BLOG',
     meta: [

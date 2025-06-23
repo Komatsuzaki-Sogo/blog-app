@@ -4,7 +4,7 @@
     <div class="l-content" :inert="isMenuOpen ? true : undefined">
       <BaseContent>
         <BaseHeadingLevel1 sub-title="404">Not Found</BaseHeadingLevel1>
-        <BaseText>
+        <BaseText type="widthFit">
           <p>
             大変申し訳ございません。
             <br />
@@ -88,11 +88,5 @@
 
   .l-content {
     min-height: 100%;
-  }
-
-  .c-text p {
-    width: fit-content;
-    margin-right: auto;
-    margin-left: auto;
   }
 </style>

@@ -5,7 +5,7 @@
         <BlogContent :blog-post="matchedBlogPostData.contents[0]" />
       </template>
       <template v-else>
-        <BaseText>
+        <BaseText text-align="center">
           <p>
             <em>ブログ記事のデータがありませんでした。</em>
           </p>
@@ -16,14 +16,14 @@
         <BlogCategories :blog-category="blogCategory?.contents" type="sidenav" />
       </template>
       <template v-else-if="blogCategoryError">
-        <BaseText>
+        <BaseText text-align="center">
           <p>
             <em>ブログカテゴリのデータの取得に失敗しました。</em>
           </p>
         </BaseText>
       </template>
       <template v-else>
-        <BaseText>
+        <BaseText text-align="center">
           <p>
             <em>ブログカテゴリのデータがありませんでした。</em>
           </p>

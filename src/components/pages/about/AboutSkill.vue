@@ -35,9 +35,9 @@
   }
 
   const skillItems: SkillItem[] = [
-    { name: 'adobephotoshop', title: 'Adobe Photoshop', colorCode: '#31A8FF', skillRate: 4 },
-    { name: 'adobeillustrator', title: 'Adobe Illustrator', colorCode: '#FF9A00', skillRate: 4 },
-    { name: 'adobexd', title: 'Adobe XD', colorCode: '#FF61F6', skillRate: 5 },
+    { name: 'adobephotoshop', title: 'Photoshop', colorCode: '#31A8FF', skillRate: 4 },
+    { name: 'adobeillustrator', title: 'Illustrator', colorCode: '#FF9A00', skillRate: 4 },
+    { name: 'adobexd', title: 'XD', colorCode: '#FF61F6', skillRate: 5 },
     { name: 'figma', title: 'Figma', colorCode: '#F24E1E', skillRate: 4 },
     { name: 'github', title: 'GitHub', colorCode: '#181717', skillRate: 5 },
     { name: 'gitlab', title: 'GitLab', colorCode: '#FC6D26', skillRate: 5 },
@@ -74,7 +74,21 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 140px;
+      justify-content: flex-end;
+      width: 98px;
+
+      @include mixin.media(pc) {
+        width: 110px;
+      }
+    }
+
+    &__title {
+      font-size: 1.4rem;
+      text-align: center;
+
+      @include mixin.media(pc) {
+        font-size: 1.6rem;
+      }
     }
 
     &__icon {

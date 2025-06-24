@@ -31,7 +31,7 @@
       </template>
     </BaseContentWithSidenav>
 
-    <BaseButton :to="PATHS.BLOG.path">ブログ一覧へ戻る</BaseButton>
+    <BaseButton type="button" @click="goBack">ブログ一覧へ戻る</BaseButton>
   </BaseContent>
 </template>
 
@@ -42,6 +42,16 @@
   import BlogContent from '~/components/pages/blog/BlogContent.vue'
   import BaseButton from '~/components/atoms/BaseButton.vue'
   import BlogCategories from '~/components/molecules/BlogCategories.vue'
+
+  const router = useRouter()
+
+  const goBack = () => {
+    if (history.length > 1) {
+      router.back()
+    } else {
+      router.push('/')
+    }
+  }
 
   const route = useRoute()
   const slug = route.params.slug as string

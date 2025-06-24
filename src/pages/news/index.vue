@@ -6,14 +6,14 @@
       <NewsPosts :news-posts="newsPosts.contents" />
     </template>
     <template v-else-if="newsPostsError">
-      <BaseText>
+      <BaseText text-align="center">
         <p>
           <em>ニュース一覧のデータの取得に失敗しました。</em>
         </p>
       </BaseText>
     </template>
     <template v-else>
-      <BaseText>
+      <BaseText text-align="center">
         <p>
           <em>ニュース一覧のデータがありませんでした。</em>
         </p>

@@ -4,7 +4,7 @@
       <NewsContent :news-post="matchedNewsPostData.contents[0]" />
     </template>
     <template v-else>
-      <BaseText>
+      <BaseText text-align="center">
         <p>
           <em>ブログ記事のデータがありませんでした。</em>
         </p>

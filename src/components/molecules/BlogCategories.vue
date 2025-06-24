@@ -55,6 +55,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px 32px;
+    align-items: center;
 
     &__title {
       flex: 0 0 auto;
@@ -70,7 +71,6 @@
 
       @include mixin.media(pc) {
         gap: 8px 16px;
-        padding-top: 6px;
       }
     }
 
@@ -107,6 +107,7 @@
     }
 
     &--sidenav {
+      align-items: normal;
       margin-top: 40px;
 
       @include mixin.media(pc) {

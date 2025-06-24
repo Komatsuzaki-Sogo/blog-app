@@ -15,6 +15,13 @@
 </template>
 
 <script setup lang="ts">
+  import 'highlight.js/styles/github-dark.css'
+  import hljs from 'highlight.js/lib/core'
+  import javascript from 'highlight.js/lib/languages/javascript'
+  import typescript from 'highlight.js/lib/languages/typescript'
+  import xml from 'highlight.js/lib/languages/xml'
+  import css from 'highlight.js/lib/languages/css'
+  import scss from 'highlight.js/lib/languages/scss'
   import type { NewsContent } from '~/types/newsPost'
   import type { BlogContent } from '~/types/blogPost'
   import BaseAnchorLink from '~/components/atoms/BaseAnchorLink.vue'
@@ -39,13 +46,23 @@
   const contentRefs = ref<HTMLElement[]>([])
 
   /**
-   * マウント後にv-htmlで描画されたh2要素を取得し、アンカー情報として保持する
+   * hljsの言語登録
+   */
+  hljs.registerLanguage('javascript', javascript)
+  hljs.registerLanguage('typescript', typescript)
+  hljs.registerLanguage('html', xml)
+  hljs.registerLanguage('css', css)
+  hljs.registerLanguage('scss', scss)
+
+  /**
+   * コンポーネントのマウント後に実行される処理
    */
   onMounted(async () => {
     await nextTick()
     const allAnchors: { id: string; text: string }[] = []
 
     contentRefs.value.forEach((el) => {
+      // h2[id] 要素を取得し、アンカーリンク表示用にidとテキスト情報を抽出して`allAnchors`に格納する。
       const h2Elements = el.querySelectorAll<HTMLHeadingElement>('h2[id]')
       h2Elements.forEach((h2) => {
         const id = h2.getAttribute('id')
@@ -53,6 +70,12 @@
         if (id && text) {
           allAnchors.push({ id, text })
         }
+      })
+
+      // `<pre><code>`ブロックが存在する場合は、`highlight.js`を使ってコードハイライトを適用
+      const codeBlocks = el.querySelectorAll<HTMLElement>('pre code')
+      codeBlocks.forEach((block) => {
+        hljs.highlightElement(block)
       })
     })
 

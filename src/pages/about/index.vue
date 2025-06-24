@@ -13,7 +13,7 @@
       </template>
       <template #media>
         <BaseMedia
-          src="/about/img/about-01.png"
+          src="/about/img/about-01.webp"
           width="300"
           height="300"
           loading="lazy"

@@ -20,13 +20,13 @@
 
       &::before {
         position: absolute;
-        top: .6em;
+        top: .65em;
         left: 5px;
         display: block;
         width: 5px;
         height: 5px;
         content: "";
-        background-color: #F0F3F8;
+        background-color: var(--color-background-dark);
         border-radius: 50%;
       }
 

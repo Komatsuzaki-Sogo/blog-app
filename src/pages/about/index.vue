@@ -21,6 +21,8 @@
         />
       </template>
     </MediaLayout>
+
+    <AboutSkill />
   </BaseContent>
 </template>
 
@@ -30,6 +32,7 @@
   import BaseText from '~/components/atoms/BaseText.vue'
   import BaseMedia from '~/components/atoms/BaseMedia.vue'
   import MediaLayout from '~/components/molecules/MediaLayout.vue'
+  import AboutSkill from '~/components/pages/about/AboutSkill.vue'
 
   const breadcrumbState = useBreadcrumbState()
 

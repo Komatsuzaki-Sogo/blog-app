@@ -4,7 +4,7 @@
       <div v-if="props.caption" class="c-media__caption">
         {{ props.caption }}
       </div>
-      <NuxtImg
+      <img
         class="c-media__item"
         :src="props.src"
         :width="Number(props.width)"
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-  import { NuxtImg, NuxtLink } from '#components'
+  import { NuxtLink } from '#components'
 
   type Props = {
     src: string

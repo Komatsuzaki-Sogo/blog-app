@@ -7,14 +7,14 @@
       <BlogCategories :blog-category="blogCategory?.contents" />
     </template>
     <template v-else-if="blogCategoryError">
-      <BaseText>
+      <BaseText text-align="center">
         <p>
           <em>ブログカテゴリのデータの取得に失敗しました。</em>
         </p>
       </BaseText>
     </template>
     <template v-else>
-      <BaseText>
+      <BaseText text-align="center">
         <p>
           <em>ブログカテゴリのデータがありませんでした。</em>
         </p>
@@ -31,7 +31,7 @@
       />
     </template>
     <template v-else>
-      <BaseText>
+      <BaseText text-align="center">
         <p>
           <em>ブログ記事一覧のデータがありませんでした。</em>
         </p>

@@ -1,13 +1,25 @@
 <template>
-  <div class="c-text">
+  <div :class="rootClass">
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-  defineProps<{
-    subTitle?: string
-  }>()
+  type Props = {
+    textAlign?: 'center' | 'right'
+    type?: 'widthFit'
+  }
+
+  const props = defineProps<Props>()
+
+  const rootClass = computed(() => {
+    return [
+      'c-text',
+      props.textAlign === 'center' && 'c-text--center',
+      props.textAlign === 'right' && 'c-text--right',
+      props.type === 'widthFit' && 'c-text--widthFit',
+    ]
+  })
 </script>
 
 <style scoped lang="scss">
@@ -24,6 +36,22 @@
 
     > p {
       flex: 0 0 auto;
+    }
+
+    &--center {
+      text-align: center;
+    }
+
+    &--right {
+      text-align: right;
+    }
+
+    &--widthFit {
+      :deep(p) {
+        width: fit-content;
+        margin-right: auto;
+        margin-left: auto;
+      }
     }
   }
 </style>

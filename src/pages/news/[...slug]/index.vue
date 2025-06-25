@@ -1,21 +1,14 @@
 <template>
   <BaseContent>
-    <template v-if="matchedNewsPostData && matchedNewsPostData.contents[0]">
-      <NewsContent :news-post="matchedNewsPostData.contents[0]" />
-    </template>
-    <template v-else>
-      <BaseText text-align="center">
-        <p>
-          <em>お知らせ記事のデータがありませんでした。</em>
-        </p>
-      </BaseText>
-    </template>
+    <NewsContent
+      v-if="matchedNewsPostData && matchedNewsPostData.contents[0]"
+      :news-post="matchedNewsPostData.contents[0]"
+    />
   </BaseContent>
 </template>
 
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
-  import BaseText from '~/components/atoms/BaseText.vue'
   import NewsContent from '~/components/pages/news/NewsContent.vue'
 
   const route = useRoute()
@@ -30,6 +23,12 @@
     page: 1,
     pageLimit: 1,
   })
+
+  if (!matchedNewsPostData.value?.contents?.length) {
+    throw createError({
+      statusCode: 404,
+    })
+  }
 
   const breadcrumbState = useBreadcrumbState()
 

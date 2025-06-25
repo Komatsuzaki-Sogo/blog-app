@@ -6,7 +6,7 @@
     <template v-else>
       <BaseText text-align="center">
         <p>
-          <em>ブログ記事のデータがありませんでした。</em>
+          <em>お知らせ記事のデータがありませんでした。</em>
         </p>
       </BaseText>
     </template>
@@ -24,20 +24,12 @@
   const normalizedSlug = fullSlug.replace(/\/$/, '')
 
   // ニュース記事の取得
-  const { data: matchedNewsPostData, error: matchedNewsPostDataError } =
-    await useFetchMicroCMSGetList({
-      endpoint: 'news',
-      filters: `slug[equals]${normalizedSlug}`,
-      page: 1,
-      pageLimit: 1,
-    })
-
-  if (!matchedNewsPostDataError) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: '指定されたカテゴリが見つかりません',
-    })
-  }
+  const { data: matchedNewsPostData } = await useFetchMicroCMSGetList({
+    endpoint: 'news',
+    filters: `slug[equals]${normalizedSlug}`,
+    page: 1,
+    pageLimit: 1,
+  })
 
   const breadcrumbState = useBreadcrumbState()
 

@@ -1,0 +1,25 @@
+@use '@/styles/_common/mixin/' as mixin;
+
+.c-content-cms {
+  /* コード */
+  pre {
+    margin-top: 24px;
+    white-space: pre-wrap;
+
+    @include mixin.media(pc) {
+      margin-top: 32px;
+    }
+  }
+
+  p + div > pre {
+    margin-top: 8px !important;
+  }
+
+  p:has( + div > pre) {
+    margin-top: 40px;
+
+    @include mixin.media(pc) {
+      margin-top: 48px;
+    }
+  }
+}

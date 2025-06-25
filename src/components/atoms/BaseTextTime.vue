@@ -1,13 +1,22 @@
 <template>
   <time :datetime="time" class="c-text-time">
-    {{ useFormatDate(time) }}
+    {{ formattedTime }}
   </time>
 </template>
 
 <script setup lang="ts">
-  defineProps<{
+  import dayjs from 'dayjs'
+  import utc from 'dayjs/plugin/utc'
+  import timezone from 'dayjs/plugin/timezone'
+
+  const props = defineProps<{
     time: string
   }>()
+
+  dayjs.extend(utc)
+  dayjs.extend(timezone)
+
+  const formattedTime = computed(() => dayjs(props.time).tz('Asia/Tokyo').format('YYYY/MM/DD'))
 </script>
 
 <style scoped lang="scss">

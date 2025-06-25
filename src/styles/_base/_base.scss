@@ -59,7 +59,8 @@ button {
   border: none;
 }
 
-img {
+img,
+svg {
   display: block;
   max-width: 100%;
   height: auto;
@@ -67,5 +68,4 @@ img {
 
 *:focus-visible {
   outline: 1px solid var(--color-outline-dark);
-  outline-offset: -1px;
 }

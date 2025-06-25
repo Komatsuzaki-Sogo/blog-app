@@ -61,6 +61,7 @@
           placeholder="お問い合わせ内容を入力してください"
           :required="true"
           rows="6"
+          :error-state="!!errorMessage"
           @change="() => validateField('message')"
         />
         <BaseTextError v-if="errorMessage">{{ errorMessage }}</BaseTextError>

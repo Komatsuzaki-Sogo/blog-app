@@ -94,10 +94,6 @@
           }
         }
       }
-
-      &:focus-visible {
-        outline-offset: 0;
-      }
     }
 
     &__text {

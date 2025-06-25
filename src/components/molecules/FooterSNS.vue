@@ -33,11 +33,12 @@
   .c-list-sns {
     display: flex;
     gap: 24px;
-    justify-content: flex-end;
+    justify-content: center;
     list-style: none;
 
     @include mixin.media(pc) {
       gap: 48px;
+      justify-content: flex-end;
     }
 
     &__link {

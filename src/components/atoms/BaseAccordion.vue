@@ -82,6 +82,11 @@
       padding: 24px;
       cursor: pointer;
       list-style: none;
+      border-radius: 16px;
+
+      &:focus-visible {
+        outline-offset: -1px;
+      }
     }
 
     &__summaryInner {

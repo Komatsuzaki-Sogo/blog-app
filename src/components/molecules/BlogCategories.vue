@@ -153,6 +153,10 @@
             }
           }
         }
+
+        &:focus-visible {
+          outline-offset: -1px;
+        }
       }
     }
   }

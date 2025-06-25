@@ -56,20 +56,12 @@
   const route = useRoute()
   const slug = route.params.slug as string
 
-  const { data: matchedBlogPostData, error: matchedBlogPostDataError } =
-    await useFetchMicroCMSGetList({
-      endpoint: 'blog',
-      filters: `slug[equals]${slug}`,
-      page: 1,
-      pageLimit: 1,
-    })
-
-  if (!matchedBlogPostDataError) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: '指定されたカテゴリが見つかりません',
-    })
-  }
+  const { data: matchedBlogPostData } = await useFetchMicroCMSGetList({
+    endpoint: 'blog',
+    filters: `slug[equals]${slug}`,
+    page: 1,
+    pageLimit: 1,
+  })
 
   const { data: blogCategory, error: blogCategoryError } = await useFetchMicroCMSGetList({
     endpoint: 'blog-category',

@@ -1,8 +1,6 @@
 <template>
   <time :datetime="time" class="c-text-time">
-    <ClientOnly>
-      {{ formattedTime }}
-    </ClientOnly>
+    {{ formattedTime }}
   </time>
 </template>
 

@@ -89,5 +89,9 @@
       color: #6e6e6e;
       text-align: center;
     }
+
+    *:focus-visible {
+      outline-color: var(--color-outline-white);
+    }
   }
 </style>

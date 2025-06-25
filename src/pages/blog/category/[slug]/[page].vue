@@ -30,13 +30,6 @@
         :on-paging="onPaging"
       />
     </template>
-    <template v-else>
-      <BaseText text-align="center">
-        <p>
-          <em>ブログ記事一覧のデータがありませんでした。</em>
-        </p>
-      </BaseText>
-    </template>
   </BaseContent>
 </template>
 
@@ -63,7 +56,7 @@
   const page = ref(Number(Array.isArray(params.page) ? params.page[0] : params.page))
   const pageLimit = pageLimitBase
 
-  const { data: blogPosts, error: blogPostsError } = await useFetchMicroCMSGetList({
+  const { data: blogPosts } = await useFetchMicroCMSGetList({
     endpoint: 'blog',
     filters: `blog-category[contains]${matchedCategoryData.value?.contents[0]?.id}`,
     page: page.value,
@@ -77,13 +70,6 @@
 
   const totalPage = ref(Math.ceil(totalCount / pageLimit))
 
-  if (blogPostsError.value) {
-    throw showError({
-      statusCode: 404,
-      statusMessage: 'ページが存在しません',
-    })
-  }
-
   const onPaging = (pageNumber: number) => {
     const router = useRouter()
     router.push({
@@ -95,6 +81,12 @@
     endpoint: 'blog-category',
     filters: '',
   })
+
+  if (!matchedCategoryData?.value?.contents[0]) {
+    throw createError({
+      statusCode: 404,
+    })
+  }
 
   const breadcrumbState = useBreadcrumbState()
 

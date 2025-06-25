@@ -1,19 +1,17 @@
 <template>
   <BaseContent>
     <BaseContentWithSidenav>
-      <template v-if="matchedBlogPostData && matchedBlogPostData.contents[0]">
-        <BlogContent :blog-post="matchedBlogPostData.contents[0]" />
-      </template>
-      <template v-else>
-        <BaseText text-align="center">
-          <p>
-            <em>ブログ記事のデータがありませんでした。</em>
-          </p>
-        </BaseText>
-      </template>
+      <BlogContent
+        v-if="matchedBlogPostData && matchedBlogPostData.contents[0]"
+        :blog-post="matchedBlogPostData.contents[0]"
+      />
 
       <template v-if="blogCategory && blogCategory?.contents.length > 0">
-        <BlogCategories :blog-category="blogCategory?.contents" type="sidenav" />
+        <BlogCategories
+          v-if="blogCategory && blogCategory?.contents.length > 0"
+          :blog-category="blogCategory?.contents"
+          type="sidenav"
+        />
       </template>
       <template v-else-if="blogCategoryError">
         <BaseText text-align="center">
@@ -67,6 +65,12 @@
     endpoint: 'blog-category',
     filters: '',
   })
+
+  if (!matchedBlogPostData.value?.contents?.length) {
+    throw createError({
+      statusCode: 404,
+    })
+  }
 
   const breadcrumbState = useBreadcrumbState()
 

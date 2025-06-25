@@ -52,7 +52,7 @@
   const page = ref(Number(Array.isArray(params.page) ? params.page[0] : params.page))
   const pageLimit = pageLimitBase
 
-  const { data: blogPosts, error: blogPostsError } = await useFetchMicroCMSGetList({
+  const { data: blogPosts } = await useFetchMicroCMSGetList({
     endpoint: 'blog',
     filters: '',
     page: page.value,
@@ -66,13 +66,6 @@
 
   const totalPage = ref(Math.ceil(totalCount / pageLimit))
 
-  if (blogPostsError.value) {
-    throw showError({
-      statusCode: 404,
-      statusMessage: 'ページが存在しません',
-    })
-  }
-
   const onPaging = (pageNumber: number) => {
     const router = useRouter()
     router.push({
@@ -84,6 +77,12 @@
     endpoint: 'blog-category',
     filters: '',
   })
+
+  if (!blogCategory?.value?.contents.length) {
+    throw createError({
+      statusCode: 404,
+    })
+  }
 
   const breadcrumbState = useBreadcrumbState()
 

@@ -94,6 +94,10 @@
           }
         }
       }
+
+      &:focus-visible {
+        outline-offset: -1px;
+      }
     }
 
     &__text {

@@ -83,7 +83,7 @@
     }
 
     &--bgPrimary {
-      background-color: var(--color-primary);
+      background: var(--color-gradient);
     }
   }
 </style>

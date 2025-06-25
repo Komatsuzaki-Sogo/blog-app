@@ -26,11 +26,10 @@
   .c-text {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
     margin-top: 32px;
 
     @include mixin.media(pc) {
-      gap: 32px;
       margin-top: 40px;
     }
 

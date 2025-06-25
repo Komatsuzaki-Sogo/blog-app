@@ -57,6 +57,10 @@ button {
   outline: none;
   background-color: transparent;
   border: none;
+
+  &:focus-visible {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
 }
 
 img {

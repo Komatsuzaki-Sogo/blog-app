@@ -31,7 +31,7 @@
       </template>
     </BaseContentWithSidenav>
 
-    <BaseButton :to="PATHS.BLOG.path">ブログ一覧へ戻る</BaseButton>
+    <BaseButton type="button" @click="goBack">ブログ一覧へ戻る</BaseButton>
   </BaseContent>
 </template>
 
@@ -43,23 +43,25 @@
   import BaseButton from '~/components/atoms/BaseButton.vue'
   import BlogCategories from '~/components/molecules/BlogCategories.vue'
 
+  const router = useRouter()
+
+  const goBack = () => {
+    if (history.length > 1) {
+      router.back()
+    } else {
+      router.push('/')
+    }
+  }
+
   const route = useRoute()
   const slug = route.params.slug as string
 
-  const { data: matchedBlogPostData, error: matchedBlogPostDataError } =
-    await useFetchMicroCMSGetList({
-      endpoint: 'blog',
-      filters: `slug[equals]${slug}`,
-      page: 1,
-      pageLimit: 1,
-    })
-
-  if (!matchedBlogPostDataError) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: '指定されたカテゴリが見つかりません',
-    })
-  }
+  const { data: matchedBlogPostData } = await useFetchMicroCMSGetList({
+    endpoint: 'blog',
+    filters: `slug[equals]${slug}`,
+    page: 1,
+    pageLimit: 1,
+  })
 
   const { data: blogCategory, error: blogCategoryError } = await useFetchMicroCMSGetList({
     endpoint: 'blog-category',

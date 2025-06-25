@@ -57,12 +57,38 @@
 
     &__link {
       position: relative;
+      display: flex;
+      justify-content: center;
       color: var(--color-foreground-light);
-      transition: opacity var(--transition);
+      transition: transform var(--transition);
+
+      &::before {
+        position: absolute;
+        top: -12px;
+        left: -12px;
+        width: 64px;
+        height: 64px;
+        content: '';
+        background-color: var(--color-outline-white);
+        border-radius: var(--border-radius-circle);
+        opacity: 0;
+        transition: opacity var(--transition);
+
+        @include mixin.media(pc) {
+          top: -20px;
+          left: -20px;
+          width: 96px;
+          height: 96px;
+        }
+      }
 
       @include mixin.media(hover) {
         &:hover {
-          opacity: var(--opacity);
+          transform: scale(0.8);
+
+          &::before {
+            opacity: 0.4;
+          }
         }
       }
     }
@@ -77,8 +103,10 @@
     }
 
     &__icon {
-      --local-width: 32px;
+      --local-width: 40px;
 
+      position: relative;
+      z-index: 1;
       width: var(--local-width);
       height: var(--local-width);
       color: var(--color-foreground-light);
@@ -95,8 +123,26 @@
       }
 
       #{$this}__icon {
+        --local-width: 32px;
+
         @include mixin.media(pc) {
           --local-width: 32px;
+        }
+      }
+
+      #{$this}__link {
+        &::before {
+          top: -12px;
+          left: -12px;
+          width: 56px;
+          height: 56px;
+
+          @include mixin.media(pc) {
+            top: -12px;
+            left: -12px;
+            width: 56px;
+            height: 56px;
+          }
         }
       }
     }

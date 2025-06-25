@@ -96,7 +96,7 @@
       }
 
       &:focus-visible {
-        outline-offset: -1px;
+        outline-offset: 0;
       }
     }
 

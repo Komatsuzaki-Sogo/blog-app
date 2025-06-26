@@ -32,7 +32,7 @@
     $this: &;
 
     display: grid;
-    grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
+    grid-template-columns: 1fr minmax(300px, 1024px) 1fr;
     grid-column: 1 / 4;
     gap: 0 clamp(1.6rem, calc(-2.667rem + 5.556vw), 4rem);
     width: 100%;

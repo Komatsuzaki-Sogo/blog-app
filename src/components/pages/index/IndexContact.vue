@@ -118,7 +118,7 @@
       flex-direction: row;
       align-items: flex-end;
       justify-content: space-between;
-      margin-top: 48px;
+      margin-top: 64px;
       text-align: left;
     }
 

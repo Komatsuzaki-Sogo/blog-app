@@ -139,7 +139,7 @@
     flex-direction: column;
     justify-content: center;
     height: var(--header-height);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(22px);
 
     &__inner {
       display: flex;

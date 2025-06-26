@@ -48,6 +48,7 @@
     }
 
     &__content {
+      align-self: center;
       width: 100%;
     }
 
@@ -55,6 +56,7 @@
       flex: 0 0 auto;
 
       @include mixin.media(pc) {
+        align-self: center;
         max-width: calc((100% - var(--local-gap)) / 2);
       }
     }

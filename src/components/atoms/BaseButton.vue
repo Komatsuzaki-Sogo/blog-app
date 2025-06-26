@@ -115,5 +115,11 @@
       cursor: auto;
       opacity: 0.4;
     }
+
+    .c-media-layout & {
+      @include mixin.media(pc) {
+        margin-left: 0;
+      }
+    }
   }
 </style>

@@ -32,7 +32,7 @@
     $this: &;
 
     display: grid;
-    grid-template-columns: 1fr minmax(300px, 1200px) 1fr;
+    grid-template-columns: 1fr minmax(300px, 1024px) 1fr;
     grid-column: 1 / 4;
     gap: 0 clamp(1.6rem, calc(-2.667rem + 5.556vw), 4rem);
     width: 100%;
@@ -59,12 +59,12 @@
     }
 
     &--top {
-      padding-top: 80px;
-      padding-bottom: 80px;
+      padding-top: 40px;
+      padding-bottom: 40px;
 
       @include mixin.media(pc) {
-        padding-top: 120px;
-        padding-bottom: 120px;
+        padding-top: 80px;
+        padding-bottom: 80px;
       }
     }
 
@@ -83,7 +83,7 @@
     }
 
     &--bgPrimary {
-      background-color: var(--color-primary);
+      background: var(--color-gradient);
     }
   }
 </style>

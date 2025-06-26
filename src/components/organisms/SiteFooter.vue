@@ -11,7 +11,7 @@
         </nav>
 
         <div class="c-footer__sns">
-          <FooterSNS />
+          <SNSIcons type="footer" />
         </div>
 
         <div class="c-footer__copyright">
@@ -27,7 +27,7 @@
 <script setup lang="ts">
   import BaseContent from '~/components/atoms/BaseContent.vue'
   import BaseLogo from '~/components/atoms/BaseLogo.vue'
-  import FooterSNS from '~/components/molecules/FooterSNS.vue'
+  import SNSIcons from '~/components/molecules/SNSIcons.vue'
   import FooterNavigation from '~/components/molecules/FooterNavigation.vue'
 </script>
 

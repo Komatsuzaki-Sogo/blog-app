@@ -51,16 +51,6 @@
       max-height: 100vh;
       background-color: var(--color-background-light);
 
-      &::after {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: var(--header-height);
-        content: '';
-        background-color: var(--color-background-light);
-      }
-
       &.is-active {
         #{$this}__inner {
           overflow: auto;

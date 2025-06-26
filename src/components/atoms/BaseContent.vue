@@ -59,12 +59,12 @@
     }
 
     &--top {
-      padding-top: 80px;
-      padding-bottom: 80px;
+      padding-top: 40px;
+      padding-bottom: 40px;
 
       @include mixin.media(pc) {
-        padding-top: 120px;
-        padding-bottom: 120px;
+        padding-top: 80px;
+        padding-bottom: 80px;
       }
     }
 

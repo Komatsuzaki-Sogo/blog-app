@@ -30,6 +30,13 @@
         :on-paging="onPaging"
       />
     </template>
+    <template v-else>
+      <BaseText text-align="center">
+        <p>
+          <em>ブログ記事一覧のデータがありませんでした。</em>
+        </p>
+      </BaseText>
+    </template>
   </BaseContent>
 </template>
 

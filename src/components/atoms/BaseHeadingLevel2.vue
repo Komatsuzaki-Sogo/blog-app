@@ -1,13 +1,13 @@
 <template>
-  <div class="c-heading-level1">
-    <h2 class="c-heading-level1__title">
+  <div class="c-heading-level2">
+    <h2 class="c-heading-level2__title">
       <slot />
     </h2>
   </div>
 </template>
 
 <style scoped lang="scss">
-  .c-heading-level1 {
+  .c-heading-level2 {
     $this: &;
 
     position: relative;

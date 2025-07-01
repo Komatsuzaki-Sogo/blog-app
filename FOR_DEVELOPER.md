@@ -4,21 +4,22 @@
 
 ## 開発環境
 
-### Visual Studio Codeの拡張機能
+### Visual Studio Code の拡張機能
 
-Visual Studio Codeを利用する場合は、以下の拡張機能をインストールします。[^1]
+Visual Studio Code を利用する場合は、以下の拡張機能をインストールします。[^1]
 
-| 拡張名                                                                                     | インストール条件 |
-| ------------------------------------------------------------------------------------------ | :--------------: |
+| 拡張名                                                                                        | インストール条件 |
+| --------------------------------------------------------------------------------------------- | :--------------: |
 | [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)          |       必須       |
 | [editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) |       必須       |
 | [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)   |       必須       |
+| [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)        |       必須       |
 | [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)                |       推奨       |
 | [Gremlins tracker](https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins)      |       推奨       |
 
 ### 命名ルール
 
-- FLOCSSを採用しています。
+- FLOCSS を採用しています。
 - 「接頭辞」・「部位・分類」・「識別子」をハイフンケースでつなぎます。
 - 各単語はローワーキャメルケースで表記します。
 - 原則、単語を「省略しない」
@@ -33,17 +34,17 @@ Visual Studio Codeを利用する場合は、以下の拡張機能をインス�
 .c-tbl-type2
 ```
 
-| 接頭辞 | 説明                                                                                        |
-| :----: | :------------------------------------------------------------------------------------------ |
-|  .l-*  | レイアウト。ガワおよびフレーム（骨組み）にあたる部分に使用します。`<br>`例：`.l-header` |
-|  .c-*  | モジュール。モジュールにあたる部品に使用します。`<br>`例：`.m-box-info`                 |
-|  .u-*  | ユーティリティ。調整クラスに使用します。                                                    |
+| 接頭辞 | 説明                                                                                    |
+| :----: | :-------------------------------------------------------------------------------------- |
+| .l-\*  | レイアウト。ガワおよびフレーム（骨組み）にあたる部分に使用します。`<br>`例：`.l-header` |
+| .c-\*  | コンポーネント。コンポーネントにあたる部品に使用します。`<br>`例：`.c-box-info`         |
+| .u-\*  | ユーティリティ。調整クラスに使用します。                                                |
 
 ### コメント
 
 コメントアウトは `block`単位
 
-* `block`の終わりに付与
+- `block`の終わりに付与
 
 例：
 
@@ -61,8 +62,7 @@ Visual Studio Codeを利用する場合は、以下の拡張機能をインス�
 </ul><!-- /.block -->
 ```
 
-
-### CSSプロパティ指定
+### CSS プロパティ指定
 
 - `background`はロングハンドを使用します（未指定のプロパティ反映は望ましくないため）
 
@@ -70,21 +70,19 @@ Visual Studio Codeを利用する場合は、以下の拡張機能をインス�
 
 余白は基本的に `margin-top`と `margin-left`を使用
 
-* ただしアイコンやラベルなどの不確定要素を配置する場合は不確定要素の方にmarginを設定する
+- ただしアイコンやラベルなどの不確定要素を配置する場合は不確定要素の方に margin を設定する
 
 ### リソースファイル管理ルール
 
 #### 共通ファイル格納場所
 
-**※文書仕様書をもとに記述調整中。とくにsites配下はルール未fix**
+**※文書仕様書をもとに記述調整中。とくに sites 配下はルール未 fix**
 
 すべてのリソースファイルは `/shared/`配下に格納する。
 
-| ディレクトリ    | 格納するもの                               |
-| :-------------- | :----------------------------------------- |
+| ディレクトリ  | 格納するもの                               |
+| :------------ | :----------------------------------------- |
 | `/shared/img` | 共通系・ページ固有で使用している画像を格納 |
-| `/shared/js`  | 共通系・ページ固有で使用しているJSを格納   |
-| `/shared/css` | 共通系・ページ固有で使用しているCSSを格納  |
 
 #### 画像ファイル名
 
@@ -129,13 +127,13 @@ cmn-img-localNavgation.webp
 cmn-img-localNavigation-2.webp
 ```
 
-※ CMS登録（アセット登録）する画像は[04_CMS投入](https://mlc-inc.backlog.com/alias/wiki/3604185)を参考に命名してください。
+※ CMS 登録（アセット登録）する画像は[04_CMS 投入](https://mlc-inc.backlog.com/alias/wiki/3604185)を参考に命名してください。
 
 ### アンカーリンクの命名ルール
 
 `anchor-連番`
 
-※連番の1は省略する
+※連番の 1 は省略する
 
 ```
 anchor
@@ -144,10 +142,9 @@ anchor-3
 anchor-4
 ```
 
+### Git コミットルール
 
-### Gitコミットルール
-
-以下に沿うようにgitのコミットメッセージを反映お願いします。
+以下に沿うように git のコミットメッセージを反映お願いします。
 
 | type     | 用途                   |
 | -------- | ---------------------- |
@@ -157,4 +154,4 @@ anchor-4
 | style    | フォーマットや空白など |
 | refactor | 挙動変更なしの改善     |
 | test     | テストコード関連       |
-| chore    | ビルドやCIなど雑務系   |
+| chore    | ビルドや CI など雑務系 |

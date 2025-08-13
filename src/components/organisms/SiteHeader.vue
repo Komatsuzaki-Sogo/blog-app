@@ -2,9 +2,7 @@
   <header class="c-header">
     <BaseContent padding-y="none">
       <div class="c-header__inner">
-        <h1>
-          <BaseLogo />
-        </h1>
+        <BaseLogo />
         <BaseHamburgerMenu
           :aria-controls="menuId"
           :aria-expanded="isMenuOpen"

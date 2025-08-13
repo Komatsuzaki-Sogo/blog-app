@@ -1,6 +1,6 @@
 <template>
   <BaseContent padding-y="top">
-    <BaseHeadingLevel1 markup="h2">About</BaseHeadingLevel1>
+    <BaseHeadingLevel1 id="anchor-01" markup="h2">About</BaseHeadingLevel1>
     <MediaLayout type-sp="columnReverse" type-pc="rowReverse">
       <template #content>
         <BaseText>

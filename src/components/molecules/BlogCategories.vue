@@ -58,9 +58,25 @@
     align-items: center;
 
     &__title {
+      position: relative;
+      display: block;
       flex: 0 0 auto;
-      padding-right: 2px;
+      padding-left: 13px;
       font-size: 2rem;
+
+      &::before {
+        --local-padding-y: 3px;
+
+        position: absolute;
+        top: var(--local-padding-y);
+        left: 0;
+        display: block;
+        width: 5px;
+        height: calc(100% - var(--local-padding-y) * 2);
+        content: '';
+        background: var(--color-gradient);
+        border-radius: 2px;
+      }
     }
 
     &__list {

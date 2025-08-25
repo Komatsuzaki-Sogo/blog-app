@@ -66,10 +66,7 @@
       { property: 'og:site_name', content: 'KS BLOG オフィシャルサイト' },
       { property: 'og:image', content: `${baseHost}/shared/img/ogp.png` },
     ],
-    link: [
-      { rel: 'canonical', href: `${baseHost}/404` },
-      { rel: 'shortcut icon', href: '/shared/img/favicon.ico' },
-    ],
+    link: [{ rel: 'canonical', href: `${baseHost}/404` }],
     script: [
       {
         type: 'application/ld+json',

@@ -1,7 +1,7 @@
 <template>
   <div class="c-logo">
     <NuxtLink :to="PATHS.HOME.path" class="c-logo__link">
-      <span class="c-logo__text">LOGO</span>
+      <span class="c-logo__text">K・S</span>
     </NuxtLink>
   </div>
 </template>

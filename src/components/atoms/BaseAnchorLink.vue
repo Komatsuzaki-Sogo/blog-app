@@ -61,7 +61,8 @@
       width: 100%;
       height: 100%;
       padding: 0 24px 8px 0;
-      font-weight: var(--font-weight-medium);
+      font-size: 1.4rem;
+      font-weight: var(--font-weight-bold);
       transition: color var(--transition);
 
       @include mixin.media(hover) {

@@ -1,5 +1,10 @@
 <template>
-  <span class="c-rate" :style="{ '--rate': rate }" :aria-label="`スキルレベルは${rate}です`" />
+  <span
+    class="c-rate"
+    :style="{ '--rate': rate }"
+    role="img"
+    :aria-label="`スキルレベルは${rate}です`"
+  />
 </template>
 
 <script setup lang="ts">

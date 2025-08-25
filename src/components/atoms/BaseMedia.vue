@@ -9,7 +9,7 @@
         :src="props.src"
         :width="Number(props.width)"
         :height="Number(props.height)"
-        :alt="props.alt"
+        :alt="props.alt ?? ''"
         :loading="props.loading"
       />
     </component>
